@@ -345,6 +345,25 @@ header nav a:hover {
     padding:0;
 }
 
+/* about */
+.post-about {
+    color:#333;
+    font-size: 16px;
+    line-height:1.8em;
+    margin-top:50px;
+}
+.post-about p {
+    margin-bottom: 3px;
+}
+.post-about .qrcode img{
+    height: 350px;
+}
+.post-about .link{
+    font-size: 10px;
+    color: rgb(0, 176, 240);
+    padding-left: 24px;
+}
+
 /* responsive */
 @media(max-width:768px) {
     header .avatar {

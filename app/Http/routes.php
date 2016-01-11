@@ -14,5 +14,9 @@
 
 // 首页
 Route::get('/', 'ProgramsController@index');
-// 详情页
-Route::get('/programs/{date}.html', 'ProgramsController@detail');
+// 节目页
+Route::get('programs/{date}.html', 'ProgramsController@detail');
+// 关于页
+Route::get('about.html', function () {
+    return View::make('about');
+});

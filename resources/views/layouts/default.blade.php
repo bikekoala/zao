@@ -19,10 +19,10 @@
         <header>
             <div class="sidebar">
                 <img class="avatar" src="/img/avatar.png">
-                <h2 class="description">小人们洗耳聆听吧</h2>
+                <h2 class="description">小人们洗耳聆听吧！</h2>
                 <nav>
                     <a href="/" title="首页"><i class="fa fa-home"></i></a>
-                    <a href="/about" title="关于"><i class="fa fa-about"> </i></a>
+                    <a href="/about.html" title="关于"><i class="fa fa-about"> </i></a>
                 </nav>
             </div>
         </header>
