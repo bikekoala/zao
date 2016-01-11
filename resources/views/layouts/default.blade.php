@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
@@ -9,7 +9,7 @@
         <title>早 - 飞鱼秀非官方回放</title>
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
-        <script src="/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -41,6 +41,6 @@
                 <img src="/img/top.png" alt="返回顶部">
             </div>
         </div>
-        <script src="/js/main.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
     </body>
 </html>

@@ -14,3 +14,5 @@
 
 // 首页
 Route::get('/', 'ProgramsController@index');
+// 详情页
+Route::get('/programs/{date}.html', 'ProgramsController@detail');

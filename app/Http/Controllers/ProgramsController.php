@@ -22,4 +22,16 @@ class ProgramsController extends Controller
         // render page
         return View::make('programs/index');
     }
+
+    /**
+     * 详情
+     *
+     * @param int $date
+     * @return void
+     */
+    public function detail($date)
+    {
+        // render page
+        return View::make('programs/detail');
+    }
 }
