@@ -1,0 +1,333 @@
+@font-face {
+    font-family:'Open Sans';
+    font-style:normal;
+    src:local('Open Sans Light'),local('OpenSans-Light'),url("../font/OpenSans.woff") format('woff');
+}
+* {
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    outline:0;
+    word-break:break-word;
+}
+body {
+    color:#333;
+    font-size:87.5%;
+    font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-shadow:1px 1px 2px rgba(0,0,0,0.15);
+    margin:0;
+    padding:0;
+    position:relative;
+    background-position:center;
+    width:100%;
+    height:100%;
+    background-size:100% 100%;
+}
+a {
+    text-decoration:none;
+    color:#222;
+}
+a:hover,a:active {
+    text-decoration:none;
+    opacity:.8;
+}
+blockquote {
+    margin:1em 1.3em;
+    padding-left:0.8em;
+    border-left:4px solid #eee;
+}
+hr {
+    margin-top:20px;
+    margin-bottom:20px;
+    border-top:1px solid #eee;
+}
+p,pre {
+    margin:1em 0;
+}
+pre {
+    padding:2px;
+    overflow:auto;
+    color:#fff;
+    background:#23241f;
+    border-radius:5px;
+}
+.button {
+    font-family:inherit;
+    display:inline-block;
+    text-align:center;
+    font-size:100%;
+    padding:0.5em 0.5em;
+    color:#fff;
+    border:0 rgba(0,0,0,0);
+    text-decoration:none;
+}
+.button:hover {
+    opacity:0.8;
+}
+.submit {
+    background:none repeat scroll 0 0 #F9F9F9;
+    border:1px solid #eee;
+    border-radius:3px;
+    color:#59493F;
+    margin:0;
+    padding:5px 15px;
+}
+.submit:hover {
+    opacity:0.8;
+}
+input,textarea {
+    padding:5px;
+    border:0;
+    border-bottom:1px solid #eee;
+    width:100%;
+    border-radius:2px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+textarea {
+    resize:vertical;
+}
+header {
+    text-align:center;
+    top:0;
+    background-size:cover;
+    background-image:url("http://s.cn.bing.net/az/hprichbg/rb/PolandWinter_ZH-CN11003553401_1920x1080.jpg");
+    background-repeat:no-repeat;
+    background-position:center center;
+    position:relative;
+    display:inline-block;
+    zoom:1;
+    letter-spacing:normal;
+    word-spacing:normal;
+    vertical-align:top;
+    text-rendering:auto;
+    width:100%;
+}
+header .avatar {
+    max-width:4em;
+    border-radius:100%;
+    /* margin-top: 1em; */
+    box-shadow:0px 0px 0px 1.5px rgba(255,255,255,0.7);
+    display:inline-block;
+    vertical-align:middle;
+}
+header h2 {
+    text-align:center;
+    margin-top:0.9em;
+}
+header .description {
+    margin-top:30px;
+    font-family:"Segoe UI Light","Open Sans",sans-serif;
+    font-weight:normal;
+    font-size:90%;
+    color:rgba(238,238,238,0.80);
+}
+header nav a {
+    display:inline-block;
+    text-align:center;
+    border-radius:100%;
+    margin-top:0.75em;
+    margin-bottom:0.75em;
+}
+header nav i {
+    display:inline-block;
+    border:1px solid;
+    border-color:rgba(255,255,255,0.35) rgba(255,255,255,0.45) rgba(255,255,255,0.55);
+    border-radius:50%;
+    padding:6px;
+    margin:0.15em;
+    font-size:1em;
+    color:rgba(255,255,255,0.8);
+}
+header nav a:hover {
+    background-color:rgba(255,255,255,0.15);
+}
+article {
+    padding-bottom:3.5em;
+}
+.content {
+    padding:0.5em 2em 0;
+}
+.archive {
+    position:relative;
+    font-size:15px;
+    color:rgba(0,0,0,.6)
+}
+.archive:before {
+    content:"";
+    width:3px;
+    background-color:rgba(0,0,0,.05);
+    position:absolute;
+    top:30px;
+    bottom:0;
+    left:100px
+}
+.archive .year {
+    display:inline-block;
+    background-color:#fafafa;
+    border:1px solid rgba(0,0,0,.05);
+    color:rgba(0,0,0,.44);
+    padding:1px 0;
+    width:120px;
+    margin-left:40px;
+    text-align:center;
+    position:relative;
+    border-radius:3px;
+    margin-top:30px;
+    margin-bottom:10px
+}
+.archive .month {
+    position:relative;
+    font-weight:700;
+    margin-bottom:15px
+}
+.archive .month:after, .archive .month:before {
+    content:"";
+    background-color:#fff;
+    height:19px;
+    width:19px;
+    border-radius:100%;
+    position:absolute;
+    left:92px;
+    top:3px
+}
+.archive .month:after {
+    height:15px;
+    width:15px;
+    background-color:#eee;
+    left:94px;
+    top:5px
+}
+.archive .month:hover:after {
+    background-color:#4A89DC
+}
+.archive ul {
+    margin-left:100px;
+    margin-bottom:30px;
+    list-style:none;
+    padding:0;
+}
+.archive ul li {
+    position:relative;
+    padding-left:15px;
+    line-height:1.8em;
+}
+.archive ul li:after, .archive ul li:before {
+    content:"";
+    background-color:#fff;
+    height:13px;
+    width:13px;
+    border-radius:100%;
+    position:absolute;
+    left:-5px;
+    top:7px
+}
+.archive ul li:after {
+    height:9px;
+    width:9px;
+    background-color:#eee;
+    left:-3px;
+    top:9px
+}
+.archive ul li:hover {
+    margin-left:5px;
+}
+.archive ul li:hover:after {
+    background-color:#4A89DC
+}
+.archive ul li a span {
+    padding-right: 0.8em;
+}
+#footer {
+    line-height:1.3;
+    font-size:75%;
+    position:relative;
+    text-align:center;
+    margin-top:4em;
+    margin-bottom:3em;
+}
+#gotop {
+    display:none;
+    text-decoration:none;
+    position:fixed;
+    bottom:.75rem;
+    right:.75rem;
+    overflow:hidden;
+    width:40px;
+    height:40px;
+    border:none;
+    z-index:100;
+    cursor:pointer;
+}
+#gotop img {
+    width:40px;
+    height:40px;
+}
+#gotophover {
+    display:block;
+    overflow:hidden;
+    float:left;
+}
+
+/* layout */
+.avatar{
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: all 0.49s;
+    -moz-transition: all 0.49s;
+    -ms-transition: all 0.49s;
+    -o-transition: all 0.49s;
+    transition: all 0.49s;
+}
+.avatar:hover{
+    transform:rotateZ(360deg); 
+}
+.fa-home:before {
+    content:"\f015";
+}
+.fa-about:before {
+    content:"\f05a";
+}
+
+@media(max-width:768px) {
+    header .avatar {
+        margin-top: 1em;
+    }
+    header h1 {
+        margin-top: 1em;
+        padding-bottom: 1em;
+    }
+}@media(min-width:768px) {
+    body {
+        font-size:100%;
+    }
+    header {
+        position:fixed;
+        top:0;
+        bottom:0;
+        width:38.2%;
+    }
+    header .avatar {
+        max-width:100px;
+        box-shadow:0px 0px 0px 3px rgba(255,255,255,0.7);
+    }
+    header .description {
+        font-size:20px;
+    }
+    header nav a {
+        margin-top:1em;
+    }
+    header nav i {
+        font-size:1.22em;
+    }
+    .sidebar {
+        margin:8em auto;
+    }
+    .content {
+        padding:1.5em 4em 0;
+        margin-left:38.2%;
+        width:61.8%;
+    }
+}
