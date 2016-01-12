@@ -13,7 +13,7 @@
 </ul>
 <div class="post-content">
     <p>资讯</p>
-    <audio src="http://audio.xmcdn.com/group7/M09/1B/D2/wKgDWlV2jJniYVixAIiITpHbUzY071.m4a" controls="controls"></audio>
+    <audio src="http://7xpybb.com1.z0.glb.clouddn.com/2005/0201/audio.m3u8" controls="controls"></audio>
 
     <p>古典音乐a</p>
     <audio src="http://audio.xmcdn.com/group7/M09/1B/D2/wKgDWlV2jJniYVixAIiITpHbUzY071.m4a" controls="controls"></audio>

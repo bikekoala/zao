@@ -7,9 +7,9 @@
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>早 - 飞鱼秀非官方回放</title>
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/font-awesome.min.css">
-        <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -18,7 +18,7 @@
     <body>
         <header>
             <div class="sidebar">
-                <img class="avatar" src="/img/avatar.png">
+                <img class="avatar" src="/static/img/avatar.png">
                 <h2 class="description">小人们洗耳聆听吧！</h2>
                 <nav>
                     <a href="/" title="首页"><i class="fa fa-home"></i></a>
@@ -38,9 +38,9 @@
 
             <div id="gotop">
                 <span id="gotophover"></span>
-                <img src="/img/top.png" alt="返回顶部">
+                <img src="/static/img/top.png" alt="返回顶部">
             </div>
         </div>
-        <script type="text/javascript" src="/js/main.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
     </body>
 </html>
