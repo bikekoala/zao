@@ -1,0 +1,110 @@
+#ds-thread {
+    margin-top:30px;
+    width:auto;
+    border-radius:5px;
+    font-size:0.8em !important;
+}
+#ds-thread a {
+    background-color:transparent;
+    color:#666 !important;
+    cursor:pointer;
+    text-decoration:none;
+    transition:color 0.15s linear 0s;
+}
+#ds-thread a:hover {
+    color:#444 !important;
+}
+#ds-thread .ds-comments, #ds-thread .ds-paginator {
+    border-bottom:1px solid #ddd;
+}
+#ds-thread .ds-post-button {
+    background:none repeat scroll 0 0 #999;
+    border:0 none;
+    color:#fff;
+    font-weight:normal;
+    line-height:23px;
+    text-shadow:none;
+    width:57px;
+}
+#ds-thread .ds-post-options {
+    border:1px solid #ddd;
+    margin-right:0;
+}
+#ds-thread button:hover, #ds-thread button:active, #ds-thread a.ds-unread-comments-count:hover, #ds-thread .ds-post-button:hover {
+    background:none repeat scroll 0 0 #666;
+    box-shadow:none;
+    color:#fff;
+}
+#ds-thread .ds-comment-body p {
+    color:#666 !important;
+}
+#ds-thread .ds-comment-body a {
+    color:#666 !important;
+}
+#ds-thread .ds-comment-body a:hover {
+    color:#444 !important;
+}
+#ds-thread .ds-login-buttons .ds-more-services {
+    color:#666 !important;
+    display:block;
+    line-height:16px;
+}
+#ds-thread .ds-login-buttons .ds-more-services:hover {
+    color:#444 !important;
+}
+#ds-thread .ds-highlight {
+    color:#444 !important;
+}
+#ds-thread .ds-avatar {
+    background-color:#FFF;
+    border-radius:50px;
+    margin:0 auto;
+}
+#ds-thread .ds-avatar img {
+    width:48px;
+    height:48px;
+    border-radius:24px;
+    -webkit-border-radius:24px;
+    -moz-border-radius:24px;
+    background-color:#F3F3F3;
+    box-shadow:none;
+}
+#ds-thread li.ds-post {
+    border-top:1px solid #ddd;
+}
+#ds-thread .ds-sort a {
+    color:#666 !important;
+    margin:0 2px;
+    padding:0 4px;
+}
+#ds-thread .ds-sort a.ds-current, #ds-thread .ds-sort a:active {
+    color:#333 !important;
+}
+#ds-thread li.ds-tab a.ds-current {
+    background:none;
+    border:none !important;
+}
+#ds-thread > div.ds-login-buttons > div {
+    width:auto !important;
+}
+#ds-thread .ds-sync {
+    display:none !important;
+}
+#ds-recent-visitors div.ds-avatar img {
+    border-radius:50px
+}
+#ds-recent-comments li.ds-comment .ds-avatar img {
+    border-radius:50px;
+}
+#ds-bubble a {
+    color:#444 !important;
+}
+#ds-bubble a:hover {
+    color:#444 !important;
+}
+#ds-thread .ds-login-buttons {
+    display: none !important;
+}
+#ds-thread .ds-powered-by {
+    display:none;
+}
