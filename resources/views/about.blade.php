@@ -9,8 +9,9 @@
         <img src="/static/img/qrcode_zaoaoaoaoao.jpg">
         <img src="/static/img/qrcode_ezfeiyuxiu.jpg">
     </div>
-    <p>
-        <a href="https://github.com/popfeng" target="_blank" class="link">@popfeng</a>
-    </p>
 </div>
+@endsection
+
+@section('author')
+<a href="https://github.com/popfeng" target="_blank" class="link">@popfeng</a>
 @endsection

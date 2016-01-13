@@ -351,10 +351,10 @@ header nav a:hover {
     color: #333;
 }
 .post-about p {
-    margin-bottom: 3px;
+    margin-bottom: 0.5em;
 }
 .post-about .qrcode img{
-    height: 15em;
+    height: 22em;
 }
 .post-about .link{
     padding-left: 1.3em;

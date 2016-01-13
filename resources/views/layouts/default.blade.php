@@ -34,7 +34,7 @@
             @yield('comment')
 
             <footer id="footer">
-                © 2016 <a href="/">Zao~ao~ao~ao~ao.com</a>
+                © 2016 <a href="/">Zao~ao~ao~ao~ao.com</a> @yield('author')
             </footer>
 
             <div id="gotop">
