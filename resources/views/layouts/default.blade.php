@@ -14,7 +14,6 @@
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-        @yield('head-static')
     </head>
     <body>
         <header>
@@ -29,9 +28,10 @@
         </header>
 
         <div class="content">
-            <article itemtype="http://schema.org/BlogPosting">
-                @yield('content')
-            </article>
+
+            @yield('content')
+
+            @yield('comment')
 
             <footer id="footer">
                 © 2016 <a href="/">Zao~ao~ao~ao~ao.com</a>
