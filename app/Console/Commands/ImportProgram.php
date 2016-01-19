@@ -35,7 +35,6 @@ class ImportProgram extends Command
      */
     protected static $fields = [
         'date',
-        'day',
         'time',
         'topic',
         'participant',
@@ -92,7 +91,6 @@ class ImportProgram extends Command
     {
         $program = Program::firstOrCreate([
             'date'  => $data['date'],
-            'day'   => $data['day'],
             'topic' => $data['topic'],
             'state' => Program::STATE_ENABLE
         ]);

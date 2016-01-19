@@ -217,6 +217,18 @@ header nav a:hover {
     content: "";
     background-color: rgba(0,0,0,.05);
 }
+.archive ul li em {
+    font-size: 0.9em;
+}
+.archive ul li em a {
+    color: rgba(0,0,0,.5);
+}
+.archive ul li em a:before {
+    content: "，";
+}
+.archive ul li em a:first-child:before {
+    content: "";
+}
 .archive .year {
     position: relative;
     display: inline-block;

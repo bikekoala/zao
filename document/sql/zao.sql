@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `programs`;
 CREATE TABLE `programs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `date` date NOT NULL COMMENT '日期',
-  `day` tinyint(1) unsigned NOT NULL COMMENT '周几',
   `topic` varchar(255) NOT NULL DEFAULT '' COMMENT '话题',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   `created_at` datetime NOT NULL COMMENT '创建时间',
@@ -98,4 +97,4 @@ CREATE TABLE `audio` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-18 23:06:13
+-- Dump completed on 2016-01-19 23:29:07

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Program;
+
 use View;
 
 /**
@@ -19,8 +21,9 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        // render page
-        return View::make('programs/index');
+        $list = Program::getList();
+
+        return View::make('programs.index')->with('list', $list);
     }
 
     /**
@@ -29,7 +32,7 @@ class ProgramsController extends Controller
      * @param int $date
      * @return void
      */
-    public function detail($date)
+    public function detail(int $date)
     {
         // render page
         return View::make('programs/detail');

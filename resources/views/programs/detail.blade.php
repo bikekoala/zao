@@ -7,8 +7,8 @@
         <li>2015.08.07</li>
         <li>周五</li>
         <li>
-            <a href="">小飞</a>
-            <a href="">喻舟</a>
+            <a>小飞</a>
+            <a>喻舟</a>
         </li>
     </ul>
     <div class="post-content">
@@ -28,8 +28,8 @@
         </video>
     </div>
     <ul class="post-near">
-        <li class="prev">前一天: <a href="/programs/20101010.html">印象深刻的人</a></li>
-        <li class="next">后一天: <a href="/programs/20101010.html">天冷要回家</a></li>
+        <li class="prev">前一天: <a href="/programs/20101010">印象深刻的人</a></li>
+        <li class="next">后一天: <a href="/programs/20101010">天冷要回家</a></li>
     </ul>
 
     <link rel="stylesheet" href="/static/module/mediaelement/mediaelementplayer.css" />
