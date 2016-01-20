@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Audio extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'audios';
 
     /**
      * The attributes that are mass assignable.
@@ -33,4 +39,14 @@ class Audio extends Model
      * $var string
      */
     const SOURCE_DEFAULT = 'qiniu';
+
+    /**
+     * Scope a query to only include enabled programs.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeEnabled($query)
+    {
+        return $query->where('state', self::STATE_ENABLE);
+    }
 }

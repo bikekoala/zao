@@ -328,8 +328,8 @@ header nav a:hover {
     border: none;
 }
 .post-meta li a {
-    padding-right: 5px;
-    color: #333;
+    font-size: 0.9em;
+    color: #888;
 }
 .post-content {
     margin-top: 2.7em;

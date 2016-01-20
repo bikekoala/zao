@@ -38,8 +38,19 @@ class Program extends Model
     }
 
     /**
+     * Get the audios for program.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function audios()
+    {
+        return $this->hasMany('App\Audio', 'date', 'date');
+    }
+
+    /**
      * Scope a query to only include enabled programs.
      *
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeEnabled($query)
@@ -48,37 +59,30 @@ class Program extends Model
     }
 
     /**
-     * Get the date info.
+     * Scope a query to only include dated programs.
      *
-     * @param  string  $value
-     * @return string
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $date
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getDateAttribute($value)
+    public function scopeDated($query, int $date)
     {
-        $date = array_combine(['year', 'month', 'day'], explode('-', $value));
-        $date['id'] = implode('', $date);
-        $date['day_num'] = ['日', '一', '二', '三', '四', '五', '六'][date('w', strtotime($value))];
-
-        return (object) $date;
+        return $query->where('date', date('Y-m-d', strtotime($date)));
     }
 
     /**
-     * 获取节目单列表
+     * Get the date info.
      *
-     * @return array
+     * @return object
      */
-    public static function getList()
+    public function getDatesAttribute()
     {
-        $programs = static::with('participants')
-            ->enabled()
-            ->orderBy('date', 'desc')
-            ->get();
+        $dates = array_combine(['year', 'month', 'day'], explode('-', $this->date));
+        $dates['id'] = implode('', $dates);
+        $dates['dayNum'] = ['日', '一', '二', '三', '四', '五', '六'][
+            date('w', strtotime($this->date))
+        ];
 
-        $list = [];
-        foreach ($programs as $program) {
-            $list[$program->date->year][$program->date->month][] = $program;
-        }
-
-        return $list;
+        return (object) $dates;
     }
 }

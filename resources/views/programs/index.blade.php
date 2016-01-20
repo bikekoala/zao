@@ -9,7 +9,7 @@
     <ul>
         @foreach ($monthList as $program)
         <li>
-            <a href="/programs/{{ $program->date->id }}"><span>[{{ $program->date->day }} . {{ $program->date->day_num }}]</span>{{ $program->topic }}</a>
+            <a href="/programs/{{ $program->dates->id }}"><span>[{{ $program->dates->day }} . {{ $program->dates->dayNum }}]</span>{{ $program->topic }}</a>
             <em>(@foreach ($program->participants as $participant) <a>{{ $participant->name }}</a> @endforeach)</em>
         </li>
         @endforeach
