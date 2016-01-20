@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\{Program, Participant, Audio};
 use itbdw\QiniuStorage\QiniuStorage;
-use DB, Config;
+use DB;
 
 /**
  * 导入节目单脚本
@@ -156,7 +156,11 @@ class ImportProgram extends Command
      */
     protected static function getQiniuUrl(string $fileName)
     {
-        return sprintf('/%s.m3u8', strstr($fileName, '.', true));
+        $file = strstr($fileName, '.', true);
+        $year = substr($file, 0, 4);
+        $date = substr($file, 4);
+
+        return sprintf('/%s/%s/%s.m3u8', $year, $date, $file);
     }
 
     /**
