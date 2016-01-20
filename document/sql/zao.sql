@@ -67,13 +67,13 @@ CREATE TABLE `participants` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `audio`
+-- Table structure for table `audios`
 --
 
-DROP TABLE IF EXISTS `audio`;
+DROP TABLE IF EXISTS `audios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `audio` (
+CREATE TABLE `audios` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `date` date NOT NULL COMMENT '日期',
   `time` varchar(3) NOT NULL COMMENT '时段',
@@ -84,7 +84,7 @@ CREATE TABLE `audio` (
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `date_source_state` (`date`,`source`,`state`)
+  KEY `date_state` (`date`,`state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='声音表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -97,4 +97,4 @@ CREATE TABLE `audio` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-19 23:29:07
+-- Dump completed on 2016-01-20 23:23:55
