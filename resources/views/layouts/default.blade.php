@@ -6,7 +6,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>早 - 飞鱼秀非官方回放</title>
+        <title>{{ $title or '早' }} - 飞鱼秀非官方回放</title>
+        <meta name="keywords" content="CRI EZFM EZMorning 飞鱼秀 小飞 喻舟" />
+        <meta name="description" content="亲爱的飞鱼人，这里可以在线收听自2005年飞鱼秀开播以来的几乎所有的节目回放喔~" />
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="stylesheet" href="/static/css/font-awesome.min.css">
         <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
@@ -30,8 +32,6 @@
         <div class="content">
 
             @yield('content')
-
-            @yield('comment')
 
             <footer id="footer">
                 © 2016 <a href="/">Zao~ao~ao~ao~ao.com</a> @yield('author')
