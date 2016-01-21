@@ -2,7 +2,8 @@
 
 namespace App\Exceptions;
 
-use Exception;
+use Exception, ErrorException;
+use Config, Response;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -45,6 +46,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof ErrorException) {
+            if ('production' !== Config::get('app.env')) {
+                return Response::view('errors.404', [], 404);
+            }
+        }
         return parent::render($request, $e);
     }
 }
