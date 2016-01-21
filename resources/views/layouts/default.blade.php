@@ -44,8 +44,6 @@
         </div>
 
         <script type="text/javascript" src="/static/js/main.js"></script>
-
-        @include('layouts.ga')
-
+        <script type="text/javascript" src="/static/js/ga.js"></script>
     </body>
 </html>
