@@ -72,6 +72,7 @@ class ProgramsController extends Controller
         return View::make('programs/detail')
             ->with('program', $program)
             ->with('audios', $audios)
-            ->with('pages', $pages);
+            ->with('pages', $pages)
+            ->with('title', $program->topic);
     }
 }
