@@ -42,6 +42,10 @@
                 <img src="/static/img/top.png" alt="返回顶部">
             </div>
         </div>
+
         <script type="text/javascript" src="/static/js/main.js"></script>
+
+        @include('layouts.ga')
+
     </body>
 </html>
