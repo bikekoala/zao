@@ -93,7 +93,7 @@ header {
     top: 0;
     bottom: 0;
     background-size: cover;
-    background-image: url("http://s.cn.bing.net/az/hprichbg/rb/PolandWinter_ZH-CN11003553401_1920x1080.jpg");
+    background-image: url("/static/img/cover/default.png");
     background-repeat: no-repeat;
     background-position: center center;
     letter-spacing: normal;
