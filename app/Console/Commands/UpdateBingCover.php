@@ -49,18 +49,18 @@ class UpdateBingCover extends Command
      */
     public function handle()
     {
-        if ($image = $this->getImage()) {
-            $paths = $this->getFilePaths();
-            if (is_file($paths['default'])) {
-                rename($paths['default'], $paths['archive']);
+        $paths = $this->getFilePaths();
+        if ( ! is_file($paths['archive'])) {
+            if ($image = $this->getImage()) {
+                file_put_contents($paths['archive'], $image);
+            } else {
+                $this->error('Get Bing-cover failed.');
             }
-
-            file_put_contents($paths['default'], $image);
-
-            $this->info('Success.');
-        } else {
-            $this->error('Get Bing-cover failed.');
         }
+
+        symlink($paths['archive'], $paths['default']);
+
+        $this->info('Success.');
     }
 
     /**
@@ -82,15 +82,10 @@ class UpdateBingCover extends Command
     private function getFilePaths()
     {
         $basePath = public_path() . '/static/img/cover';
-        $archivePath = $basePath . '/archive';
 
         return [
             'default' => $basePath . '/default.png',
-            'archive' => sprintf(
-                '%s/%s.png',
-                $archivePath,
-                date('Y-m-d', strtotime('-1 day'))
-            )
+            'archive' => sprintf('%s/%s.png', $basePath, date('Y-m-d'))
         ];
     }
 }
