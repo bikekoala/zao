@@ -11,4 +11,11 @@ $(function(){
         $('body,html').animate({scrollTop:0},500);
         return false;
     });
+
+    // tips
+    $('nav a i').tipsy({
+        gravity: 'n',
+        opacity: 0.6,
+        offset: 3
+    });
 });
