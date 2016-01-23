@@ -72,7 +72,7 @@ class UpdateBingCover extends Command
     private function getImage()
     {
         $info = json_decode(file_get_contents($this->api), true);
-        $url = ['images'][0]['url'];
+        $url = $info['images'][0]['url'];
 
         if ('http' !== substr($url, '0', 4)) {
             $url = 'http://www.bing.com' . $url;
