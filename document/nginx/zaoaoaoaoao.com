@@ -16,7 +16,7 @@ server {
     # ssl 证书 
     # https://gist.github.com/konklone/6532544 
     ssl_certificate /var/www/zao/document/nginx/unified.crt;
-    ssl_certificate_key /var/www/zao/document/nginx/ssl.key;
+    ssl_certificate_key /var/www/zao/document/nginx/ssl.key.unsecure;
 
     # www 域名跳转 
     if ($host = 'www.zaoaoaoaoao.com' ) {
