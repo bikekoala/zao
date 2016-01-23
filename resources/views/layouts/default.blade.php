@@ -8,6 +8,7 @@
         <title>{{ $title or '早' }} - 飞鱼秀非官方回放</title>
         <meta name="keywords" content="CRI EZFM EZMorning 飞鱼秀 小飞 喻舟" />
         <meta name="description" content="亲爱的飞鱼人，这里可以在线收听自2005年飞鱼秀开播以来的几乎所有的节目回放喔~" />
+        <link type="text/plain" rel="author" href="/humans.txt" />
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="stylesheet" href="/static/css/font-awesome.min.css">
         <link rel="stylesheet" href="/static/module/tipsy/tipsy.css">

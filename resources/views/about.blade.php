@@ -13,5 +13,5 @@
 @endsection
 
 @section('author')
-<a href="https://github.com/popfeng" target="_blank" class="link">@popfeng</a>
+<a href="https://github.com/popfeng/zao" target="_blank" class="link">@popfeng</a>
 @endsection
