@@ -49,6 +49,7 @@ class UpdateBingCover extends Command
      */
     public function handle()
     {
+        $image = $this->getImage();
         $paths = $this->getFilePaths();
         if ( ! is_file($paths['archive'])) {
             if ($image = $this->getImage()) {
@@ -58,7 +59,7 @@ class UpdateBingCover extends Command
             }
         }
 
-        symlink($paths['archive'], $paths['default']);
+        @symlink($paths['archive'], $paths['default']);
 
         $this->info('Success.');
     }
@@ -71,7 +72,13 @@ class UpdateBingCover extends Command
     private function getImage()
     {
         $info = json_decode(file_get_contents($this->api), true);
-        return file_get_contents($info['images'][0]['url']);
+        $url = ['images'][0]['url'];
+
+        if ('http' !== substr($url, '0', 4)) {
+            $url = 'http://www.bing.com' . $url;
+        }
+
+        return file_get_contents($url);
     }
 
     /**
