@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\ImportProgram::class,
         Commands\UpdateBingCover::class,
+        Commands\DownloadAudio::class,
     ];
 
     /**
