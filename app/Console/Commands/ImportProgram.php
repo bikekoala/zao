@@ -10,6 +10,7 @@ use DB;
 /**
  * 导入节目单脚本
  *
+ * @host ct
  * @author popfeng <popfeng@yeah.net> 2016-01-18
  */
 class ImportProgram extends Command

@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 /**
  * 更新Bing封图
  *
+ * @host aws
  * @author popfeng <popfeng@yeah.net> 2016-01-21
  */
 class UpdateBingCover extends Command
@@ -16,7 +17,7 @@ class UpdateBingCover extends Command
      *
      * @var string
      */
-    protected $signature = 'xprogram:update-bing-cover';
+    protected $signature = 'xtool:update-bing-cover';
 
     /**
      * The console command description.
