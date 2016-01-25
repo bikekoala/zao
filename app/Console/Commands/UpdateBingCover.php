@@ -60,7 +60,8 @@ class UpdateBingCover extends Command
             }
         }
 
-        @symlink($paths['archive'], $paths['default']);
+        is_link($paths['default']) and unlink($paths['default']);
+        symlink($paths['archive'], $paths['default']);
 
         $this->info('Success.');
     }
