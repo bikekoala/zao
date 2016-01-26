@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Audio;
 
 use DirectoryIterator;
 
@@ -10,7 +10,7 @@ use DirectoryIterator;
  * @host ct
  * @author popfeng <popfeng@yeah.net> 2016-01-25
  */
-class ConvertAudio extends AudioCommand
+class Convert extends Abst
 {
     /**
      * The name and signature of the console command.

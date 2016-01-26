@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Program;
 
-use Illuminate\Console\Command;
+use App\Console\Abst;
 use App\{Program, Participant, Audio};
 use itbdw\QiniuStorage\QiniuStorage;
 use DB;
@@ -10,10 +10,9 @@ use DB;
 /**
  * 导入节目单脚本
  *
- * @host ct
  * @author popfeng <popfeng@yeah.net> 2016-01-18
  */
-class ImportProgram extends Command
+class Import extends Abst
 {
     /**
      * The name and signature of the console command.

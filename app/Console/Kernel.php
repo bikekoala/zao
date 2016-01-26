@@ -13,10 +13,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\ImportProgram::class,
-        Commands\UpdateBingCover::class,
-        Commands\DownloadAudio::class,
-        Commands\ConvertAudio::class,
+        Program\Import::class,
+        Tool\UpdateBingCover::class,
+        Audio\Download::class,
+        Audio\Convert::class,
     ];
 
     /**

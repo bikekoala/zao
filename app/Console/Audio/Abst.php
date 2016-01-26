@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Audio;
 
-use Log;
-use Illuminate\Console\Command;
+use App\Console\Abst;
 
 /**
  * 音频处理抽象类
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-24
  */
-abstract class AudioCommand extends Command
+abstract class Abst extends Abst
 {
     /**
      * App API
@@ -99,21 +98,5 @@ abstract class AudioCommand extends Command
         }
 
         return $list;
-    }
-
-    /**
-     * 输出错误信息，并记录日志
-     *
-     * @param string $message
-     * @param bool $isExit
-     * @return void
-     */
-    public function error($message, $isExit = true)
-    {
-        parent::error(sprintf("%s\t%s", date('Y-m-d'), $message));
-
-        if ($isExit) {
-            exit;
-        }
     }
 }

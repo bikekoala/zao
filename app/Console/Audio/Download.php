@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Audio;
 
 use DirectoryIterator;
 
 /**
  * 下载节目音频脚本
  *
- * @host ct
  * @author popfeng <popfeng@yeah.net> 2016-01-24
  */
-class DownloadAudio extends AudioCommand
+class Download extends Abst
 {
     /**
      * The name and signature of the console command.

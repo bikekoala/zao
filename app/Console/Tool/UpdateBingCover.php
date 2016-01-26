@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Tool;
 
-use Illuminate\Console\Command;
+use App\Console\Abst;
 
 /**
  * 更新Bing封图
  *
- * @host aws
  * @author popfeng <popfeng@yeah.net> 2016-01-21
  */
-class UpdateBingCover extends Command
+class UpdateBingCover extends Abst
 {
     /**
      * The name and signature of the console command.
