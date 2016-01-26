@@ -25,27 +25,30 @@ abstract class AudioCommand extends Command
      * @var array
      */
     const BASE_DIRS = [
-        'ORIG'  => 'general_original',
-        'WORK'  => 'general',
-        'QINIU' => 'general_hls'
+        'ORIG' => 'general_original', // 原始区
+        'WORK' => 'general_work',     // 工作区
+        'HLS'  => 'general_hls'       // 流媒体区
     ];
 
     /**
      * 检查下载目录
      *
      * @param string $path
+     * @param array $dirs
+     * @param int $year
      * @return array
      */
-    protected function checkPaths($path)
+    protected function checkPaths($path, array $dirs = null, int $year = null)
     {
         if (is_dir($path)) {
             $paths = [];
-            foreach (static::BASE_DIRS as $dir) {
+            $dirs = $dirs ? : static::BASE_DIRS;
+            foreach ($dirs as $dir) {
                 if ( ! is_dir($path . '/' . $dir)) {
                     return $this->error("Invalid {$dir} basepath.");
                 } else {
                     $paths[$dir] = sprintf(
-                        '%s/%s/%s', $path, $dir, date('Y')
+                        '%s/%s/%s', $path, $dir, $year ? : date('Y')
                     );
 
                     is_dir($paths[$dir]) or mkdir($paths[$dir]);

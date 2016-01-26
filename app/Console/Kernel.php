@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\ImportProgram::class,
         Commands\UpdateBingCover::class,
         Commands\DownloadAudio::class,
+        Commands\ConvertAudio::class,
     ];
 
     /**
