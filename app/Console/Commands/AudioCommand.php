@@ -45,7 +45,7 @@ abstract class AudioCommand extends Command
             $dirs = $dirs ? : static::BASE_DIRS;
             foreach ($dirs as $dir) {
                 if ( ! is_dir($path . '/' . $dir)) {
-                    return $this->error("Invalid {$dir} basepath.");
+                    return $this->error("Invalid basepath {$path}/{$dir}.");
                 } else {
                     $paths[$dir] = sprintf(
                         '%s/%s/%s', $path, $dir, $year ? : date('Y')
@@ -55,7 +55,7 @@ abstract class AudioCommand extends Command
                 }
             }
             return $paths;
-        } else return $this->error('Invalid basepath.');
+        } else return $this->error("Invalid basepath {$path}.");
     }
 
     /**
@@ -110,8 +110,7 @@ abstract class AudioCommand extends Command
      */
     public function error($message, $isExit = true)
     {
-        parent::error($message);
-        Log::error($message);
+        parent::error(sprintf("%s\t%s", date('Y-m-d'), $message));
 
         if ($isExit) {
             exit;

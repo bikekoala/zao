@@ -56,7 +56,7 @@ class UpdateBingCover extends Command
             if ($image = $this->getImage()) {
                 file_put_contents($paths['archive'], $image);
             } else {
-                $this->error('Get Bing-cover failed.');
+                return $this->error('Get Bing-cover failed.');
             }
         }
 

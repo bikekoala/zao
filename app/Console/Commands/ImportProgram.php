@@ -64,7 +64,7 @@ class ImportProgram extends Command
         // 获取文本路径
         $path = $this->argument('path');
         if ( ! is_file($path)) {
-            return $this->error('Invalid file path.');
+            return $this->error("Invalid file path {$path}.");
         }
 
         // 解析数据

@@ -48,7 +48,7 @@ class ConvertAudio extends AudioCommand
         if (is_null($year)) {
             $year = date('Y');
         } elseif (2005 > $year or date('Y') < $year) {
-            $this->error("Invalid year {$year}.");
+            return $this->error("Invalid year {$year}.");
         }
 
         // 检查任务编号
@@ -107,7 +107,7 @@ class ConvertAudio extends AudioCommand
             $targetFilename
         ), $status);
         if ($status) {
-            $this->error("Convert to hls faild {$sourceFile}.");
+            return $this->error("Convert to hls faild {$sourceFile}.");
         }
     }
 
@@ -132,7 +132,7 @@ class ConvertAudio extends AudioCommand
             $files[static::BASE_DIRS['WORK']]
         ), $status);
         if ($status) {
-            $this->error(sprintf(
+            return $this->error(sprintf(
                 'Convert to mp3 faild %s.',
                 $files[self::BASE_DIRS['ORIG']]
             ));

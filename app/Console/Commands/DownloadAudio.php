@@ -62,7 +62,7 @@ class DownloadAudio extends AudioCommand
     {
         passthru(sprintf('wget -c %s -O %s', $url, $path), $status);
 
-        $status and $this->error("{$url} download faild.");
+        $status and $this->error("Download faild {$url}.", false);
     }
 
     /**
