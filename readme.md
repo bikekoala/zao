@@ -1,11 +1,16 @@
 ## 早～
 
-你好！朋友！这里是飞鱼秀的非官方回放网站，赶紧扫描下方的二维码来拜见我们小人国的国主吧！
+你好！朋友！这里是飞鱼秀的非官方回放网站，赶紧扫描下方的二维码来拜见我们的舟舟国主吧！
 
 ![舟舟](https://raw.githubusercontent.com/popfeng/zao/master/public/static/img/qrcode_zaoaoaoaoao.jpg)
 ![cri](https://raw.githubusercontent.com/popfeng/zao/master/public/static/img/qrcode_ezfeiyuxiu.jpg)
 
 ## 更新日志
+
+###### v0.1.1 (2016-01-27)
+  * 自动更新节目脚本（今天在听回放的时候，差点哭出来...）
+  * 下载音频脚本
+  * 音频格式转换MP3 & HLS脚本
 
 ###### v0.1.0 (2016-01-23)
   * 2005年度的飞鱼秀回放
