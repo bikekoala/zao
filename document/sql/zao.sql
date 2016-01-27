@@ -76,7 +76,7 @@ DROP TABLE IF EXISTS `audios`;
 CREATE TABLE `audios` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `date` date NOT NULL COMMENT '日期',
-  `time` varchar(3) NOT NULL COMMENT '时段',
+  `part` varchar(3) NOT NULL DEFAULT '' COMMENT '时段',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
   `source` varchar(10) NOT NULL COMMENT '来源',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
@@ -84,7 +84,8 @@ CREATE TABLE `audios` (
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `date_state` (`date`,`state`)
+  UNIQUE KEY `date_part` (`date`,`part`),
+  KEY `state` (`state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='声音表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -97,4 +98,4 @@ CREATE TABLE `audios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-20 23:23:55
+-- Dump completed on 2016-01-27 22:05:27

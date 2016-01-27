@@ -105,7 +105,7 @@ class Update extends Command
             $audios[$item['update_time']][] = [
                 'title'  => $title,
                 'date'   => $item['update_time'],
-                'time'   => $item['part'] ? : 'all',
+                'part'   => $item['part'] ? : 'all',
                 'url'    => $item['url'],
                 'source' => $item['source']
             ]; 

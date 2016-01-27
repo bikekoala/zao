@@ -34,7 +34,7 @@ class Import extends Command
      */
     protected static $fields = [
         'date',
-        'time',
+        'part',
         'topic',
         'participant',
         'file_name',
@@ -138,7 +138,7 @@ class Import extends Command
         foreach ($list as $item) {
             Audio::create([
                 'date'   => $item['date'],
-                'time'   => $item['time'],
+                'part'   => $item['part'],
                 'title'  => $item['topic'],
                 'source' => $item['src'],
                 'url'    => $item['url'],

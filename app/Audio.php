@@ -23,7 +23,7 @@ class Audio extends Model
      *
      * @var array
      */
-    protected $fillable = ['date', 'time', 'title', 'source', 'state', 'url'];
+    protected $fillable = ['date', 'part', 'title', 'source', 'state', 'url'];
 
     /**
      * 状态常量
