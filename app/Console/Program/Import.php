@@ -4,7 +4,6 @@ namespace App\Console\Program;
 
 use App\Console\Command;
 use App\{Program, Participant, Audio};
-use itbdw\QiniuStorage\QiniuStorage;
 use DB;
 
 /**
