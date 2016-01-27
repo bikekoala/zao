@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>早 - 飞鱼秀非官方回放</title>
+        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+        <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="post-content">
+            <p>资讯</p>
+            <video width="80%" height="30" controls="controls" preload="none">
+            <source src="http://7xpybb.com1.z0.glb.clouddn.com/2005/0201/audio.m3u8" />
+            </video>
+            <!--video width="80%" height="30" controls="controls" preload="none">
+            <source src="http://7xpybb.com1.z0.glb.clouddn.com/2005/0201/audio.m3u8" />
+            </video>
+
+            <p>古典音乐a</p>
+            <video width="80%" height="30" controls="controls" preload="none">
+            <source src="http://audio.xmcdn.com/group7/M09/1B/D2/wKgDWlV2jJniYVixAIiITpHbUzY071.m4a" />
+            </video>
+
+            <p>古典音乐b</p>
+            <video width="80%" height="30" controls="controls" preload="none">
+            <source src="http://ip.h5.rb03.sycdn.kuwo.cn/31e2c8eaab1f9ae9e56bea0fe195d32a/5695fb9f/resource/a3/74/24/2142701219.aac" />
+            </video-->
+        </div>
+
+        <link rel="stylesheet" href="/static/module/mediaelement/mediaelementplayer.css" />
+        <script src="/static/module/mediaelement/mediaelement-and-player.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                const audio = {
+                    init: function () {
+                        $('video').mediaelementplayer({
+                            isVideo: false,
+                            alwaysShowControls: true,
+                            videoVolume:'horizontal',
+                            features: ['playpause','progress','current','duration','tracks','volume'],
+                            defaultSeekBackwardInterval: function (media) {
+                                return (media.duration * 0.02);
+                            },
+                            defaultSeekForwardInterval: function (media) {
+                                return (media.duration * 0.02);
+                            },
+                            success : function (media) {
+                                //console.log($('#mep_0'));
+                                //console.log(document.getElementById('mep_0'));
+                            }
+                        });
+                    },
+                    seek: function (id, start, end) {
+                        $('#mep_0 .mejs-controls button').on('click', function () {
+                            console.log('i am a button.');
+                            return;
+                        });
+                        $('#mep_0').find('button').each(function (v, i) {
+                            //console.log(i);
+                        });
+                        //console.log($('#' + id + ' .mejs-playpause-button').html());
+            
+                        //$(`#${id} mejs-playpause-button>button`).trigger('click');
+                    }
+                }
+            
+                audio.init();
+                audio.seek('mep_0', 180, 240);
+            });
+        </script>
+    </body>
+</html>
