@@ -2,7 +2,7 @@
 
 namespace App\Console\Program;
 
-use App\Console\Abst;
+use App\Console\Command;
 use App\{Program, Participant, Audio};
 use itbdw\QiniuStorage\QiniuStorage;
 use DB;
@@ -12,7 +12,7 @@ use DB;
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-18
  */
-class Import extends Abst
+class Import extends Command
 {
     /**
      * The name and signature of the console command.

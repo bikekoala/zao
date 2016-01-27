@@ -9,7 +9,7 @@ use DirectoryIterator;
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-24
  */
-class Download extends Abst
+class Download extends Command
 {
     /**
      * The name and signature of the console command.
@@ -37,7 +37,7 @@ class Download extends Abst
 
         // 获取待下载节目单
         $lastDate = $this->getLastFileDate($paths[static::BASE_DIRS['ORIG']]);
-        $list = $this->getProgramList($lastDate);
+        $list = static::getProgramList($lastDate);
 
         // 下载音频
         foreach ($list as $item) {

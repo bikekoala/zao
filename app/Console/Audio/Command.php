@@ -2,14 +2,14 @@
 
 namespace App\Console\Audio;
 
-use App\Console\Abst;
+use App\Console\Command;
 
 /**
- * 音频处理抽象类
+ * 音频处理基类
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-24
  */
-abstract class Abst extends Abst
+class Command extends Command
 {
     /**
      * App API
@@ -63,7 +63,7 @@ abstract class Abst extends Abst
      * @param string $lastDate
      * @return array
      */
-    protected function getProgramList($lastDate = '')
+    public static function getProgramList($lastDate = '')
     {
         // 识别日期
         $lastDate = $lastDate ? : date('Y-m-d', strtotime('-1 day')); 

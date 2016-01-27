@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-26
  */
-abstract class Abst extends Command
+abstract class Command extends Command
 {
     /**
      * 输出错误信息，并记录日志

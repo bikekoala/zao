@@ -10,7 +10,7 @@ use DirectoryIterator;
  * @host ct
  * @author popfeng <popfeng@yeah.net> 2016-01-25
  */
-class Convert extends Abst
+class Convert extends Command
 {
     /**
      * The name and signature of the console command.

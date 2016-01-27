@@ -2,14 +2,14 @@
 
 namespace App\Console\Tool;
 
-use App\Console\Abst;
+use App\Console\Command;
 
 /**
  * 更新Bing封图
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-21
  */
-class UpdateBingCover extends Abst
+class UpdateBingCover extends Command
 {
     /**
      * The name and signature of the console command.
