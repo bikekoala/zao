@@ -63,7 +63,7 @@ class Command extends Command
      * @param string $lastDate
      * @return array
      */
-    public static function getProgramList($lastDate = '')
+    public static function getProgramList($lastDate = null)
     {
         // 识别日期
         $lastDate = $lastDate ? : date('Y-m-d', strtotime('-1 day')); 
@@ -92,9 +92,11 @@ class Command extends Command
                 $part = '';
             }
 
-            $item['file'] = date('Ymd', strtotime($item['update_time'])) .
+            $item['title']  = $title;
+            $item['part']   = $part;
+            $item['source'] = 'app';
+            $item['file']   = date('Ymd', strtotime($item['update_time'])) .
                 $part . substr($item['url'], strrpos($item['url'], '.'));
-            $item['title'] = $title;
         }
 
         return $list;

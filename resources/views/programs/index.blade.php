@@ -10,7 +10,9 @@
         @foreach ($monthList as $program)
         <li>
             <a href="/programs/{{ $program->dates->id }}"><span>[{{ $program->dates->day }} . {{ $program->dates->dayNum }}]</span>{{ $program->topic }}</a>
+            @if ( ! $program->participants->isEmpty())
             <em>(@foreach ($program->participants as $participant) <a>{{ $participant->name }}</a> @endforeach)</em>
+            @endif
         </li>
         @endforeach
     </ul>
