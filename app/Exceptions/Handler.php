@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof ErrorException) {
-            if ('production' !== Config::get('app.env')) {
+            if ('production' === Config::get('app.env')) {
                 return Response::view('errors.404', [], 404);
             }
         }
