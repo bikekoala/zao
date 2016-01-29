@@ -2,7 +2,7 @@
 
 @section('content')
 <article itemtype="http://schema.org/BlogPosting">
-    <h1 class="post-title">{{ $program->topic }}</h1>
+    <h1 class="post-title">@if($program->topic) {{ $program->topic }} @else 空 @endif</h1>
     <ul class="post-meta">
         <li>{{ $program->dates->year }}.{{ $program->dates->month }}.{{ $program->dates->day }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
