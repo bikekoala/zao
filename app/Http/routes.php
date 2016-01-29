@@ -20,3 +20,5 @@ Route::get('programs/{date}', 'ProgramsController@detail');
 Route::get('about', function () {
     return View::make('about')->with('title', '关于');
 });
+// 多说评论
+Route::post('duoshuo/callback', 'DuoshuoController@callback');
