@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `programs`;
 CREATE TABLE `programs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `date` date NOT NULL COMMENT '日期',
-  `topic` varchar(255) NOT NULL DEFAULT '' COMMENT '话题',
+  `topic` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '话题',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `date` (`date`),
   KEY `state` (`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='节目表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节目表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `program_participant` (
   `participant_id` int(11) unsigned NOT NULL COMMENT '参与人编号',
   PRIMARY KEY (`id`),
   KEY `program_id` (`program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='节目参与者表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节目参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,10 +60,10 @@ DROP TABLE IF EXISTS `participants`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `participants` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '姓名',
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '姓名',
   `counts` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '次数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='参与者表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,17 +76,40 @@ DROP TABLE IF EXISTS `audios`;
 CREATE TABLE `audios` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `date` date NOT NULL COMMENT '日期',
-  `part` varchar(3) NOT NULL DEFAULT '' COMMENT '时段',
-  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
-  `source` varchar(10) NOT NULL COMMENT '来源',
+  `part` varchar(3) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '时段',
+  `title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '标题',
+  `source` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT '来源',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接',
+  `url` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '链接',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `date_part` (`date`,`part`),
   KEY `state` (`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='声音表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='声音表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `duoshuo`
+--
+
+DROP TABLE IF EXISTS `duoshuo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `duoshuo` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `log_id` bigint(64) unsigned NOT NULL COMMENT '记录ID',
+  `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
+  `action` varchar(20) NOT NULL DEFAULT '' COMMENT '操作类型',
+  `meta` text NOT NULL COMMENT 'META',
+  `date` datetime NOT NULL COMMENT '操作时间',
+  `ext_created_at` datetime NOT NULL COMMENT '创建时间',
+  `ext_program_date` date DEFAULT NULL COMMENT '节目日期',
+  `ext_topic` varchar(20) DEFAULT NULL COMMENT '话题',
+  `ext_participant` varchar(50) DEFAULT NULL COMMENT '参与人',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `log_id` (`log_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -98,4 +121,4 @@ CREATE TABLE `audios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-27 22:05:27
+-- Dump completed on 2016-01-29 14:49:53
