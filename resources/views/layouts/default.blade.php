@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="stylesheet" href="/static/css/font-awesome.min.css">
         <link rel="stylesheet" href="/static/module/tipsy/tipsy.css">
-        <script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/static/module/jquery-2.1.4.min.js"></script>
         <script type="text/javascript" src="/static/module/tipsy/jquery.tipsy.js"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
