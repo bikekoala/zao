@@ -72,7 +72,7 @@ class DuoshuoController extends Controller
             $signs = DuoshuoModel::recognizeCommands($log['meta']['message']);
 
             // 记录日志 
-            DuoshuoModel::import($log, $signs);
+            $id = DuoshuoModel::import($log, $signs);
 
             // 只针对评论操作
             if (DuoshuoModel::ACTION['CREATE'] === $log['action'] and ! empty($signs)) {
@@ -84,6 +84,7 @@ class DuoshuoController extends Controller
                 );
 
                 // 发送邮件
+                $log = $log + ['id' => $id];
                 $this->sendMail($log);
             }
         }
@@ -101,6 +102,7 @@ class DuoshuoController extends Controller
     {
         $email = Config::get('duoshuo.user_email');
         $subject = sprintf($this->emailTitle, $data['meta']['author_name']);
+
         Mail::send('emails.duoshuo', $data, function ($message) use ($email, $subject) {
             $message->from($email);
             $message->to($email);

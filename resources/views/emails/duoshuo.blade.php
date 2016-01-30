@@ -9,5 +9,5 @@
 <p>
     <b>节目：</b><a href="https://zaoaoaoaoao.com/programs/{{ $meta['thread_key'] }}" target="_blank">https://zaoaoaoaoao.com/programs/{{ $meta['thread_key'] }}</a>
     <br>
-    <b>审核：</b><a href="https://zaoaoaoaoao.com/admin/duoshuo/check?log_id={{ $log_id }}" target="_blank">https://zaoaoaoaoao.com/admin/duoshuo/check?log_id={{ $log_id }}</a>
+    <b>审核：</b><a href="https://zaoaoaoaoao.com/admin/contributions/{{ $id }}/edit" target="_blank">https://zaoaoaoaoao.com/admin/contributions/{{ $id }}/edit</a>
 </p>
