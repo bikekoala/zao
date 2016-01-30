@@ -107,8 +107,7 @@ CREATE TABLE `duoshuo` (
   `ext_program_date` date DEFAULT NULL COMMENT '节目日期',
   `ext_has_topic` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有话题',
   `ext_has_participant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有参与人',
-  `ext_is_agree` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否同意',
-  `ext_is_deal` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否处理',
+  `ext_is_agree` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否同意',
   PRIMARY KEY (`id`),
   UNIQUE KEY `log_id` (`log_id`),
   KEY `program_contribution` (`action`,`ext_has_topic`,`ext_has_participant`,`ext_program_date`,`ext_is_agree`)
@@ -144,4 +143,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-30 18:57:01
+-- Dump completed on 2016-01-30 19:52:21

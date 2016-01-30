@@ -71,9 +71,41 @@ class Duoshuo extends Model
      * @var array
      */
     const STATUS = [
-        'DISABLE' => 0,
+        'DISABLE' => -1,
+        'DEFAULT' => 0,
         'ENABLE'  => 1,
     ];
+
+    /**
+     * Scope a query to only include contributed programs.
+     *
+     * @param string $programDate
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeContributed($query, $programDate = null)
+    {
+        $query->where('action', self::ACTION['CREATE']);
+        $query->where(function ($query) {
+            $query->orWhere('ext_has_topic', self::STATUS['ENABLE']);
+            $query->orWhere('ext_has_participant', self::STATUS['ENABLE']);
+        });
+        if ($programDate) {
+            $query->where('ext_program_date', $programDate);
+            $query->where('exit_is_agree', self::STATUS['ENABLE']);
+        }
+        return $query;
+    }
+
+    /**
+     * Get the meta data.
+     *
+     * @param string $value
+     * @return object
+     */
+    public function getMetaAttribute($value)
+    {
+        return json_decode($value);
+    }
 
     /**
      * 获取最后一条记录的log_id
@@ -91,19 +123,21 @@ class Duoshuo extends Model
      *
      * @param array $data
      * @param array $signs
-     * @return void
+     * @return int
      */
     public static function import($datas, $signs)
     {
         $record = static::where('log_id', $datas['log_id'])->first();
-        if (empty($record)) {
+        if ( ! empty($record)) {
+            return $record->id;
+        } else {
             // 原始数据
             $data = [
-                'log_id'         => $datas['log_id'],
-                'user_id'        => $datas['user_id'],
-                'action'         => $datas['action'],
-                'meta'           => json_encode($datas['meta']),
-                'date'           => date('Y-m-d H:i:s', $datas['date'])
+                'log_id'  => $datas['log_id'],
+                'user_id' => $datas['user_id'],
+                'action'  => $datas['action'],
+                'meta'    => json_encode($datas['meta']),
+                'date'    => date('Y-m-d H:i:s', $datas['date'])
             ];
 
             // 扩展数据
@@ -118,7 +152,7 @@ class Duoshuo extends Model
                 $data['ext_has_participant'] = self::STATUS['ENABLE'];
             }
 
-            return static::create($data);
+            return static::insertGetId($data);
         }
     }
 

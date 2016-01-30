@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Duoshuo as DuoshuoModel;
 use View;
 
 /**
@@ -14,22 +15,15 @@ class ContributionsController extends Controller
     protected $module = 'contributions';
 
     /**
-     * 首页
+     * 列表页
      *
      * @return Response
      */
     public function index()
     {
-        return View::make('admin/contributions/index');
-    }
-
-    /**
-     * 详情页
-     *
-     * @param int $duoshuoId
-     * @return Response
-     */
-    public function show($duoshuoId)
-    {
+        $list = DuoshuoModel::contributed()
+            ->orderBy('id', 'desc')
+            ->paginate(100);
+        return View::make('admin/contributions/index', ['list' => $list]);
     }
 }
