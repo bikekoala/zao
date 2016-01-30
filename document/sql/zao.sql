@@ -32,7 +32,7 @@ CREATE TABLE `programs` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `date` (`date`),
   KEY `state` (`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节目表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `program_participant` (
   `participant_id` int(11) unsigned NOT NULL COMMENT '参与人编号',
   PRIMARY KEY (`id`),
   KEY `program_id` (`program_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='节目参与者表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `participants` (
   `name` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '姓名',
   `counts` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '次数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='参与者表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `audios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `date_part` (`date`,`part`),
   KEY `state` (`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='声音表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='声音表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,8 +100,8 @@ CREATE TABLE `duoshuo` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `log_id` bigint(64) unsigned NOT NULL COMMENT '记录ID',
   `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
-  `action` varchar(20) NOT NULL DEFAULT '' COMMENT '操作类型',
-  `meta` text NOT NULL COMMENT 'META',
+  `action` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '操作类型',
+  `meta` text CHARACTER SET utf8mb4 NOT NULL COMMENT 'META',
   `date` datetime NOT NULL COMMENT '操作时间',
   `ext_created_at` datetime NOT NULL COMMENT '创建时间',
   `ext_program_date` date DEFAULT NULL COMMENT '节目日期',
@@ -111,7 +111,7 @@ CREATE TABLE `duoshuo` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `log_id` (`log_id`),
   KEY `program_contribution` (`action`,`ext_has_topic`,`ext_has_participant`,`ext_program_date`,`ext_is_agree`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,4 +143,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-30 19:52:21
+-- Dump completed on 2016-01-30 20:41:50
