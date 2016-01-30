@@ -99,12 +99,11 @@ class Duoshuo extends Model
     /**
      * Get the meta data.
      *
-     * @param string $value
      * @return object
      */
-    public function getMetaAttribute($value)
+    public function getMetasAttribute()
     {
-        return json_decode($value);
+        return json_decode($this->meta);
     }
 
     /**
