@@ -23,7 +23,7 @@
         <header>
             <div class="sidebar">
                 <img class="avatar" src="/static/img/avatar.png">
-                <h2 class="description">小人们洗耳聆听吧！</h2>
+                <h2 class="description">再见飞鱼秀，不散的飞鱼人</h2>
                 <nav>
                     <a href="/"><i class="fa fa-home" original-title="首页"></i></a>
                     <a href="/about"><i class="fa fa-about" original-title="关于"> </i></a>
