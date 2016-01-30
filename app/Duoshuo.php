@@ -31,8 +31,8 @@ class Duoshuo extends Model
         'date',
         'ext_created_at',
         'ext_program_date',
-        'ext_topic',
-        'ext_participant'
+        'ext_has_topic',
+        'ext_has_participant'
     ];
 
     /**
@@ -65,7 +65,15 @@ class Duoshuo extends Model
         'PARTICIPANT' => '🐰'
     ];
 
-
+    /**
+     * 状态集合
+     *
+     * @var array
+     */
+    const STATUS = [
+        'DISABLE' => 0,
+        'ENABLE'  => 1,
+    ];
 
     /**
      * 获取最后一条记录的log_id
@@ -89,23 +97,27 @@ class Duoshuo extends Model
     {
         $record = static::where('log_id', $datas['log_id'])->first();
         if (empty($record)) {
+            // 原始数据
             $data = [
                 'log_id'         => $datas['log_id'],
                 'user_id'        => $datas['user_id'],
                 'action'         => $datas['action'],
-                'meta'           => json_encode($datas['meta'], JSON_UNESCAPED_UNICODE),
-                'date'           => date('Y-m-d H:i:s', $datas['date']),
-                'ext_created_at' => date('Y-m-d H:i:s')
+                'meta'           => json_encode($datas['meta']),
+                'date'           => date('Y-m-d H:i:s', $datas['date'])
             ];
+
+            // 扩展数据
+            $data['ext_created_at'] = date('Y-m-d H:i:s');
             if (isset($datas['meta']['thread_key'])) {
                 $data['ext_program_date'] = $datas['meta']['thread_key'];
             }
             if (isset($signs['TOPIC'])) {
-                $data['ext_topic'] = $signs['TOPIC'];
+                $data['ext_has_topic'] = self::STATUS['ENABLE'];
             }
             if (isset($signs['PARTICIPANT'])) {
-                $data['ext_participant'] = implode('|', $signs['PARTICIPANT']);
+                $data['ext_has_participant'] = self::STATUS['ENABLE'];
             }
+
             return static::create($data);
         }
     }
