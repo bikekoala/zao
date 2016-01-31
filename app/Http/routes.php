@@ -34,7 +34,11 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin',
 
     // 认证
     Route::get('/', function () {
-        return Redirect::to('/admin/auth/login');
+        if (Auth::guest()) {
+            return Redirect::to('/admin/auth/login');
+        } else {
+            return Redirect::to('/admin/contributions');
+        }
     });
     Route::controllers([
         'auth'     => 'Auth\AuthController',
