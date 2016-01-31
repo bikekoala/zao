@@ -61,21 +61,23 @@ class DuoshuoController extends Controller
 
         // 拉取最近一条日志
         $lastLogId = DuoshuoModel::getLastLogId();
-        $list = $this->ds->getLogList($lastLogId, 10);
+        $list = $this->ds->getLogList($lastLogId, 50);
         if (empty($list['response'])) {
             return $this->output('Empty response.', true);
         }
 
         // 遍历日志
         foreach ($list['response'] as $log) {
+
             // 识别指令
-            $signs = DuoshuoModel::recognizeCommands($log['meta']['message']);
+            $signs = DuoshuoModel::ACTION['CREATE'] === $log['action'] ?
+                DuoshuoModel::recognizeCommands($log['meta']['message']) : [];
 
             // 记录日志 
             $id = DuoshuoModel::import($log, $signs);
 
-            // 只针对评论操作
-            if (DuoshuoModel::ACTION['CREATE'] === $log['action'] and ! empty($signs)) {
+            // 通知
+            if ( ! empty($signs)) {
 
                 // 回复评论
                 $this->replyPost(

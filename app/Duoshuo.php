@@ -135,7 +135,7 @@ class Duoshuo extends Model
                 'log_id'  => $datas['log_id'],
                 'user_id' => $datas['user_id'],
                 'action'  => $datas['action'],
-                'meta'    => json_encode($datas['meta']),
+                'meta'    => json_encode($datas['meta'], JSON_UNESCAPED_UNICODE),
                 'date'    => date('Y-m-d H:i:s', $datas['date'])
             ];
 
