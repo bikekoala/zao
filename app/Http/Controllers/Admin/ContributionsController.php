@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Duoshuo as DuoshuoModel;
+use App\{Program, Participant};
 use View;
 
 /**
@@ -25,5 +26,26 @@ class ContributionsController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(100);
         return View::make('admin/contributions/index', ['list' => $list]);
+    }
+
+    /**
+     * 审核页面
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $log = DuoshuoModel::find($id);
+        $signs = DuoshuoModel::recognizeCommands($log->metas->message);
+        $program = Program::dated($log->metas->thread_key)->enabled()->first();
+        $participants = Participant::get();
+
+        return View::make('admin/contributions/edit', [
+            'log'          => $log,
+            'signs'        => $signs,
+            'program'      => $program,
+            'participants' => $participants
+        ]);
     }
 }
