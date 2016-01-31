@@ -93,7 +93,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/static/js/tooltip.js"></script>
 <script type="text/javascript" src="/static/js/admin/contributions-edit.js"></script>
 
 @endsection

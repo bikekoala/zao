@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 $(function() {
     // 自动选择回复的话
     $('input[name="state"]').click(function() {
@@ -8,4 +8,7 @@ $(function() {
     $('input[name="state"]').each(function() {
         1 == this.value && this.click();
     });
+
+    // 提示工具
+    $('[data-toggle="tooltip"]').tooltip();
 });
