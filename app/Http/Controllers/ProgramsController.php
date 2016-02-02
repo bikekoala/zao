@@ -55,14 +55,15 @@ class ProgramsController extends Controller
         ];
 
         // get contributions info
-        //$contributers = $this->getProgramContributers($program->date);
+        $contributers = $this->getProgramContributers($program->date);
 
         // render page
         return View::make('programs/detail')
             ->with('program', $program)
             ->with('audios', $audios)
             ->with('pages', $pages)
-            ->with('title', $program->topic);
+            ->with('title', $program->topic)
+            ->with('contributers', $contributers);
     }
 
     /**
@@ -127,10 +128,34 @@ class ProgramsController extends Controller
      * 获取本节目的贡献者
      *
      * @param int $date
-     * @return void
+     * @return array
      */
     private function getProgramContributers($date)
     {
-        //$logs = Duoshuo::contributed($date)->agreed()->get();
+        $contributers = [
+            'topic'        => null,
+            'participants' => null
+        ];
+
+        $logs = Duoshuo::contributed($date)->agreed()->get()->sortByDesc('id');
+        foreach ($logs as $log) {
+            $author = [
+                'name' => $log->metas->author_name,
+                'url'  => $log->metas->author_url
+            ];
+
+            if (Duoshuo::STATUS['ENABLE'] === $log->ext_has_topic) {
+                $contributers['topic'] = $author;
+            }
+            if (Duoshuo::STATUS['ENABLE'] === $log->ext_has_participant) {
+                $contributers['participants'] = $author;
+            }
+
+            if ($contributers['topic'] and $contributers['participants']) {
+                break;
+            }
+        }
+
+        return $contributers;
     }
 }

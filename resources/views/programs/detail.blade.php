@@ -2,8 +2,8 @@
 
 @section('content')
 <article itemtype="http://schema.org/BlogPosting">
-    <h1 class="post-title">@if($program->topic) {{ $program->topic }} @else 空 @endif</h1>
-    <ul class="post-meta">
+    <h1 class="post-title" original-title="@if ($contributers['topic'])<a href='{{ $contributers['topic']['url'] }}' target='_blank'>by {{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif</h1>
+    <ul class="post-meta" original-title="@if ($contributers['participants'])<a href='{{ $contributers['participants']['url'] }}' target='_blank'>by {{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
         <li>{{ $program->dates->year }}.{{ $program->dates->month }}.{{ $program->dates->day }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
         <li>

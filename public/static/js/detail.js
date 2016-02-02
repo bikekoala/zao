@@ -22,4 +22,8 @@ $(function(){
         opacity: 0.6,
         offset: 10
     });
+    $('.post-title, .post-meta').each(function() {
+        $(this).trigger('mouseover');
+        $(this).trigger('mouseout');
+    });
 });

@@ -93,9 +93,19 @@ class Duoshuo extends Model
         });
         if ($programDate) {
             $query->where('ext_program_date', $programDate);
-            $query->where('exit_is_agree', self::STATUS['ENABLE']);
+            $query->where('ext_is_agree', self::STATUS['ENABLE']);
         }
         return $query;
+    }
+
+    /**
+     * Scope a query to only include agreed contributions.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAgreed($query)
+    {
+        return $query->where('ext_is_agree', self::STATUS['ENABLE']);
     }
 
     /**
