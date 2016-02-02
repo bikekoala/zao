@@ -368,9 +368,15 @@ header nav a:hover {
 .post-about .qrcode img{
     height: 22em;
 }
-.post-about .link{
+.post-about .link {
     padding-left: 1.3em;
     font-size: 0.6em;
+}
+.post-about-contribute {
+    display: block;
+    margin: 1em 0;
+    padding-left: 0.8em;
+    border-left: 4px solid #eee;
 }
 
 /* responsive */
