@@ -174,7 +174,10 @@ class Duoshuo extends Model
                             $data = trim($matches[1]);
                         }
                         if ('PARTICIPANT' === $name) {
-                            $data = array_map('trim', explode('|', $matches[1]));
+                            $data = array_filter(array_map(
+                                'trim',
+                                explode('|', $matches[1]
+                            )));
                         }
                         $result[$name] = $data ?? [];
                     }

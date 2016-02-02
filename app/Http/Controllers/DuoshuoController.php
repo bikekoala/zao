@@ -81,6 +81,7 @@ class DuoshuoController extends Controller
 
                 // 回复评论
                 $this->replyPost(
+                    $log['meta']['author_email'],
                     $log['meta']['thread_id'],
                     $log['meta']['post_id']
                 );
@@ -115,22 +116,27 @@ class DuoshuoController extends Controller
     /**
      * 回复评论
      *
+     * @param string $authorEmail
      * @param string $threadId
      * @param string $postId
      * @return bool
      */
-    private function replyPost($threadId, $postId)
+    private function replyPost($authorEmail, $threadId, $postId)
     {
         $config = Config::get('duoshuo');
 
-        return $this->ds->createPost(
-            $this->replyMessage,
-            $threadId,
-            $postId,
-            $config['user_name'],
-            $config['user_email'],
-            $config['user_url']
-        );
+        if ($config['user_email'] === $authorEmail) {
+            return true;
+        } else {
+            return $this->ds->createPost(
+                $this->replyMessage,
+                $threadId,
+                $postId,
+                $config['user_name'],
+                $config['user_email'],
+                $config['user_url']
+            );
+        }
     }
 
     /**

@@ -98,6 +98,7 @@ class ContributionsController extends Controller
 
         // 回复评论
         $state = $this->replyPost(
+            $log->metas->author_email,
             $log->metas->thread_id,
             $log->metas->post_id,
             $request->reply_message
@@ -117,23 +118,28 @@ class ContributionsController extends Controller
     /**
      * 回复评论
      *
+     * @param string $authorEmail
      * @param string $threadId
      * @param string $postId
      * @param string $message
      * @return bool
      */
-    private function replyPost($threadId, $postId, $message)
+    private function replyPost($authorEmail, $threadId, $postId, $message)
     {
         $config = Config::get('duoshuo');
         $ds = new DuoshuoService($config['short_name'], $config['secret']);
 
-        return $ds->createPost(
-            $message,
-            $threadId,
-            $postId,
-            $config['user_name'],
-            $config['user_email'],
-            $config['user_url']
-        );
+        if ($config['user_email'] === $authorEmail) {
+            return true;
+        } else {
+            return $ds->createPost(
+                $message,
+                $threadId,
+                $postId,
+                $config['user_name'],
+                $config['user_email'],
+                $config['user_url']
+            );
+        }
     }
 }
