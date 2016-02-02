@@ -23,7 +23,6 @@ $(function(){
         offset: 10
     });
     $('.post-title, .post-meta').each(function() {
-        $(this).trigger('mouseover');
-        $(this).trigger('mouseout');
+        $(this).children('li').trigger('mouseover').trigger('mouseout');
     });
 });
