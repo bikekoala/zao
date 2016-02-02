@@ -84,7 +84,7 @@ CREATE TABLE `audios` (
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `date_part` (`date`,`part`),
+  UNIQUE KEY `date_part_source` (`date`,`part`,`source`),
   KEY `state` (`state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='声音表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -143,4 +143,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-30 20:41:50
+-- Dump completed on 2016-02-02 18:42:24
