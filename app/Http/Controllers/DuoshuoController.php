@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Duoshuo as DuoshuoClient;
+use App\Services\Duoshuo as DuoshuoService;
 use App\Duoshuo as DuoshuoModel;
 use Request, Config, Mail;
 
@@ -31,7 +31,7 @@ class DuoshuoController extends Controller
     /**
      * 多说客户端对象
      *
-     * @var DuoshuoClient
+     * @var DuoshuoService
      */
     private $ds;
 
@@ -43,7 +43,7 @@ class DuoshuoController extends Controller
     public function __construct()
     {
         $config = Config::get('duoshuo');
-        $this->ds = new DuoshuoClient($config['short_name'], $config['secret']);
+        $this->ds = new DuoshuoService($config['short_name'], $config['secret']);
     }
 
     /**
@@ -80,10 +80,11 @@ class DuoshuoController extends Controller
             if ( ! empty($signs)) {
 
                 // 回复评论
-                $this->replyPost(
-                    $log['meta']['author_email'],
+                DuoshuoModel::replyPost(
+                    $this->replyMessage,
                     $log['meta']['thread_id'],
-                    $log['meta']['post_id']
+                    $log['meta']['post_id'],
+                    $log['meta']['author_email']
                 );
 
                 // 发送邮件
@@ -111,32 +112,6 @@ class DuoshuoController extends Controller
             $message->to($email);
             $message->subject($subject);
         });
-    }
-
-    /**
-     * 回复评论
-     *
-     * @param string $authorEmail
-     * @param string $threadId
-     * @param string $postId
-     * @return bool
-     */
-    private function replyPost($authorEmail, $threadId, $postId)
-    {
-        $config = Config::get('duoshuo');
-
-        if ($config['user_email'] === $authorEmail) {
-            return true;
-        } else {
-            return $this->ds->createPost(
-                $this->replyMessage,
-                $threadId,
-                $postId,
-                $config['user_name'],
-                $config['user_email'],
-                $config['user_url']
-            );
-        }
     }
 
     /**

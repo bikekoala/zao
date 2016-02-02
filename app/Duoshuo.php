@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Services\Duoshuo as DuoshuoService;
+use Config;
 
 /**
  * 多说评论模型
@@ -183,5 +185,38 @@ class Duoshuo extends Model
         }
 
         return $result;
+    }
+
+    /**
+     * 回复评论
+     *
+     * @param string $message
+     * @param string $threadId
+     * @param string $postId
+     * @param string $authorEmail
+     * @return bool
+     */
+    public static function replyPost(
+        $message,
+        $threadId,
+        $postId,
+        $authorEmail = null
+    ) {
+        $config = Config::get('duoshuo');
+
+        if ($config['user_email'] !== $authorEmail) {
+            $service = new DuoshuoService(
+                $config['short_name'],
+                $config['secret']
+            );
+            return $service->createPost(
+                $message,
+                $threadId,
+                $postId,
+                $config['user_name'],
+                $config['user_email'],
+                $config['user_url']
+            );
+        } else return true;
     }
 }

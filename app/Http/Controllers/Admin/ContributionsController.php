@@ -69,9 +69,9 @@ class ContributionsController extends Controller
         $log = Duoshuo::find($id);
 
         // 更新
-        if (Duoshuo::STATUS['ENABLE'] == $request->state) {
-            DB::transaction(function () use ($request, $log) {
+        DB::transaction(function () use ($request, $log) {
 
+            if (Duoshuo::STATUS['ENABLE'] == $request->state) {
                 // 参与人
                 $participantIds = [];
                 $participantNames = Participant::filterParticipantNames($request->participants);
@@ -96,20 +96,20 @@ class ContributionsController extends Controller
                 if ( ! empty($participantIds)) {
                     $program->participants()->sync($participantIds);
                 }
+            }
 
-                // 日志
-                Duoshuo::where('id', $log->id)->update([
-                    'ext_is_agree' => $request->state
-                ]);
-            });
-        }
+            // 日志
+            Duoshuo::where('id', $log->id)->update([
+                'ext_is_agree' => $request->state
+            ]);
+        });
 
         // 回复评论
-        $state = $this->replyPost(
-            $log->metas->author_email,
+        $state = Duoshuo::replyPost(
+            $request->reply_message,
             $log->metas->thread_id,
             $log->metas->post_id,
-            $request->reply_message
+            $log->metas->author_email
         );
 
         // 跳转
@@ -121,33 +121,5 @@ class ContributionsController extends Controller
             $status['status'],
             $status['message']
         );
-    }
-
-    /**
-     * 回复评论
-     *
-     * @param string $authorEmail
-     * @param string $threadId
-     * @param string $postId
-     * @param string $message
-     * @return bool
-     */
-    private function replyPost($authorEmail, $threadId, $postId, $message)
-    {
-        $config = Config::get('duoshuo');
-        $ds = new DuoshuoService($config['short_name'], $config['secret']);
-
-        if ($config['user_email'] === $authorEmail) {
-            return true;
-        } else {
-            return $ds->createPost(
-                $message,
-                $threadId,
-                $postId,
-                $config['user_name'],
-                $config['user_email'],
-                $config['user_url']
-            );
-        }
     }
 }
