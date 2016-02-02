@@ -5,7 +5,11 @@
     <div class="panel panel-default">
         <div class="panel-heading"><b>审核协同请求</b></div>
         <div class="panel-body">
-            <form class="form-horizontal" action="/admin/{{ $module }}/{{ $log->id }}/edit" method="POST">
+            <br>
+
+            @include('layouts.admin.alert')
+
+            <form class="form-horizontal" action="/admin/{{ $module }}/{{ $log->id }}" method="POST">
                 <input name="_method" type="hidden" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_redirect_url" value="/admin/{{ $module }}">
@@ -35,7 +39,7 @@
                     <div class="col-sm-8">
                         <p class="form-control-static">
                             @if ( ! $program->participants->isEmpty())
-                                {{ implode('，', array_column($program->participants, 'name')) }}
+                                {{ implode('，', array_column($program->participants->toArray(), 'name')) }}
                             @else
                                 空
                             @endif
@@ -73,14 +77,14 @@
                             <input type="radio" name="state" value="1" checked> 通过
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="state" value="0"> 拒绝
+                            <input type="radio" name="state" value="-1"> 拒绝
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"></label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" name="reply-message" value="" placeholder="想回复的话">
+                        <input type="text" class="form-control" name="reply_message" value="" placeholder="想回复的话">
                     </div>
                 </div>
                 <div class="form-group">

@@ -5,6 +5,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">协同列表</div>
         <div class="panel-body">
+
+            @include('layouts.admin.alert')
+
             <br>
             <table class="table table-bordered table-hover">
                 <tr>

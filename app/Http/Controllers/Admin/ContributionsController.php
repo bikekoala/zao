@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Duoshuo as DuoshuoModel;
-use App\{Program, Participant};
-use View;
+use App\Services\Duoshuo as DuoshuoService;
+use App\{Duoshuo, Program, Participant};
+use Illuminate\Http\Request;
+use View, DB, Config, Redirect;
 
 /**
  * 协同列表控制器
@@ -22,7 +23,7 @@ class ContributionsController extends Controller
      */
     public function index()
     {
-        $list = DuoshuoModel::contributed()
+        $list = Duoshuo::contributed()
             ->orderBy('id', 'desc')
             ->paginate(100);
         return View::make('admin/contributions/index', ['list' => $list]);
@@ -36,8 +37,8 @@ class ContributionsController extends Controller
      */
     public function edit($id)
     {
-        $log = DuoshuoModel::find($id);
-        $signs = DuoshuoModel::recognizeCommands($log->metas->message);
+        $log = Duoshuo::find($id);
+        $signs = Duoshuo::recognizeCommands($log->metas->message);
         $program = Program::dated($log->metas->thread_key)->enabled()->first();
         $participants = Participant::get();
 
@@ -47,5 +48,92 @@ class ContributionsController extends Controller
             'program'      => $program,
             'participants' => $participants
         ]);
+    }
+
+    /**
+     * 更新请求
+     *
+     * @param Request $request
+     * @param int $id
+     * @return void
+     */
+    public function update(Request $request, $id)
+    {
+        // 验证
+        $this->validate($request, [
+            'topic'         => 'string',
+            'participants'  => 'string',
+            'state'         => 'required|in:1,-1',
+            'reply_message' => 'required|string'
+        ]);
+        $log = Duoshuo::find($id);
+
+        // 更新
+        if (Duoshuo::STATUS['ENABLE'] == $request->state) {
+            DB::transaction(function () use ($request, $log) {
+
+                // 参与人
+                $participantIds = [];
+                foreach (explode('|', $request->participants) as $name) {
+                    $participant = Participant::firstOrCreate(['name' => $name]);
+                    $participant->increment('counts', 1);
+                    $participantIds[] = $participant->id;
+                }
+
+                // 节目
+                $program = Program::where(
+                    'date', date('Y-m-d', strtotime($log->metas->thread_key))
+                )->first();
+
+                $program->update(['topic' => $request->topic]);
+
+                $program->participants()->sync($participantIds);
+
+                // 日志
+                Duoshuo::where('id', $log->id)->update([
+                    'ext_is_agree' => $request->state
+                ]);
+            });
+        }
+
+        // 回复评论
+        $state = $this->replyPost(
+            $log->metas->thread_id,
+            $log->metas->post_id,
+            $request->reply_message
+        );
+
+        // 跳转
+        $status = [
+            'status'  => $state ? 'success' : 'error',
+            'message' => $state ? '审核成功~' : '审核成功，回复失败'
+        ];
+        return Redirect::to($request->_redirect_url)->with(
+            $status['status'],
+            $status['message']
+        );
+    }
+
+    /**
+     * 回复评论
+     *
+     * @param string $threadId
+     * @param string $postId
+     * @param string $message
+     * @return bool
+     */
+    private function replyPost($threadId, $postId, $message)
+    {
+        $config = Config::get('duoshuo');
+        $ds = new DuoshuoService($config['short_name'], $config['secret']);
+
+        return $ds->createPost(
+            $message,
+            $threadId,
+            $postId,
+            $config['user_name'],
+            $config['user_email'],
+            $config['user_url']
+        );
     }
 }

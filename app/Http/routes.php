@@ -10,8 +10,6 @@
 |
 */
 
-// Route::group(['middleware' => ['web']], function () {});
-
 // 首页
 Route::get('/', 'ProgramsController@index');
 
