@@ -85,4 +85,15 @@ class Program extends Model
 
         return (object) $dates;
     }
+
+    /**
+     * 过滤话题名称
+     *
+     * @param string $topic
+     * @return string
+     */
+    public static function filterTopic($topic)
+    {
+        return trim($topic);
+    }
 }

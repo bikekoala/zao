@@ -171,13 +171,10 @@ class Duoshuo extends Model
                     preg_match("|.*{$sign}(.+){$sign}.*|", $line, $matches);
                     if ( ! empty($matches)) {
                         if ('TOPIC' === $name) {
-                            $data = trim($matches[1]);
+                            $data = Program::filterTopic($matches[1]);
                         }
                         if ('PARTICIPANT' === $name) {
-                            $data = array_filter(array_map(
-                                'trim',
-                                explode('|', $matches[1]
-                            )));
+                            $data = Participant::filterParticipantNames($matches[1]);
                         }
                         $result[$name] = $data ?? [];
                     }

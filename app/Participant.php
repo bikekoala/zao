@@ -25,4 +25,15 @@ class Participant extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * 过滤参与人姓名
+     *
+     * @param string $names
+     * @return array
+     */
+    public static function filterParticipantNames($names)
+    {
+        return array_filter(array_map('trim', explode('|', $names)));
+    }
 }

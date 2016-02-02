@@ -74,10 +74,13 @@ class ContributionsController extends Controller
 
                 // 参与人
                 $participantIds = [];
-                foreach (explode('|', $request->participants) as $name) {
-                    $participant = Participant::firstOrCreate(['name' => $name]);
-                    $participant->increment('counts', 1);
-                    $participantIds[] = $participant->id;
+                $participantNames = Participant::filterParticipantNames($request->participants);
+                if ( ! empty($participantNames)) {
+                    foreach ($participantNames as $name) {
+                        $participant = Participant::firstOrCreate(['name' => $name]);
+                        $participant->increment('counts', 1);
+                        $participantIds[] = $participant->id;
+                    }
                 }
 
                 // 节目
@@ -85,9 +88,14 @@ class ContributionsController extends Controller
                     'date', date('Y-m-d', strtotime($log->metas->thread_key))
                 )->first();
 
-                $program->update(['topic' => $request->topic]);
+                $topic = Program::filterTopic($request->topic);
+                if ( ! empty($topic)) {
+                    $program->update(['topic' => $topic]);
+                }
 
-                $program->participants()->sync($participantIds);
+                if ( ! empty($participantIds)) {
+                    $program->participants()->sync($participantIds);
+                }
 
                 // 日志
                 Duoshuo::where('id', $log->id)->update([
