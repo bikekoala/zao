@@ -15,14 +15,16 @@ $(function(){
     });
 
     // tips
-    $('.post-title, .post-meta').tipsy({
-        gravity: 'e',
-        html: true,
-        delayOut: 5000,
-        opacity: 0.6,
-        offset: 10
-    });
-    window.setTimeout(function() {
-        $('.post-title, .post-meta li').trigger('mouseover').trigger('mouseout');
-    }, 500);
+    if (768 < $(window).width()) {
+        $('.post-title, .post-meta').tipsy({
+            gravity: 'e',
+            html: true,
+            delayOut: 5000,
+            opacity: 0.6,
+            offset: 10
+        });
+        $('.post-title, .post-meta li').each(function() {
+            $(this).trigger('mouseover').trigger('mouseout');
+        });
+    }
 });
