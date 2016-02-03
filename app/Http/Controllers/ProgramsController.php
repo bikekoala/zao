@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{Program, Audio, Duoshuo};
 
-use View, Config;
+use View, Config, Request, Cache;
 
 /**
  * 节目控制器
@@ -19,21 +19,18 @@ class ProgramsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // query program list, and sort by date
-        $programs = Program::with('participants')
-            ->enabled()
-            ->orderBy('date', 'desc')
-            ->get();
+        $isFlush = $request::get('flush');
 
-        $list = [];
-        foreach ($programs as $program) {
-            $list[$program->dates->year][$program->dates->month][] = $program;
+        $cacheKey = 'programs_html';
+        $html = Cache::get($cacheKey);
+        if ($isFlush or empty($html)) {
+            $html = $this->getProgramsHtml();
+            Cache::forever($cacheKey, $html);
         }
 
-        // render page
-        return View::make('programs.index')->with('list', $list);
+        echo $html;
     }
 
     /**
@@ -64,6 +61,28 @@ class ProgramsController extends Controller
             ->with('pages', $pages)
             ->with('title', $program->topic)
             ->with('contributers', $contributers);
+    }
+
+    /**
+     * 获取节目单HTML字符串
+     *
+     * @return string
+     */
+    private function getProgramsHtml()
+    {
+        // query program list, and sort by date
+        $programs = Program::with('participants')
+            ->enabled()
+            ->orderBy('date', 'desc')
+            ->get();
+
+        $list = [];
+        foreach ($programs as $program) {
+            $list[$program->dates->year][$program->dates->month][] = $program;
+        }
+
+        // render page
+        return (string) View::make('programs.index')->with('list', $list);
     }
 
     /**
