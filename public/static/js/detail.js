@@ -22,7 +22,7 @@ $(function(){
         opacity: 0.6,
         offset: 10
     });
-    $('.post-title, .post-meta li').each(function() {
-        $(this).trigger('mouseover').trigger('mouseout');
-    });
+    window.setTimeout(function() {
+        $('.post-title, .post-meta li').trigger('mouseover').trigger('mouseout');
+    }, 500);
 });
