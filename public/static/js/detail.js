@@ -18,11 +18,11 @@ $(function(){
     $('.post-title, .post-meta').tipsy({
         gravity: 'e',
         html: true,
-        delayOut: 3000,
+        delayOut: 5000,
         opacity: 0.6,
         offset: 10
     });
-    $('.post-title, .post-meta').each(function() {
-        $(this).children('li').trigger('mouseover').trigger('mouseout');
+    $('.post-title, .post-meta li').each(function() {
+        $(this).trigger('mouseover').trigger('mouseout');
     });
 });
