@@ -69,81 +69,74 @@ class Import extends Command
         $list = self::decodeText($path);
 
         // 插入数据
-        foreach ($list as $item) {
-            DB::transaction(function () use (&$item) {
-                self::insertAudios($item);
-                self::insertParticipants($item);
-                self::insertPrograms($item);
+        foreach ($list as $group) {
+            DB::transaction(function () use (&$group) {
+                // 插入声音记录
+                self::insertAudios($group);
 
-                $this->info(sprintf("%s\t%s", $item['date'], $item['topic']));
+                // 插入参与人记录
+                $data = $group['all'] ?? end($group);
+                $participantIds = [];
+                $participantNames = Participant::filterParticipantNames($data['participant']);
+                foreach ($participantNames as $name) {
+                    $participant = Participant::firstOrCreate(['name' => $name]);
+                    $participant->increment('counts', 1);
+                    $participantIds[] = $participant->id;
+                }
+
+                // 插入节目记录
+                $topic = Program::filterTopic($data['topic']);
+                if (empty($group['all'])) {
+                    if (in_array(mb_substr($topic, -1), ['a', 'b', 'c'])) {
+                        $topic = mb_substr($topic, 0, -1);
+                    }
+                }
+                $program = Program::firstOrCreate([
+                    'date'  => $data['date'],
+                    'topic' => $topic,
+                    'state' => Program::STATE_ENABLE
+                ]);
+                if ( ! empty($participantIds)) {
+                    $program->participants()->sync($participantIds);
+                }
+
+                // 输出日期
+                $this->info(sprintf("%s\t%s", $data['date'], $topic));
             });
-        }
-    }
-
-    /**
-     * 插入节目记录
-     *
-     * @param array $data
-     * @return void
-     */
-    protected static function insertPrograms(array $data)
-    {
-        $program = Program::firstOrCreate([
-            'date'  => $data['date'],
-            'topic' => $data['topic'],
-            'state' => Program::STATE_ENABLE
-        ]);
-
-        foreach ($data['participant_ids'] as $participantId) {
-            $program->participants()->attach($participantId);
-        }
-    }
-
-    /**
-     * 插入参与人记录
-     *
-     * @param array $data
-     * @return void
-     */
-    protected static function insertParticipants(array &$data)
-    {
-        foreach (explode('|', $data['participant']) as $name) {
-            $participant = Participant::firstOrCreate(['name' => $name]);
-            $participant->increment('counts', 1);
-
-            $data['participant_ids'][] = $participant->id;
         }
     }
 
     /**
      * 插入声音记录
      *
-     * @param array $data
+     * @param array $group
      * @return void
      */
-    protected static function insertAudios(array $data)
+    protected static function insertAudios(array $group)
     {
-        $list = ['qiniu' => $data, 'other' => $data];
+        foreach ($group as $data) {
+            $list = ['qiniu' => $data, 'other' => $data];
 
-        if ( ! empty($data['file_name'])) {
-            $list['qiniu']['src'] = Audio::SOURCE_DEFAULT;
-            $list['qiniu']['url'] = self::getQiniuUrl($data['file_name']);
-        }
+            if ( ! empty($data['file_name'])) {
+                $list['qiniu']['src'] = Audio::SOURCE_DEFAULT;
+                $list['qiniu']['url'] = self::getQiniuUrl($data['file_name']);
+            }
 
-        if ( ! empty($data['original_url'])) {
-            $list['other']['src'] = $data['original_url'];
-            $list['other']['url'] = $data['url_source'];
-        } else unset($list['other']);
+            if ( ! empty($data['original_url'])) {
+                $list['other']['src'] = $data['original_url'];
+                $list['other']['url'] = $data['url_source'];
+            } else unset($list['other']);
 
-        foreach ($list as $item) {
-            Audio::create([
-                'date'   => $item['date'],
-                'part'   => $item['part'],
-                'title'  => $item['topic'],
-                'source' => $item['src'],
-                'url'    => $item['url'],
-                'state'  => Audio::STATE_ENABLE
-            ]);
+            foreach ($list as $item) {
+                Audio::create([
+                    'date'   => $item['date'],
+                    'part'   => $item['part'],
+                    'title'  => $item['topic'],
+                    'source' => $item['src'],
+                    'url'    => $item['url'],
+                    'state'  => Audio::STATE_ENABLE
+                ]);
+            }
         }
     }
 
@@ -176,8 +169,13 @@ class Import extends Command
                 isset(self::$fields[$k]) && $list[$i][self::$fields[$k]] = $v;
             }
         }
-
         krsort($list);
-        return $list;
+
+        $data = [];
+        foreach ($list as $item) {
+            $data[$item['date']][$item['part']] = $item;
+        }
+
+        return $data;
     }
 }
