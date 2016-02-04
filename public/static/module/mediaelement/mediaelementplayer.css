@@ -343,7 +343,7 @@
 	position: absolute;
 	display: none;
 	background: #eee;
-	width: 40px;
+	width: 53px;
 	height: 17px;
 	border: solid 1px #333;
 	top: -26px;
@@ -354,7 +354,7 @@
 
 .mejs-controls .mejs-time-rail .mejs-time-float-current {
 	margin: 2px;
-	width: 35px;
+	width: 48px;
 	display: block;
 	text-align: center;
 	left: 0;
@@ -372,19 +372,19 @@
 	-moz-border-radius: 0;
 	border-radius: 0;
 	top: 15px;
-	left: 13px;
+	left: 20px;
 }
 
 .mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float {
-	width: 48px;
+	width: 53px;
 }
 
 .mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float-current {
-	width: 44px;
+	width: 48px;
 }
 
 .mejs-long-video .mejs-controls .mejs-time-rail .mejs-time-float-corner {
-	left: 18px;
+	left: 20px;
 }
 
 /*

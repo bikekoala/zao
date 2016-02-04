@@ -4,6 +4,7 @@ $(function(){
     $('video').mediaelementplayer({
         isVideo: false,
         alwaysShowControls: true,
+        alwaysShowHours: true,
         videoVolume:'horizontal',
         features: ['playpause','progress','current','duration','tracks','volume'],
         defaultSeekBackwardInterval: function(media) {
