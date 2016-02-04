@@ -22,10 +22,10 @@
     </div>
     <ul class="post-near">
         @if ($pages->prev)
-        <li class="prev">前一天: <a href="/programs/{{ $pages->prev->dates->id }}">{{ $pages->prev->topic }}</a></li>
+        <li class="prev">前一天: <a href="/programs/{{ $pages->prev->dates->id }}">@if ($pages->prev->topic) {{ $pages->prev->topic }} @else 空 @endif</a></li>
         @endif
         @if ($pages->next)
-        <li class="next">后一天: <a href="/programs/{{ $pages->next->dates->id }}">{{ $pages->next->topic }}</a></li>
+        <li class="next">后一天: <a href="/programs/{{ $pages->next->dates->id }}">@if ($pages->next->topic) {{ $pages->next->topic }} @else 空 @endif</a></li>
         @endif
     </ul>
 
