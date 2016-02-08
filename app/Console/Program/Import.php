@@ -123,8 +123,8 @@ class Import extends Command
             }
 
             if ( ! empty($data['original_url'])) {
-                $list['other']['src'] = $data['original_url'];
-                $list['other']['url'] = $data['url_source'];
+                $list['other']['src'] = $data['url_source'];
+                $list['other']['url'] = $data['original_url'];
             } else unset($list['other']);
 
             foreach ($list as $item) {
