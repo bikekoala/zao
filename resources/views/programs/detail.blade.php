@@ -15,7 +15,7 @@
     <div class="post-content">
         @foreach ($audios as $audio)
         <p>{{ $audio->title }}</p>
-        <video width="80%" height="30" controls="controls" preload="none">
+        <video width="85%" height="30" controls="controls" preload="none">
             <source src="{{ $audio->url }}" />
         </video>
         @endforeach

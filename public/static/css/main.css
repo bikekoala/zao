@@ -347,6 +347,9 @@ header nav a:hover {
 .post-content .strong {
     font-weight: bold;
 }
+.post-content video {
+    display: none;
+}
 .post-near {
     margin-top: 8em;
     padding: 0;

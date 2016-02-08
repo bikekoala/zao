@@ -102,25 +102,25 @@
 }
 
 .mejs-overlay-button {
-	position: absolute;
+	/*position: absolute;
 	top: 50%;
 	left: 50%;
 	width: 100px;
 	height: 100px;
 	margin: -50px 0 0 -50px;
-	background: url(bigplay.svg) no-repeat;
+	background: url(bigplay.svg) no-repeat;*/
 }
 
 .no-svg .mejs-overlay-button {
-	background-image: url(bigplay.png);
+	/*background-image: url(bigplay.png);*/
 }
 
 .mejs-overlay:hover .mejs-overlay-button {
-	background-position: 0 -100px ;
+	/*background-position: 0 -100px;*/
 }
 
 .mejs-overlay-loading {
-	position: absolute;
+	/*position: absolute;
 	top: 50%;
 	left: 50%;
 	width: 80px;
@@ -134,14 +134,14 @@
 	background: -moz-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
 	background: -o-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
 	background: -ms-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
-	background: linear-gradient(rgba(50,50,50,0.9), rgba(0,0,0,0.9));
+	background: linear-gradient(rgba(50,50,50,0.9), rgba(0,0,0,0.9));*/
 }
 
 .mejs-overlay-loading span {
-	display: block;
+	/*display: block;
 	width: 80px;
 	height: 80px;
-	background: transparent url(loading.gif) 50% 50% no-repeat;
+	background: transparent url(loading.gif) 50% 50% no-repeat;*/
 }
 
 /* End: LAYERS */
