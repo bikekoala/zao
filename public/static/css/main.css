@@ -232,6 +232,7 @@ header nav a:hover {
 .archive .year {
     position: relative;
     display: inline-block;
+    margin: 1em 0;
     width: 120px;
     margin:  30px 0 10px 40px;
     padding: 1px 0;
@@ -240,11 +241,14 @@ header nav a:hover {
     background-color: #fafafa;
     color: rgba(0,0,0,.44);
     text-align: center;
+    font-size: 1.17em;
+    font-weight: bold;
 }
 .archive .month {
     position: relative;
-    margin-bottom: 15px
-    font-weight: 700;
+    display: block;
+    margin: 1em 0;
+    font-size: 1.17em;
 }
 .archive .month:after, .archive .month:before {
     position: absolute;
