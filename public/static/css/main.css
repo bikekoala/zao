@@ -408,7 +408,8 @@ header nav a:hover {
         padding-bottom: 1em;
     }
     .archive .month {
-        line-height: 2.4em;
+        line-height: 2.3em;
+        padding-left: 2em;
     }
     .archive ul li {
         line-height: 2.2em;
