@@ -13,7 +13,7 @@ use View, Config, Request, Cache;
  */
 class ProgramsController extends Controller
 {
-
+ 
     /**
      * 首页
      *
@@ -23,11 +23,10 @@ class ProgramsController extends Controller
     {
         $isFlush = $request::get('flush');
 
-        $cacheKey = 'programs_html';
-        $html = Cache::get($cacheKey);
+        $html = Cache::get(Program::INDEX_CACHE_KEY);
         if ($isFlush or empty($html)) {
             $html = $this->getProgramsHtml();
-            Cache::forever($cacheKey, $html);
+            Cache::forever(Program::INDEX_CACHE_KEY, $html);
         }
 
         echo $html;

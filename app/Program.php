@@ -20,6 +20,11 @@ class Program extends Model
     protected $fillable = ['date', 'topic', 'state'];
 
     /**
+     * 首页缓存KEY
+     */
+    const INDEX_CACHE_KEY = 'programs_html';
+
+    /**
      * 状态常量
      *
      * @var int

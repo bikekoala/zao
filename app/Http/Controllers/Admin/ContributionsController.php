@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Services\Duoshuo as DuoshuoService;
 use App\{Duoshuo, Program, Participant};
 use Illuminate\Http\Request;
-use View, DB, Config, Redirect;
+use View, DB, Cache, Config, Redirect;
 
 /**
  * 协同列表控制器
@@ -98,7 +98,10 @@ class ContributionsController extends Controller
                 }
             }
 
-            // 日志
+            // 刷新首页文件缓存
+            Cache::forget(Program::INDEX_CACHE_KEY);
+
+            // 记录日志
             Duoshuo::where('id', $log->id)->update([
                 'ext_is_agree' => $request->state
             ]);
