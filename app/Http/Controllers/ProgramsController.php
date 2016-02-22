@@ -120,7 +120,9 @@ class ProgramsController extends Controller
             'all' => ''
         ];
         foreach ($audios as $audio) {
-            $audio->title = $parts[$audio->part] . ' ' . $audio->title;
+            $title = ($audio->title and 'all' !== $audio->part) ?
+                '（' . $audio->title . '）' : $audio->title;
+            $audio->title = $parts[$audio->part] . $title;
         }
 
         return $audios;
