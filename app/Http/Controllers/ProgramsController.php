@@ -113,10 +113,14 @@ class ProgramsController extends Controller
         $audios = collect($audioList);
 
         // get default title
-        if (empty(array_filter(array_column($audios->toArray(), 'title')))) {
-            foreach ($audios as $audio) {
-                $audio->title = $audio->part;
-            }
+        $parts = [
+            'a'   => '第一时段',
+            'b'   => '第二时段',
+            'c'   => '第三时段',
+            'all' => ''
+        ];
+        foreach ($audios as $audio) {
+            $audio->title = $parts[$audio->part] . ' ' . $audio->title;
         }
 
         return $audios;
