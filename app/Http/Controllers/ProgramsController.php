@@ -113,29 +113,9 @@ class ProgramsController extends Controller
         $audios = collect($audioList);
 
         // get default title
-        $count = $audios->count();
-        foreach ($audios as $i => $audio) {
-            if (empty($audio->title)) {
-                if (1 === $count) {
-                    $audio->title = $program->topic;
-                } elseif (2 === $count) {
-                    if (0 === $i) {
-                        $audio->title = $program->topic . ' a';
-                    }
-                    if (1 === $i) {
-                        $audio->title = $program->topic . ' b';
-                    }
-                } elseif (3 === $count) {
-                    if (0 === $i) {
-                        $audio->title = '资讯';
-                    }
-                    if (1 === $i) {
-                        $audio->title = $program->topic . ' a';
-                    }
-                    if (2 === $i) {
-                        $audio->title = $program->topic . ' b';
-                    }
-                }
+        if (empty(array_filter(array_column($audios->toArray(), 'title')))) {
+            foreach ($audios as $audio) {
+                $audio->title = $audio->part;
             }
         }
 
