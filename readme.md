@@ -1,11 +1,18 @@
 ## 早～
 
-你好！朋友！这里是飞鱼秀的非官方回放网站，赶紧扫描下方的二维码来拜见我们的舟舟国主吧！
+你好，朋友。这里是飞鱼秀的非官方回放网站。
 
-![舟舟](https://raw.githubusercontent.com/popfeng/zao/master/public/static/img/qrcode_zaoaoaoaoao.jpg)
-![cri](https://raw.githubusercontent.com/popfeng/zao/master/public/static/img/qrcode_ezfeiyuxiu.jpg)
+## TODO
+* 自动识别节目中的歌曲，实现定位播放
+* 按歌名、歌手等维度统计歌曲的播放频次，实现可视化
+* 统计主持人和嘉宾的出席频次，实现可视化
 
-## 更新日志
+
+## Change Log
+
+###### v0.2.3 (2016-02-23)
+  * 优化音频标题
+  * 解决审核请求后首页不更新的问题
 
 ###### v0.2.2 (2016-02-09)
   * 支持日期定位
