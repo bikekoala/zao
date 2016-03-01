@@ -457,4 +457,7 @@ header nav a:hover {
         text-decoration: underline;
         color: #999;
     }
+    .post-about .qrcode img{
+        height: 13.9em;
+    }
 }
