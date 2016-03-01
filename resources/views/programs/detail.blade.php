@@ -21,14 +21,18 @@
         @endforeach
     </div>
     <span class="post-contributers">
-        (
-        @if ( ! empty($contributers['topic']))
-            话题 by <a href="{{ $contributers['topic']['url'] }}" target="_blank">{{ $contributers['topic']['name'] }}</a>
+        @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
+            @if ( ! empty($contributers['topic']))
+                ( 话题 by <a href="{{ $contributers['topic']['url'] }}" target="_blank">{{ $contributers['topic']['name'] }}</a> )
+            @endif
+            @if ( ! empty($contributers['participants']))
+                ( 参与人 by <a href="{{ $contributers['participants']['url'] }}" target="_blank">{{ $contributers['participants']['name'] }}</a> )
+            @endif
+        @else
+            @if (empty($program->topic) or $program->participants->isEmpty())
+                ( 了解参与贡献内容的<a href="http://zaoaoaoaoao.com/about#contribute">方式</a> )
+            @endif
         @endif
-        @if (! empty($contributers['participants']))
-            参与人 by <a href="{{ $contributers['participants']['url'] }}" target="_blank">{{ $contributers['participants']['name'] }}</a>
-        @endif
-        )
     </span>
     <ul class="post-near">
         @if ($pages->prev)
