@@ -85,6 +85,9 @@ input,textarea {
 textarea {
     resize: vertical;
 }
+.tipsy .tipsy-inner a {
+    text-decoration: underline;
+}
 header {
     zoom: 1;
     display: inline-block;
@@ -348,10 +351,7 @@ header nav a:hover {
     max-width: 100%;
     border-radius: 3px;
 }
-.post-content .strong {
-    font-weight: bold;
-}
-.post-content video {
+.post-contributers {
     display: none;
 }
 .post-near {
@@ -443,5 +443,15 @@ header nav a:hover {
     .post-content {
         margin-top: 1.4em;
         line-height: 1.5em;
+    }
+    .post-contributers {
+        display: block;
+        margin-top: 2em;
+        font-size: 0.9em;
+        color: #999;
+    }
+    .post-contributers a {
+        text-decoration: underline;
+        color: #999;
     }
 }

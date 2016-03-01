@@ -2,8 +2,8 @@
 
 @section('content')
 <article itemtype="http://schema.org/BlogPosting">
-    <h1 class="post-title" original-title="@if ($contributers['topic'])<a href='{{ $contributers['topic']['url'] }}' target='_blank'>by {{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif</h1>
-    <ul class="post-meta" original-title="@if ($contributers['participants'])<a href='{{ $contributers['participants']['url'] }}' target='_blank'>by {{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
+    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a href='{{ $contributers['topic']['url'] }}' target='_blank'>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif</h1>
+    <ul class="post-meta" original-title="@if ($contributers['participants'])by <a href='{{ $contributers['participants']['url'] }}' target='_blank'>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
         <li>{{ $program->dates->year }}.{{ $program->dates->month }}.{{ $program->dates->day }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
         <li>
@@ -20,6 +20,16 @@
         </video>
         @endforeach
     </div>
+    <span class="post-contributers">
+        (
+        @if ( ! empty($contributers['topic']))
+            话题 by <a href="{{ $contributers['topic']['url'] }}" target="_blank">{{ $contributers['topic']['name'] }}</a>
+        @endif
+        @if (! empty($contributers['participants']))
+            参与人 by <a href="{{ $contributers['participants']['url'] }}" target="_blank">{{ $contributers['participants']['name'] }}</a>
+        @endif
+        )
+    </span>
     <ul class="post-near">
         @if ($pages->prev)
         <li class="prev">前一天: <a href="/programs/{{ $pages->prev->dates->id }}">@if ($pages->prev->topic) {{ $pages->prev->topic }} @else 空 @endif</a></li>
