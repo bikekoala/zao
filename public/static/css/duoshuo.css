@@ -2,7 +2,9 @@
     margin-top:30px;
     width:auto;
     border-radius:5px;
-    font-size:0.8em !important;
+}
+#ds-thread a, #ds-thread p, #ds-thread span, #ds-thread textarea {
+    font-size:0.85em !important;
 }
 #ds-thread a {
     background-color:transparent;
