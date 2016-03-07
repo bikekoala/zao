@@ -443,6 +443,9 @@ header nav a:hover {
         padding: 0.8em 1.5em 0;
         width: 100%;
     }
+    .post-meta {
+        font-size: 1em;
+    }
     .post-content {
         margin-top: 1.4em;
         line-height: 1.5em;
@@ -450,12 +453,15 @@ header nav a:hover {
     .post-contributers {
         display: block;
         margin-top: 2em;
-        font-size: 0.9em;
+        font-size: 1em;
         color: #999;
     }
     .post-contributers a {
         text-decoration: underline;
         color: #999;
+    }
+    .post-near {
+        font-size: 1em;
     }
     .post-about .qrcode img{
         height: 13.9em;

@@ -16,7 +16,7 @@ $(function(){
     });
 
     // tips
-    if (768 < $(window).width()) {
+    if ( ! utils.isMobileClient()) {
         $('.post-title, .post-meta').tipsy({
             gravity: 'e',
             html: true,

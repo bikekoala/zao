@@ -1,4 +1,10 @@
 'use strict';
+const utils = {
+    isMobileClient : function() {
+        return 768 >= $(window).width();
+    }
+};
+
 $(function(){
     // go top
     $(window).scroll(function(){
@@ -14,9 +20,11 @@ $(function(){
     });
 
     // tips
-    $('nav a i').tipsy({
-        gravity: 'n',
-        opacity: 0.6,
-        offset: 3
-    });
+    if ( ! utils.isMobileClient()) {
+        $('nav a i').tipsy({
+            gravity: 'n',
+            opacity: 0.6,
+            offset: 3
+        });
+    }
 });
