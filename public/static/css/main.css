@@ -114,7 +114,7 @@ header .search {
     display: inline-block
 }
 header .search i, .search input {
-    color: #fff
+    color: rgba(238,238,238,0.80);
 }
 header .search i {
     position: absolute;
@@ -466,7 +466,7 @@ header nav a:hover {
         padding: 0.8em 1.5em 0;
         width: 100%;
     }
-    .post-meta {
+    .post-meta li, post-meta li a {
         font-size: 1em;
     }
     .post-content {

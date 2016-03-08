@@ -26,7 +26,7 @@
                 <h2 class="description">再见飞鱼秀，不散的飞鱼人</h2>
                 <form action="/" method="get" class="search">
                     <i class="fa fa-search"></i>
-                    <input type="search" name="s" value="{{ $_GET['s'] or '' }}" placeholder="输入关键字检索" autocomplete="off">
+                    <input type="search" name="s" value="{{ $_GET['s'] or '' }}" placeholder="" autocomplete="off">
                 </form>
                 <nav>
                     <a href="/"><i class="fa fa-home" original-title="首页"></i></a>
