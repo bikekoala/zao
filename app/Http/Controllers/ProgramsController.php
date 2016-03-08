@@ -22,11 +22,16 @@ class ProgramsController extends Controller
     public function index(Request $request)
     {
         $isFlush = $request::get('flush');
+        $keyword = $request::get('s');
 
-        $html = Cache::get(Program::INDEX_CACHE_KEY);
-        if ($isFlush or empty($html)) {
-            $html = $this->getProgramsHtml();
-            Cache::forever(Program::INDEX_CACHE_KEY, $html);
+        if (empty($keyword)) {
+            $html = Cache::get(Program::INDEX_CACHE_KEY);
+            if ($isFlush or empty($html)) {
+                $html = $this->getProgramsHtml();
+                Cache::forever(Program::INDEX_CACHE_KEY, $html);
+            }
+        } else {
+            $html = $this->getProgramsHtml($keyword);
         }
 
         echo $html;
@@ -65,13 +70,15 @@ class ProgramsController extends Controller
     /**
      * 获取节目单HTML字符串
      *
+     * @param string $keyword
      * @return string
      */
-    private function getProgramsHtml()
+    private function getProgramsHtml($keyword = '')
     {
         // query program list, and sort by date
         $programs = Program::with('participants')
             ->enabled()
+            ->searched($keyword)
             ->orderBy('date', 'desc')
             ->get();
 

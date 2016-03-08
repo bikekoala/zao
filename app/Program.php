@@ -76,6 +76,21 @@ class Program extends Model
     }
 
     /**
+     * Scope a query to only include searched programs.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $keyword
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearched($query, $keyword)
+    {
+        if ( ! empty($keyword)) {
+            $query->where('topic', 'like', "%{$keyword}%");
+        }
+        return $query;
+    }
+
+    /**
      * Get the date info.
      *
      * @return object
