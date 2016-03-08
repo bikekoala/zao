@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="stylesheet" href="/static/css/font-awesome.min.css">
         <link rel="stylesheet" href="/static/module/tipsy/tipsy.css">
-        <script type="text/javascript" src="/static/module/jquery-2.1.4.min.js"></script>
-        <script type="text/javascript" src="/static/module/tipsy/jquery.tipsy.js"></script>
+        <script src="/static/module/jquery-2.1.4.min.js"></script>
+        <script src="/static/module/tipsy/jquery.tipsy.js"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -24,6 +24,10 @@
             <div class="sidebar">
                 <img class="avatar" src="/static/img/avatar.png">
                 <h2 class="description">再见飞鱼秀，不散的飞鱼人</h2>
+                <form action="/" method="get" class="search">
+                    <i class="fa fa-search"></i>
+                    <input type="search" name="s" value="{{ $_GET['s'] or '' }}" placeholder="输入关键字检索" autocomplete="off">
+                </form>
                 <nav>
                     <a href="/"><i class="fa fa-home" original-title="首页"></i></a>
                     <a href="/about"><i class="fa fa-about" original-title="关于"> </i></a>

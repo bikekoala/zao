@@ -50,29 +50,6 @@ pre {
     background: #23241f;
     border-radius: 5px;
 }
-.button {
-    display: inline-block;
-    padding: 0.5em 0.5em;
-    border: 0 rgba(0,0,0,0);
-    color: #fff;
-    font-family: inherit;
-    text-align: center;
-    text-decoration: none;
-}
-.button:hover {
-    opacity: 0.8;
-}
-.submit {
-    margin: 0;
-    padding: 0.3em 1em;
-    background: none repeat scroll 0 0 #F9F9F9;
-    color: #59493F;
-    border: 1px solid #eee;
-    border-radius: 3px;
-}
-.submit:hover {
-    opacity: 0.8;
-}
 input,textarea {
     padding: 0.3;
     border: 0;
@@ -85,9 +62,17 @@ input,textarea {
 textarea {
     resize: vertical;
 }
+input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: border-box;
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
 .tipsy .tipsy-inner a {
     text-decoration: underline;
 }
+
 header {
     zoom: 1;
     display: inline-block;
@@ -107,7 +92,7 @@ header {
 }
 header .avatar {
     display: inline-block;
-    max-width: 100px;
+    max-width: 110px;
     border-radius: 100%;
     box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.7);
     vertical-align: middle;
@@ -117,11 +102,35 @@ header h2 {
     text-align: center;
 }
 header .description {
-    margin-top: 2em;
+    margin: 2em 0;
     color: rgba(238,238,238,0.80);
     font-family: "Segoe UI Light","Open Sans",sans-serif;
     font-weight: normal;
     font-size: 1.22em;
+}
+header .search {
+    font-size: 0.8em;
+    position: relative;
+    display: inline-block
+}
+header .search i, .search input {
+    color: #fff
+}
+header .search i {
+    position: absolute;
+    top: 0.35em;
+    left: 0.65em;
+}
+header .search input {
+    -webkit-transition: border 0.25s;
+    transition: border 0.25s;
+    border: 1px solid;
+    border-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.45) rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    border-radius: 2em;
+    padding: 0 2em;
+    height: 2em;
+    background: rgba(255, 255, 255, 0.1);
 }
 header nav a {
     display: inline-block;
@@ -400,15 +409,29 @@ header nav a:hover {
         width: 100%;
     }
     header .description {
-        font-size: 1.30em;
+        font-size: 1.5em;
     }
     header .avatar {
         margin-top: 2em;
-        max-width: 8em;
+        max-width: 8.5em;
     }
     header h1 {
         margin-top: 1em;
         padding-bottom: 1em;
+    }
+    header .search {
+        font-size: 1.2em;
+    }
+    header .search i {
+        top: 0.45em;
+    }
+    header .search input {
+        width: 12em;
+        padding: 0 1.35em 0 2em;
+        height: 2em;
+    }
+    header nav a {
+        font-size: 1.2em;
     }
     .archive .month {
         line-height: 2.3em;
