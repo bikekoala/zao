@@ -43,7 +43,7 @@
         @endif
     </ul>
 
-    <link rel="stylesheet" href="/static/module/mediaelement/mediaelementplayer.css" />
+    <link rel="stylesheet" href="/static/css/player.css" />
     <script src="/static/module/mediaelement/mediaelement-and-player.min.js"></script>
     <script type="text/javascript" src="/static/js/detail.js"></script>
 </article>

@@ -3,6 +3,7 @@ $(function(){
     // audio player
     $('video').mediaelementplayer({
         isVideo: false,
+		enableKeyboard: false,
         alwaysShowControls: true,
         alwaysShowHours: true,
         videoVolume:'horizontal',
