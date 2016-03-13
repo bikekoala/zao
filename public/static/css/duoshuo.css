@@ -2,9 +2,7 @@
     margin-top:30px;
     width:auto;
     border-radius:5px;
-}
-#ds-thread a, #ds-thread p, #ds-thread span, #ds-thread textarea {
-    font-size:0.85em !important;
+    font-size:0.8em !important;
 }
 #ds-thread a {
     background-color:transparent;
@@ -112,4 +110,11 @@
 }
 #ds-thread .ds-powered-by {
     display:none;
+}
+
+/* responsive */
+@media(max-width: 768px) {
+    #ds-thread a, #ds-thread p, #ds-thread span, #ds-thread textarea {
+        font-size:0.85em !important;
+    }
 }
