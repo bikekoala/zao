@@ -21,4 +21,13 @@
     @endforeach
     @endforeach
 </div>
+
+<div class="tuning">
+    <i class="tuning-prev fa fa-angle-up" data-date=""></i>
+    <!--i class="tuning-last fa fa-circle" data-date=""></i-->
+    <i class="tuning-next fa fa-angle-down" data-date=""></i>
+</div>
+
+<script src="/static/module/jquery.scrollspy.js"></script>
+<script src="/static/js/index.js"></script>
 @endsection

@@ -90,6 +90,9 @@ header {
     text-rendering: auto;
     text-align: center;
 }
+header .sidebar {
+    margin: 8em auto;
+}
 header .avatar {
     display: inline-block;
     max-width: 110px;
@@ -152,13 +155,37 @@ header nav i {
 header nav a:hover {
     background-color: rgba(255,255,255,0.15);
 }
-.sidebar {
-    margin: 8em auto;
-}
 .content {
     padding: 1.5em 4em 0;
     margin-left: 38.2%;
     width: 61.8%;
+}
+.content .tuning {
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0;
+    width: 3.3em;
+    border: none;
+    z-index: 100;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+}
+.content .tuning i {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 0.2em 0;
+    font-size: 2.5em;
+    color: rgba(0,0,0,.3);
+    opacity: 0;
+}
+.content .tuning i:hover {
+    color: #222;
+}
+.content .tuning .tuning-last {
+    padding-left: 0.9em;
+    font-size: 0.5em;
 }
 #footer {
     position: relative;
@@ -167,28 +194,6 @@ header nav a:hover {
     line-height: 1.3;
     font-size: 0.8em;
     text-align: center;
-}
-#gotop {
-    display: none;
-    position: fixed;
-    bottom: .75rem;
-    right: .75rem;
-    width: 2.5em;
-    height: 2.5em;
-    border: none;
-    z-index: 100;
-    cursor: pointer;
-    overflow: hidden;
-    text-decoration: none;
-}
-#gotop img {
-    width: 2.5em;
-    height: 2.5em;
-}
-#gotophover {
-    display: block;
-    overflow: hidden;
-    float: left;
 }
 
 /* layout */
@@ -408,6 +413,9 @@ header nav a:hover {
         top: 0;
         width: 100%;
     }
+    header .sidebar {
+        margin: 4em auto;
+    }
     header .description {
         font-size: 1.5em;
     }
@@ -433,6 +441,18 @@ header nav a:hover {
     header nav a {
         font-size: 1.2em;
     }
+    .content {
+        margin: 0 auto;
+        padding: 0.8em 1.5em 0;
+        width: 100%;
+    } 
+    .content .tuning {
+        bottom: 2rem;
+    }
+    .content .tuning .tuning-last {
+        padding-left: 0.5em;
+        font-size: 0.1em;
+    }
     .archive .month {
         line-height: 2.3em;
         padding-left: 2em;
@@ -454,18 +474,10 @@ header nav a:hover {
     }
     .archive ul li:hover {
         margin-left: 3px;
-    }
-    .sidebar {
-        margin: 4em auto;
-    }
+    } 
     .post-title {
         text-align: center;
-    }
-    .content {
-        margin: 0 auto;
-        padding: 0.8em 1.5em 0;
-        width: 100%;
-    }
+    } 
     .post-meta li, post-meta li a {
         font-size: 1em;
     }
