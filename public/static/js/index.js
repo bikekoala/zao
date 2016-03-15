@@ -15,10 +15,15 @@ $(function() {
     }); 
 
     $('.tuning i').on('click', function() {
-        var date = $(this).attr('data-date') || 2015;
+        var $that = $(this);
+        var date = $that.attr('data-date') || 2016;
         $('html,body').animate({scrollTop: $('#' + date).offset().top}, 150);
         history.pushState({}, null, '#' + date);
-    })
+
+        if ($that.hasClass('tuning-last')) {
+            $('#' + $.cookie('program_date')).addClass('archive-ul-li-hover');
+        }
+    }) 
 
     var yearList = [];
     $('.content .year').each(function(i) {
@@ -44,6 +49,12 @@ $(function() {
                 $('.tuning-next').attr('data-date', Math.max(parseInt(element.id) - 1, 2004));
             }
         });
+    }
+
+    // tuning out last program date
+    var programDate = $.cookie('program_date');
+    if (programDate) {
+        $('.tuning-last').attr('data-date', programDate.substr(0, 6)).css('opacity', 1);
     }
 
     // tips

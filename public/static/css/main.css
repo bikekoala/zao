@@ -175,7 +175,6 @@ header nav a:hover {
     display: block;
     float: left;
     width: 100%;
-    margin: 0.2em 0;
     font-size: 2.5em;
     color: rgba(0,0,0,.3);
     opacity: 0;
@@ -184,8 +183,11 @@ header nav a:hover {
     color: #222;
 }
 .content .tuning .tuning-last {
-    padding-left: 0.9em;
+    padding: 0.5em 0 0.5em 0.9em;
     font-size: 0.5em;
+}
+.content .tuning i[class^="tuning-last"]:hover {
+    color: #f99295 !important;
 }
 #footer {
     position: relative;
@@ -319,7 +321,10 @@ header nav a:hover {
     margin-left: 5px;
 }
 .archive ul li:hover:after {
-    background-color: #4a89dc
+    background-color: #4a89dc;
+}
+.archive-ul-li-hover:after {
+    background-color: #f99295 !important;
 }
 .archive ul li a span {
     padding-right: 0.8em;
@@ -449,8 +454,11 @@ header nav a:hover {
     .content .tuning {
         bottom: 2rem;
     }
+    .content .tuning i {
+        margin: 0.1em 0;
+    }
     .content .tuning .tuning-last {
-        padding-left: 0.5em;
+        padding: 0.8em 0 0.8em 0.5em;
         font-size: 0.1em;
     }
     .archive .month {

@@ -1,10 +1,10 @@
 @extends('layouts.default')
 
 @section('content')
-<article itemtype="http://schema.org/BlogPosting">
+<article itemtype="http://schema.org/BlogPosting" data-date="{{ $program->dates->id }}">
     <h1 class="post-title" original-title="@if ($contributers['topic'])by <a href='{{ $contributers['topic']['url'] }}' target='_blank'>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif</h1>
     <ul class="post-meta" original-title="@if ($contributers['participants'])by <a href='{{ $contributers['participants']['url'] }}' target='_blank'>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
-        <li>{{ $program->dates->year }}.{{ $program->dates->month }}.{{ $program->dates->day }}</li>
+        <li>{{ str_replace('-', '.', $program->date) }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
         <li>
             @foreach ($program->participants as $participant)
@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" href="/static/css/player.css" />
     <script src="/static/module/mediaelement/mediaelement-and-player.min.js"></script>
+    <script src="/static/module/jquery.cookie.js"></script>
     <script src="/static/js/detail.js"></script>
 </article>
 

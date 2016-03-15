@@ -29,4 +29,7 @@ $(function(){
             $(this).trigger('mouseover').trigger('mouseout');
         });
     }
+
+    // set cookie
+    $.cookie('program_date', $('article').attr('data-date'), {path: '/'});
 });
