@@ -17,8 +17,13 @@ $(function() {
     $('.tuning i').on('click', function() {
         var $that = $(this);
         var date = $that.attr('data-date') || 2016;
-        $('html,body').animate({scrollTop: $('#' + date).offset().top}, 150);
-        history.pushState({}, null, '#' + date);
+
+        if (utils.isMobileClient()) {
+            $('html,body').animate({scrollTop: $('#' + date).offset().top}, 150);
+            history.pushState({}, null, '#' + date);
+        } else {
+            window.location.href = '#' + date;
+        }
 
         if ($that.hasClass('tuning-last')) {
             $('#' + $.cookie('program_date')).addClass('archive-ul-li-hover');
