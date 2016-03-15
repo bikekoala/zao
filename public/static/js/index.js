@@ -19,10 +19,10 @@ $(function() {
         var date = $that.attr('data-date') || 2016;
 
         if (utils.isMobileClient()) {
+            window.location.href = '#' + date;
+        } else {
             $('html,body').animate({scrollTop: $('#' + date).offset().top}, 150);
             history.pushState({}, null, '#' + date);
-        } else {
-            window.location.href = '#' + date;
         }
 
         if ($that.hasClass('tuning-last')) {
