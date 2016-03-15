@@ -164,7 +164,7 @@ header nav a:hover {
     position: fixed;
     bottom: 0.5rem;
     right: 0;
-    width: 3.3em;
+    width: 3.3rem;
     border: none;
     z-index: 100;
     cursor: pointer;
@@ -175,7 +175,7 @@ header nav a:hover {
     display: block;
     float: left;
     width: 100%;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     color: rgba(0,0,0,.3);
     opacity: 0;
 }
@@ -183,8 +183,8 @@ header nav a:hover {
     color: #222;
 }
 .content .tuning .tuning-last {
-    padding: 0.5em 0 0.5em 0.9em;
-    font-size: 0.5em;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    font-size: 0.5rem;
 }
 .content .tuning i[class^="tuning-last"]:hover {
     color: #f99295 !important;
@@ -452,14 +452,16 @@ header nav a:hover {
         width: 100%;
     } 
     .content .tuning {
-        bottom: 2rem;
+        width: 2.5rem;
+        bottom: 0.5rem;
     }
     .content .tuning i {
-        margin: 0.1em 0;
+        margin: 0.1rem 0;
+        font-size: 2rem;
     }
     .content .tuning .tuning-last {
-        padding: 0.8em 0 0.8em 0.5em;
-        font-size: 0.1em;
+        padding: 0.5rem 0 0.5rem 0.35rem;
+        font-size: 0.1rem;
     }
     .archive .month {
         line-height: 2.3em;
