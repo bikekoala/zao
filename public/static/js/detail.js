@@ -31,5 +31,5 @@ $(function(){
     }
 
     // set cookie
-    $.cookie('program_date', $('article').attr('data-date'), {path: '/'});
+    $.cookie('program_date', $('article').attr('data-date'), {expires: 365, path: '/'});
 });
