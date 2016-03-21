@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Program, Audio, Duoshuo};
+use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo};
 
 use View, Config, Request, Cache;
 
@@ -78,10 +78,24 @@ class ProgramsController extends Controller
         // query program list, and sort by date
         $programs = Program::with('participants')
             ->enabled()
-            ->searched($keyword)
             ->orderBy('date', 'desc')
             ->get();
 
+        // search
+        if ($keyword) {
+            $participantIds = Participant::searched($keyword)->lists('id');
+            $programIds = ProgramParticipant::whereIn(
+                'participant_id', $participantIds
+            )->lists('program_id')->flip()->toArray();
+            foreach ($programs as $i => $program) {
+                if (false === strpos(strtolower($program->topic) , $keyword) and
+                    empty($programIds[$program->id])) {
+                    unset($programs[$i]);
+                }
+            }
+        }
+
+        // collect
         $list = [];
         foreach ($programs as $program) {
             $list[$program->dates->year][$program->dates->month][] = $program;

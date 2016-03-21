@@ -13,6 +13,13 @@ class Participant extends Model
 {
 
     /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'participants';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -25,6 +32,24 @@ class Participant extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function programs()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    /**
+     * Scope a query to only include searched participants.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $keyword
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearched($query, $keyword)
+    {
+        $keyword = strtolower($keyword);
+        return $query->where('name', 'like', "%{$keyword}%");
+    }
 
     /**
      * 过滤参与人姓名

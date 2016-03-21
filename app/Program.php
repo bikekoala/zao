@@ -13,6 +13,13 @@ class Program extends Model
 {
 
     /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'programs';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -73,21 +80,6 @@ class Program extends Model
     public function scopeDated($query, int $date)
     {
         return $query->where('date', date('Y-m-d', strtotime($date)));
-    }
-
-    /**
-     * Scope a query to only include searched programs.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $keyword
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeSearched($query, $keyword)
-    {
-        if ( ! empty($keyword)) {
-            $query->where('topic', 'like', "%{$keyword}%");
-        }
-        return $query;
     }
 
     /**
