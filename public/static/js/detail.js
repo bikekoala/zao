@@ -18,6 +18,7 @@ $(function(){
 
     // tips
     if ( ! utils.isMobileClient()) {
+        // bind tips
         $('.post-title, .post-meta').tipsy({
             gravity: 'e',
             html: true,
@@ -25,6 +26,19 @@ $(function(){
             opacity: 0.6,
             offset: 10
         });
+
+        // replace emoji to image in tips
+        if (utils.isWinOs()) {
+            var emoji = utils.emoji();
+            $('.post-title, .post-meta').on('mouseover', function() {
+                var tips = document.getElementsByClassName('tipsy-inner');
+                for (var i = 0, n = tips.length; i < n; i++) {
+                    tips[i].innerHTML = emoji.replace_unified(tips[i].innerHTML);
+                }
+            });
+        }
+
+        // trigger it
         $('.post-title, .post-meta li').each(function() {
             $(this).trigger('mouseover').trigger('mouseout');
         });

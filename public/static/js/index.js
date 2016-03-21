@@ -70,4 +70,13 @@ $(function() {
             offset: 3
         });
     }
+
+    // replace emoji to image
+    if (utils.isWinOs()) {
+        var emoji = utils.emoji();
+        var elements = document.getElementsByTagName('a');
+        for (var i = 0, n = elements.length; i < n; i++) {
+            elements[i].innerHTML = emoji.replace_unified(elements[i].innerHTML);
+        }
+    }
 });
