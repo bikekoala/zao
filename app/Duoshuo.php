@@ -63,8 +63,8 @@ class Duoshuo extends Model
      * @var array
      */
     const COMMAND_SIGNS = [
-        'TOPIC'       => '🐶',
-        'PARTICIPANT' => '🐰'
+        'TOPIC'       => ['🐶', ':dog:'],
+        'PARTICIPANT' => ['🐰', ':rabbit:']
     ];
 
     /**
@@ -178,17 +178,19 @@ class Duoshuo extends Model
         $result = [];
 
         foreach (explode("\n", $message) as $line) {
-            foreach (self::COMMAND_SIGNS as $name => $sign) {
-                if (false !== mb_strpos($line, $sign)) {
-                    preg_match("|.*{$sign}(.+){$sign}.*|", $line, $matches);
-                    if ( ! empty($matches)) {
-                        if ('TOPIC' === $name) {
-                            $data = Program::filterTopic($matches[1]);
+            foreach (self::COMMAND_SIGNS as $name => $signs) {
+                foreach ($signs as $sign) {
+                    if (false !== mb_strpos($line, $sign)) {
+                        preg_match("|.*{$sign}(.+){$sign}.*|", $line, $matches);
+                        if ( ! empty($matches)) {
+                            if ('TOPIC' === $name) {
+                                $data = Program::filterTopic($matches[1]);
+                            }
+                            if ('PARTICIPANT' === $name) {
+                                $data = Participant::filterParticipantNames($matches[1]);
+                            }
+                            $result[$name] = $data ?? [];
                         }
-                        if ('PARTICIPANT' === $name) {
-                            $data = Participant::filterParticipantNames($matches[1]);
-                        }
-                        $result[$name] = $data ?? [];
                     }
                 }
             }

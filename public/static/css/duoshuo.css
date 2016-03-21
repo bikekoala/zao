@@ -38,6 +38,10 @@
 #ds-thread .ds-comment-body p {
     color:#666 !important;
 }
+#ds-thread .ds-comment-body p img.emoji {
+    width: 1.1em;
+    height: 1.1em;
+}
 #ds-thread .ds-comment-body a {
     color:#666 !important;
 }

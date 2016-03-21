@@ -46,4 +46,12 @@ $(function(){
 
     // set cookie
     $.cookie('program_date', $('article').attr('data-date'), {expires: 365, path: '/'});
+
+    // replace emoji to image in duoshuo comments
+    $('.ds-comments').wait(function() {
+        var emoji = utils.emoji();
+        $(this).find('p').each(function() {
+            this.innerHTML = emoji.replace_colons(this.innerHTML);
+        });
+    }, 5, 1000);
 });

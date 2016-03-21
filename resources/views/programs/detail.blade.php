@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<article itemtype="http://schema.org/BlogPosting" data-date="{{ $program->dates->id }}">
+<article itemtype="http://schema.org/Article" data-date="{{ $program->dates->id }}">
     <h1 class="post-title" original-title="@if ($contributers['topic'])by <a href='{{ $contributers['topic']['url'] }}' target='_blank'>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif</h1>
     <ul class="post-meta" original-title="@if ($contributers['participants'])by <a href='{{ $contributers['participants']['url'] }}' target='_blank'>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
         <li>{{ str_replace('-', '.', $program->date) }}</li>
@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" href="/static/css/player.css" />
     <script src="/static/module/mediaelement/mediaelement-and-player.min.js"></script>
+    <script src="/static/module/js-emoji/js/emoji.min.js"></script>
     <script src="/static/module/jquery.cookie.js"></script>
     <script src="/static/js/detail.js"></script>
 </article>
