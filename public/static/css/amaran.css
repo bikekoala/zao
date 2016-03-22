@@ -1,0 +1,19 @@
+.amaran-wrapper a {
+    display: inline-block;
+    margin: 0 .45em 0 .45em;
+    line-height: 1.3em;
+    border-bottom: dotted 1px white;
+    color: white;
+}
+
+/* responsive */
+@media(max-width: 768px) {
+    /*
+    .amaran-wrapper {
+        width: 100% !important;
+    }
+    .amaran.default {
+        width: 98% !important;
+    }
+    */
+}
