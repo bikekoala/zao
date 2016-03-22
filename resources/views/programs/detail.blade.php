@@ -44,7 +44,7 @@
     </ul>
 
     <link rel="stylesheet" href="/static/??css/player.css,css/duoshuo.css?v={{ env('STATIC_FILE_VERSION') }}">
-    <script src="/static/??module/mediaelement/mediaelement-and-player.min.js,module/js-emoji/js/emoji.min.js,module/jquery.cookie.js,js/detail.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+    <script src="/static/??module/mediaelement/mediaelement-and-player.min.js,js/detail.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 </article>
 
 @include('layouts.duoshuo')

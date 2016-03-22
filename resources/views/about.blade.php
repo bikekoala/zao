@@ -22,7 +22,7 @@
     用两只毛豆包住『话题』，用两只呆呆包住『参与人』，多个参与人用『 | 』分割，然后点击发布。此时我会收到一封邮件，几分钟后你所贡献的内容和花名就会出现在页面上啦~
 </span>
 
-<script src="/static/??module/js-emoji/js/emoji.min.js,js/about.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+<script src="/static/??js/about.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 @endsection
 
 @section('author')

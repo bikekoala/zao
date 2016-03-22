@@ -62,15 +62,6 @@ $(function() {
         $('.tuning-last').attr('data-date', programDate.substr(0, 6)).css('opacity', 1);
     }
 
-    // tips
-    if ( ! utils.isMobileClient()) {
-        $('nav a i').tipsy({
-            gravity: 'n',
-            opacity: 0.6,
-            offset: 3
-        });
-    }
-
     // replace emoji to image
     if (utils.isWinOs()) {
         var emoji = utils.emoji();

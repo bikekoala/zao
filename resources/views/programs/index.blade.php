@@ -28,5 +28,5 @@
     <i class="tuning-next fa fa-angle-down" data-date=""></i>
 </div>
 
-<script src="/static/??module/js-emoji/js/emoji.min.js,module/jquery.scrollspy.js,module/jquery.cookie.js,js/index.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+<script src="/static/??module/jquery.scrollspy.js,js/index.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 @endsection
