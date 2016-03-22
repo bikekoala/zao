@@ -83,14 +83,17 @@ class ProgramsController extends Controller
 
         // search
         if ($keyword) {
-            $participantIds = Participant::searched($keyword)->lists('id');
-            $programIds = ProgramParticipant::whereIn(
-                'participant_id', $participantIds
-            )->lists('program_id')->flip()->toArray();
-            foreach ($programs as $i => $program) {
-                if (false === strpos(strtolower($program->topic) , $keyword) and
-                    empty($programIds[$program->id])) {
-                    unset($programs[$i]);
+            $keywords = array_filter(explode(' ', $keyword));
+            foreach ($keywords as $keyword) {
+                $participantIds = Participant::searched($keyword)->lists('id');
+                $programIds = ProgramParticipant::whereIn(
+                    'participant_id', $participantIds
+                )->lists('program_id')->flip()->toArray();
+                foreach ($programs as $i => $program) {
+                    if (false === strpos(strtolower($program->topic) , $keyword) and
+                        empty($programIds[$program->id])) {
+                        unset($programs[$i]);
+                    }
                 }
             }
         }
