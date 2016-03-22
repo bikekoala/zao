@@ -80,12 +80,14 @@ class DuoshuoController extends Controller
             if ( ! empty($signs)) {
 
                 // 回复评论
+                /*
                 DuoshuoModel::replyPost(
                     $this->replyMessage,
                     $log['meta']['thread_id'],
                     $log['meta']['post_id'],
                     $log['meta']['author_email']
                 );
+                 */
 
                 // 发送邮件
                 $log = $log + ['id' => $id];
