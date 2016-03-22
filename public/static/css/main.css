@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
-    src: local('Open Sans Light'), local('OpenSans-Light'), url("../font/OpenSans.woff") format('woff');
+    src: local('Open Sans Light'), local('OpenSans-Light'), url("/static/font/OpenSans.woff") format('woff');
 }
 * {
     -webkit-box-sizing: border-box;

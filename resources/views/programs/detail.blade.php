@@ -43,11 +43,8 @@
         @endif
     </ul>
 
-    <link rel="stylesheet" href="/static/css/player.css" />
-    <script src="/static/module/mediaelement/mediaelement-and-player.min.js"></script>
-    <script src="/static/module/js-emoji/js/emoji.min.js"></script>
-    <script src="/static/module/jquery.cookie.js"></script>
-    <script src="/static/js/detail.js"></script>
+    <link rel="stylesheet" href="/static/??css/player.css,css/duoshuo.css?v={{ env('STATIC_FILE_VERSION') }}">
+    <script src="/static/??module/mediaelement/mediaelement-and-player.min.js,module/js-emoji/js/emoji.min.js,module/jquery.cookie.js,js/detail.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 </article>
 
 @include('layouts.duoshuo')

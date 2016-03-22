@@ -9,11 +9,8 @@
         <meta name="keywords" content="CRI EZFM EZMorning 飞鱼秀 小飞 喻舟" />
         <meta name="description" content="亲爱的飞鱼人，这里可以在线收听自2005年飞鱼秀开播以来的几乎所有的节目回放喔~" />
         <link type="text/plain" rel="author" href="/humans.txt" />
-        <link rel="stylesheet" href="/static/css/main.css">
-        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/static/module/tipsy/tipsy.css">
-        <script src="/static/module/jquery-2.1.4.min.js"></script>
-        <script src="/static/module/tipsy/jquery.tipsy.js"></script>
+        <link rel="stylesheet" href="/static/??css/main.css,css/font-awesome.min.css,module/tipsy/tipsy.css?v={{ env('STATIC_FILE_VERSION') }}">
+        <script src="/static/??module/jquery-2.1.4.min.js,module/tipsy/jquery.tipsy.js,js/base.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -44,7 +41,6 @@
             </footer>
         </div>
 
-        <script src="/static/js/base.js"></script>
         <script type="text/javascript">
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
