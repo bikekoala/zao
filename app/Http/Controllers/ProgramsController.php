@@ -27,14 +27,15 @@ class ProgramsController extends Controller
         if (empty($keyword)) {
             $html = Cache::get(Program::INDEX_CACHE_KEY);
             if ($isFlush or empty($html)) {
-                $html = $this->getProgramsHtml();
+                $html = $this->getArchiveHtml();
                 Cache::forever(Program::INDEX_CACHE_KEY, $html);
             }
         } else {
-            $html = $this->getProgramsHtml($keyword);
+            $html = $this->getArchiveHtml($keyword);
         }
 
-        echo $html;
+        // render page
+        return View::make('programs.index.frame')->with('archive', $html);
     }
 
     /**
@@ -59,7 +60,7 @@ class ProgramsController extends Controller
         $contributers = $this->getProgramContributers($program->date);
 
         // render page
-        return View::make('programs/detail')
+        return View::make('programs.detail')
             ->with('program', $program)
             ->with('audios', $audios)
             ->with('pages', $pages)
@@ -73,7 +74,7 @@ class ProgramsController extends Controller
      * @param string $keyword
      * @return string
      */
-    private function getProgramsHtml($keyword = '')
+    private function getArchiveHtml($keyword = '')
     {
         // query program list, and sort by date
         $programs = Program::with('participants')
@@ -105,7 +106,7 @@ class ProgramsController extends Controller
         }
 
         // render page
-        return (string) View::make('programs.index')->with('list', $list);
+        return (string) View::make('programs.index.archive')->with('list', $list);
     }
 
     /**
