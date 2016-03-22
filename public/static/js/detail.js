@@ -7,6 +7,7 @@ $(function(){
         alwaysShowControls: true,
         alwaysShowHours: true,
         videoVolume:'horizontal',
+        flashName: '/static/module/mediaelement/flashmediaelement.swf',
         features: ['playpause','progress','current','duration','tracks','volume'],
         defaultSeekBackwardInterval: function(media) {
             return (media.duration * 0.02);
