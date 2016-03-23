@@ -5,15 +5,20 @@
     border-bottom: dotted 1px white;
     color: white;
 }
+.amaran.default {
+    border-radius: 4px;
+}
 
 /* responsive */
 @media(max-width: 768px) {
-    /*
     .amaran-wrapper {
-        width: 100% !important;
+        width: 100%;
+    }
+    .amaran-wrapper-inner {
+        width: 97.5%;
     }
     .amaran.default {
-        width: 98% !important;
+        width: 100%;
+        background: rgba(0, 0, 0, .8)
     }
-    */
 }
