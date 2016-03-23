@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo};
+use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo, Notification};
 
 use View, Config, Request, Cache;
 
@@ -15,6 +15,17 @@ class ProgramsController extends Controller
 {
  
     /**
+     * Instance
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $notification = Notification::getLastNotification();
+        View::share('notification', collect($notification)->toJson());
+    }
+
+    /**
      * 首页
      *
      * @return Response
@@ -24,18 +35,19 @@ class ProgramsController extends Controller
         $isFlush = $request::get('flush');
         $keyword = $request::get('s');
 
+        // get archive html
         if (empty($keyword)) {
-            $html = Cache::get(Program::INDEX_CACHE_KEY);
-            if ($isFlush or empty($html)) {
-                $html = $this->getArchiveHtml();
-                Cache::forever(Program::INDEX_CACHE_KEY, $html);
+            $archive = Cache::get(Program::INDEX_CACHE_KEY);
+            if ($isFlush or empty($archive)) {
+                $archive = $this->getArchiveHtml();
+                Cache::forever(Program::INDEX_CACHE_KEY, $archive);
             }
         } else {
-            $html = $this->getArchiveHtml($keyword);
+            $archive = $this->getArchiveHtml($keyword);
         }
 
         // render page
-        return View::make('programs.index.frame')->with('archive', $html);
+        return View::make('programs.index.frame')->with('archive', $archive);
     }
 
     /**

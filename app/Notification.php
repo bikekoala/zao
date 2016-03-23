@@ -33,4 +33,20 @@ class Notification extends Model
      */
     const STATE_ENABLE  = 1;
     const STATE_DISABLE = 0;
+
+    /**
+     * 获取最新的一条通知消息
+     *
+     * @return array
+     */
+    public static function getLastNotification()
+    {
+        $result = static::select('id', 'message')
+            ->where('state', self::STATE_ENABLE)
+            ->where('duration_at', '>=', date('Y-m-d H:i:s'))
+            ->orderBy('duration_at', 'desc')
+            ->first();
+
+        return $result ? $result->toArray() : [];
+    }
 }

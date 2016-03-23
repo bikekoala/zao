@@ -10,8 +10,20 @@ $(function(){
     }
 
     // notifications
+    const notificationData = $.parseJSON($('#content').attr('data-notification'));
+    const notificationId = $.cookie('notification_id');
+    if (notificationId < notificationData.id) {
+        $.amaran({
+            'message': notificationData.message,
+            'position': 'top right',
+            'inEffect': 'slideRight',
+            'outEffect': 'slideRight',
+            'sticky': true
+        });
+        $.cookie('notification_id', notificationData.id, {expires: 365, path: '/'});
+    }
     $.amaran({
-        'message': 'Tips: 试试话题与参与人的多重检索吧~',
+        'message': 'test',
         'position': 'top right',
         'inEffect': 'slideRight',
         'outEffect': 'slideRight',
