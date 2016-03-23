@@ -7,6 +7,7 @@
         participants \
         audios \
         duoshuo \
+        notifications \
         users \
         | sed 's/AUTO_INCREMENT=[0-9]*\s//g' > zao.sql
 ```

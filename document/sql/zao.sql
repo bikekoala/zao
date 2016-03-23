@@ -115,6 +115,25 @@ CREATE TABLE `duoshuo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `message` varchar(1000) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '消息',
+  `state` tinyint(1) unsigned NOT NULL COMMENT '状态',
+  `duration_at` datetime NOT NULL COMMENT '过期时间',
+  `created_at` datetime NOT NULL COMMENT '创建时间',
+  `updated_at` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `duration_at_state` (`duration_at`,`state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='通知消息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `users`
 --
 
@@ -143,4 +162,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-02 18:42:24
+-- Dump completed on 2016-03-23 14:13:54
