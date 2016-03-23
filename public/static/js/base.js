@@ -22,11 +22,4 @@ $(function(){
         });
         $.cookie('notification_id', notificationData.id, {expires: 365, path: '/'});
     }
-    $.amaran({
-        'message': 'test',
-        'position': 'top right',
-        'inEffect': 'slideRight',
-        'outEffect': 'slideRight',
-        'sticky': true
-    });
 });
