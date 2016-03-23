@@ -11,7 +11,7 @@ $(function(){
 
     // notifications
     const notificationData = $.parseJSON($('#content').attr('data-notification'));
-    const notificationId = $.cookie('notification_id');
+    const notificationId = $.cookie('notification_id') || 0;
     if (notificationId < notificationData.id) {
         $.amaran({
             'message': notificationData.message,

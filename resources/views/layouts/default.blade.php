@@ -32,7 +32,7 @@
             </div>
         </header>
 
-        <div class="content" id="content" data-notification='{!! $notification !!}'>
+        <div class="content" id="content" data-notification='{!! $notification or "{}" !!}'>
 
             @yield('content')
 
