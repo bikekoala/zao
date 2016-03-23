@@ -80,7 +80,7 @@ class NotificationsController extends Controller
         if ($id) {
             Notification::where('id', $id)->update($data);
         } else {
-            Notification::insert($data);
+            Notification::create($data);
         }
 
         // redirect
