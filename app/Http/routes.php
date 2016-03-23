@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin',
     'middleware' => ['web']], function () {
     // 协同列表
     Route::resource('contributions', 'ContributionsController');
+    // 通知消息
+    Route::resource('notifications', 'NotificationsController');
 
     // 认证
     Route::get('/', function () {
