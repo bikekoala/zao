@@ -129,7 +129,7 @@ CREATE TABLE `notifications` (
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `duration_at_state` (`duration_at`,`state`)
+  KEY `state_duration_at` (`state`,`duration_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='通知消息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
