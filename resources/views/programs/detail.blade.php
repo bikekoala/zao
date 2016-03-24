@@ -13,12 +13,22 @@
         </li>
     </ul>
     <div class="post-content">
+        @if (Agent::isAndroidOS())
+        @foreach ($audios as $audio)
+        <p>{{ $audio->title }}</p>
+        <audio controls="controls" preload="none">
+            <source src="{{ $audio->url }}" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+        @endforeach
+        @else
         @foreach ($audios as $audio)
         <p>{{ $audio->title }}</p>
         <video width="85%" height="30" controls="controls" preload="none">
             <source src="{{ $audio->url }}" />
         </video>
         @endforeach
+        @endif
     </div>
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))

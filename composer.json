@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "qiniu/php-sdk": "^7.0",
-        "itbdw/laravel-storage-qiniu": "^1.0"
+        "itbdw/laravel-storage-qiniu": "^1.0",
+        "jenssegers/agent": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
