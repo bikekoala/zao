@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller as BaseController;
 use App\Services\Duoshuo as DuoshuoService;
 use App\Duoshuo as DuoshuoModel;
 use Request, Config, Mail;
@@ -11,7 +12,7 @@ use Request, Config, Mail;
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-28
  */
-class DuoshuoController extends Controller
+class DuoshuoController extends BaseController
 {
 
     /**

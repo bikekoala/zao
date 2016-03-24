@@ -17,9 +17,7 @@ Route::get('/', 'ProgramsController@index');
 Route::get('programs/{date}', 'ProgramsController@detail');
 
 // 关于页
-Route::get('about', function () {
-    return View::make('about')->with('title', '关于');
-});
+Route::get('about', 'AboutController@index');
 
 // 多说评论
 Route::post('duoshuo/callback', 'DuoshuoController@callback');

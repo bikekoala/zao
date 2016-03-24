@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo, Notification};
+use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo};
 
 use View, Config, Request, Cache;
 
@@ -12,18 +12,7 @@ use View, Config, Request, Cache;
  * @author popfeng <popfeng@yeah.net> 2016-01-11
  */
 class ProgramsController extends Controller
-{
- 
-    /**
-     * Instance
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $notification = Notification::getLastNotification();
-        View::share('notification', collect($notification)->toJson());
-    }
+{ 
 
     /**
      * 首页

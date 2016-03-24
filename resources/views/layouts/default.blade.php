@@ -27,6 +27,7 @@
                 </form>
                 <nav>
                     <a href="/"><i class="fa fa-home" original-title="首页"></i></a>
+                    <a href="/programs/{{ $app_program_date or '20040802' }}"><i class="fa fa-calendar-check-o" original-title="APP同期"></i></a>
                     <a href="/about"><i class="fa fa-about" original-title="关于"> </i></a>
                 </nav>
             </div>
