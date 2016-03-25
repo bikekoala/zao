@@ -399,8 +399,11 @@ header nav a:hover {
 .post-about p {
     margin-bottom: 0.5em;
 }
+.post-about .qrcode {
+    text-align: center;
+}
 .post-about .qrcode img{
-    height: 22em;
+    width: 46%;
 }
 .post-about .link {
     padding-left: 1.3em;
@@ -512,7 +515,4 @@ header nav a:hover {
     .post-near {
         font-size: 1em;
     }
-    .post-about .qrcode img{
-        height: 13.9em;
-    } 
 }
