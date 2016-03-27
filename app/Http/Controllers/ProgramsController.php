@@ -74,14 +74,23 @@ class ProgramsController extends Controller
         // get contributions info
         $contributers = $this->getProgramContributers($program->date);
 
+        // TDK
+        $title = $program->topic . ' ' . $program->date;
+        $description = sprintf(
+            '%s 期飞鱼秀 %s 回放在线收听,下载',
+            $program->date,
+            $program->topic
+        );
+
         // render page
         return View::make('programs.detail')
+            ->with('appdate', $this->getAppProgramDate())
             ->with('program', $program)
             ->with('audios', $audios)
             ->with('pages', $pages)
-            ->with('title', $program->topic)
             ->with('contributers', $contributers)
-            ->with('appdate', $this->getAppProgramDate());
+            ->with('title', $title)
+            ->with('description', $description);
     }
 
     /**
