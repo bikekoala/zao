@@ -16,6 +16,7 @@ Route::get('/', 'ProgramsController@index');
 // 节目页
 Route::get('programs/apptoday', 'ProgramsController@apptoday');
 Route::get('programs/{date}', 'ProgramsController@detail');
+Route::get('programs/{date}/pv', 'ProgramsController@getPvCounts');
 
 // 关于页
 Route::get('about', 'AboutController@index');

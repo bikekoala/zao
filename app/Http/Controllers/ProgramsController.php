@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo};
 use App\Console\Tool\SyncAppProgram;
 
-use View, Config, Cache, Request, Redirect;
+use View, Config, Cache, Request, Response, Redirect;
 
 /**
  * 节目控制器
@@ -91,6 +91,19 @@ class ProgramsController extends Controller
             ->with('contributers', $contributers)
             ->with('title', $title)
             ->with('description', $description);
+    }
+
+    /**
+     * 获取页面浏览数
+     *
+     * @param int $date
+     * @return Response
+     */
+    public function getPvCounts($date)
+    {
+        Program::dated($date)->increment('view_counts');
+        $counts = Program::dated($date)->value('view_counts');
+        return Response::json(['total' => $counts]);
     }
 
     /**

@@ -6,10 +6,18 @@
     <ul class="post-meta" original-title="@if ($contributers['participants'])by <a href='{{ $contributers['participants']['url'] }}' target='_blank'>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
         <li>{{ str_replace('-', '.', $program->date) }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
+        @if ( ! $program->participants->isEmpty())
         <li>
             @foreach ($program->participants as $participant)
             <a>{{ $participant->name }}</a>
             @endforeach
+        </li>
+        @endif
+        <li>
+            <span id="post-view-counts">
+                <i class="fa fa-spinner fa-spin"></i>
+            </span>
+            次收听
         </li>
     </ul>
     <div class="post-content">

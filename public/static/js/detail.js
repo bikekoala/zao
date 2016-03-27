@@ -45,8 +45,15 @@ $(function(){
         });
     }
 
-    // set cookie
-    $.cookie('program_date', $('article').attr('data-date'), {expires: 365, path: '/'});
+    // set current program date
+    var date = $('article').attr('data-date');
+    $.cookie('program_date', date, {expires: 365, path: '/'});
+
+    // load page view counts
+    var url = '/programs/' + date + '/pv';
+    $.getJSON(url, function(data) {
+        $('#post-view-counts').text(data.total);
+    });
 
     // replace emoji to image in duoshuo comments
     $('.ds-comments').wait(function() {
