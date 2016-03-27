@@ -27,6 +27,7 @@ CREATE TABLE `programs` (
   `date` date NOT NULL COMMENT '日期',
   `topic` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '话题',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
+  `view_counts` int(11) unsigned NOT NULL COMMENT '浏览次数',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
@@ -162,4 +163,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-23 14:13:54
+-- Dump completed on 2016-03-27 14:12:33
