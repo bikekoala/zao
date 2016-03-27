@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo};
+use App\Console\Tool\SyncAppProgram;
 
-use View, Config, Request, Cache;
+use View, Config, Cache, Request, Redirect;
 
 /**
  * 节目控制器
@@ -40,6 +41,19 @@ class ProgramsController extends Controller
     }
 
     /**
+     * App同期节目
+     *
+     * @return Redirect
+     */
+    public function apptoday()
+    {
+        return Redirect::to(sprintf(
+            '/programs/%s?from=apptoday',
+            $this->getAppProgramDate()
+        ));
+    }
+
+    /**
      * 详情
      *
      * @param int $date
@@ -66,7 +80,8 @@ class ProgramsController extends Controller
             ->with('audios', $audios)
             ->with('pages', $pages)
             ->with('title', $program->topic)
-            ->with('contributers', $contributers);
+            ->with('contributers', $contributers)
+            ->with('appdate', $this->getAppProgramDate());
     }
 
     /**

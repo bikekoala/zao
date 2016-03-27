@@ -2,7 +2,7 @@
 
 @section('content')
 <article itemtype="http://schema.org/Article" data-date="{{ $program->dates->id }}">
-    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a href='{{ $contributers['topic']['url'] }}' target='_blank'>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif @if ($program->dates->id == $app_program_date)（APP同期）@endif</h1>
+    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a href='{{ $contributers['topic']['url'] }}' target='_blank'>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif @if ($program->dates->id == $appdate)（APP同期节目）@endif</h1>
     <ul class="post-meta" original-title="@if ($contributers['participants'])by <a href='{{ $contributers['participants']['url'] }}' target='_blank'>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
         <li>{{ str_replace('-', '.', $program->date) }}</li>
         <li>周{{ $program->dates->dayNum}}</li>

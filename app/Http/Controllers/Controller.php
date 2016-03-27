@@ -7,8 +7,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use App\Notification;
 use App\Console\Tool\SyncAppProgram;
+use App\Notification;
 use View, Cache;
 
 class Controller extends BaseController
@@ -23,9 +23,16 @@ class Controller extends BaseController
     public function __construct()
     {
         $notification = Notification::getLastNotification();
-        $appProgramDate = Cache::get(SyncAppProgram::DATE_CACHE_KEY);
-
         View::share('notification', collect($notification)->toJson());
-        View::share('app_program_date', $appProgramDate);
+    }
+
+    /**
+     * 获取App节目日期
+     *
+     * @return string
+     */
+    protected function getAppProgramDate()
+    {
+        return Cache::get(SyncAppProgram::DATE_CACHE_KEY, '20040802');
     }
 }
