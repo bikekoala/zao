@@ -14,6 +14,17 @@
 #ds-thread a:hover {
     color:#444 !important;
 }
+#ds-thread a.ds-like-thread-button {
+    border: 1px solid #ccc !important;
+    background-color: #fff !important;
+    background-image: none !important;
+}
+#ds-thread .ds-header {
+    font-weight: normal !important; 
+    text-shadow: 0 1px 0 #fff;
+    background: none;
+    background-color: rgba(230,230,230,.1);
+}
 #ds-thread .ds-comments, #ds-thread .ds-paginator {
     border-bottom:1px solid #ddd;
 }
