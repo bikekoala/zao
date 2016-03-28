@@ -75,7 +75,7 @@ class ProgramsController extends Controller
         $contributers = $this->getProgramContributers($program->date);
 
         // TDK
-        $title = $program->topic . ' ' . $program->date;
+        $title = $program->topic . ' (' . $program->date . ') ';
         $description = sprintf(
             '%s 期飞鱼秀 %s 回放在线收听,下载',
             $program->date,
