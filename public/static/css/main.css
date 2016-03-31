@@ -378,6 +378,10 @@ header nav a:hover {
 .post-content video {
     display: none;
 }
+.post-content audio {
+    zoom: .7;
+    width: 85%;
+}
 .post-contributers {
     display: none;
 }

@@ -21,11 +21,11 @@
         </li>
     </ul>
     <div class="post-content">
-        @if (Agent::isAndroidOS())
+        @if (Agent::isAndroidOS() or Agent::isIOS())
         @foreach ($audios as $audio)
         <p>{{ $audio->title }}</p>
         <audio controls="controls" preload="none">
-            <source src="{{ $audio->url }}" type="audio/mpeg" />
+            <source src="{{ $audio->url }}" type="audio/mpeg"/>
             Your browser does not support the audio element.
         </audio>
         @endforeach
