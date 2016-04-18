@@ -359,7 +359,6 @@ header nav a:hover {
     border: none;
 }
 .post-meta li a {
-    font-size: 0.9em;
     color: #888;
 }
 .post-content {
@@ -370,6 +369,9 @@ header nav a:hover {
 }
 .post-content p {
     margin-bottom:  3px;
+}
+.post-content p a {
+    font-size: 0.96em;
 }
 .post-content img {
     max-width: 100%;

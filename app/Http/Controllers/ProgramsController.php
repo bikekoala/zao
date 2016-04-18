@@ -156,13 +156,19 @@ class ProgramsController extends Controller
     private function getAudios($program)
     {
         // filter by source, and sort by time
-        $audios = $program->audios()->enabled()->get();
+        $audios = $audiosCopy = $program->audios()->enabled()->get();
         $domain = Config::get('filesystems.disks.qiniu.domain');
 
         $audioList = [];
         $audioGroups = $audios->groupBy('part');
         foreach ($audioGroups as $group) {
+            foreach ($group as $i => $item) {
+                if ($item->download) {
+                    unset($group[$i]);
+                }
+            }
             $group = $group->groupBy('source');
+
             if (isset($group[Audio::SOURCE_DEFAULT])) {
                 if (1 < $group->count()) {
                     unset($group[Audio::SOURCE_DEFAULT]);
@@ -175,17 +181,24 @@ class ProgramsController extends Controller
         }
         $audios = collect($audioList);
 
+        // get download url
+        $downloadUrls = [];
+        foreach ($audiosCopy as $audio) {
+            if ($audio->download) {
+                $downloadUrls[$audio->part] = $audio->url;
+            }
+        }
+
         // get default title
-        $parts = [
+        $titles = [
             'a'   => '第一时段',
             'b'   => '第二时段',
             'c'   => '第三时段',
-            'all' => ''
+            'all' => '完整时段'
         ];
         foreach ($audios as $audio) {
-            $title = ($audio->title and 'all' !== $audio->part) ?
-                '（' . $audio->title . '）' : $audio->title;
-            $audio->title = $parts[$audio->part] . $title;
+            $audio->title = $titles[$audio->part];
+            $audio->download_url = $downloadUrls[$audio->part] ?? null;
         }
 
         return $audios;

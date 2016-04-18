@@ -21,22 +21,24 @@
         </li>
     </ul>
     <div class="post-content">
-        @if (Agent::isAndroidOS() or Agent::isIOS())
         @foreach ($audios as $audio)
-        <p>{{ $audio->title }}</p>
+        <p>
+            {{ $audio->title }}
+            @if ($audio->download_url)
+            <a href="{{ $audio->download_url }}" target="_blank">（下载）</a>
+            @endif
+        </p>
+        @if (Agent::isAndroidOS() or Agent::isIOS())
         <audio controls="controls" preload="none">
             <source src="{{ $audio->url }}" type="audio/mpeg"/>
             Your browser does not support the audio element.
         </audio>
-        @endforeach
         @else
-        @foreach ($audios as $audio)
-        <p>{{ $audio->title }}</p>
         <video width="85%" height="30" controls="controls" preload="none">
             <source src="{{ $audio->url }}" />
         </video>
-        @endforeach
         @endif
+        @endforeach
     </div>
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
