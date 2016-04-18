@@ -80,6 +80,7 @@ CREATE TABLE `audios` (
   `part` varchar(3) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '时段',
   `title` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '标题',
   `source` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT '来源',
+  `download` tinyint(1) NOT NULL COMMENT '是否下载',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
   `url` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '链接',
   `created_at` datetime NOT NULL COMMENT '创建时间',
@@ -163,4 +164,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-27 14:12:33
+-- Dump completed on 2016-04-18 19:59:55
