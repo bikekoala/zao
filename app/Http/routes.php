@@ -13,6 +13,9 @@
 // 首页
 Route::get('/', 'ProgramsController@index');
 
+// 打卡页
+Route::get('/here', 'HereController@index');
+
 // 节目页
 Route::get('programs/apptoday', 'ProgramsController@apptoday');
 Route::get('programs/{date}', 'ProgramsController@detail');
