@@ -1,4 +1,80 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: "微软雅黑", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background-color: #404a59;
+    color: rgba(0,0,0,0.6);
+}
+#canvas {
+    width: 100%;
+    height: 100%;
+}
+#info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+}
+.user {
+    float: right;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+.user .avatar {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 50px;
+}
+.user .hide {
+    display: none;
+}
+.user .tips {
+    position: relative;
+}
+.user .tips .arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid #000;
+    opacity: 1;
+    position: absolute;
+    top: 4px;
+    left: 21px;
+}
+.user .tips ul.inner {
+    margin: 0;
+    padding: 5px 8px 4px 8px;
+    background-color: #000;
+    color: #fff;
+    width: 60px;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    opacity: 0.8;
+    position: absolute;
+    top: 10px;
+    left: -12px;
+    list-style: none;
+}
+.user .tips .inner li {
+    padding: 4px 0;
+    cursor: pointer;
+}
+.user .tips .inner li:hover {
+    background-color: #333;
+}
+.user .tips .inner li a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #ddd;
+}
+.user .tips .inner li.divider {
+    margin: 4px 0;
+    padding: 0;
+    height: 1px;
+    overflow: hidden;
+    background-color: #666;
 }

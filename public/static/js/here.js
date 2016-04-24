@@ -41,26 +41,11 @@ var option = {
         tooltip: {
             trigger: 'item'
         },
-        toolbox: {
-            feature: {
-                myLogin: {
-                    show: true,
-                    title: '打卡',
-                    icon: 'image://http://echarts.baidu.com/images/favicon.png',
-                    onclick: function (){
-                        alert('myToolHandler1')
-                    }
-                }
-            },
-            itemSize: 50,
-            top: 5,
-            right: 5,
-        },
         geo: {
             map: 'china',
-            top: '2%',
-            bottom: '3%',
             roam: true,
+            top: 10,
+            bottom: 10,
             scaleLimit: {
                 min: 1,
                 max: 5
@@ -90,6 +75,7 @@ var option = {
         timeline: {
             autoPlay: true,
             playInterval: 2000,
+            bottom: 5,
             label: {
                 position: 'bottom',
                 normal: {
@@ -204,6 +190,14 @@ var option = {
 };
 
 // 渲染地图
-var canvas = document.getElementById('canvas');
-canvas.style.height = document.body.scrollHeight + 'px';
-echarts.init(canvas).setOption(option);
+document.getElementsByTagName('body')[0].style.height = document.body.scrollHeight + 'px';
+echarts.init(document.getElementById('canvas')).setOption(option);
+
+// 用户下拉菜单
+$('#user').on('mouseenter', function() {
+    $('#user-tips').removeClass('hide');
+}).on('mouseleave', function() {
+    setTimeout(function(){
+        $('#user-tips').addClass('hide');
+    }, 200);
+});
