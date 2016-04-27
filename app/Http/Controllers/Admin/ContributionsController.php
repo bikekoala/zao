@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Services\Duoshuo as DuoshuoService;
-use App\{Duoshuo, Program, Participant};
+use App\{Comment, Program, Participant};
 use Illuminate\Http\Request;
 use View, DB, Cache, Config, Redirect;
 
@@ -23,7 +22,7 @@ class ContributionsController extends Controller
      */
     public function index()
     {
-        $list = Duoshuo::contributed()
+        $list = Comment::contributed()
             ->orderBy('id', 'desc')
             ->paginate(100);
         return View::make('admin/contributions/index', ['list' => $list]);
@@ -37,8 +36,8 @@ class ContributionsController extends Controller
      */
     public function edit($id)
     {
-        $log = Duoshuo::find($id);
-        $signs = Duoshuo::recognizeCommands($log->metas->message);
+        $log = Comment::find($id);
+        $signs = Comment::recognizeCommands($log->metas->message);
         $program = Program::dated($log->metas->thread_key)->enabled()->first();
         $participants = Participant::get();
 
@@ -66,12 +65,12 @@ class ContributionsController extends Controller
             'state'         => 'required|in:1,-1',
             'reply_message' => 'required|string'
         ]);
-        $log = Duoshuo::find($id);
+        $log = Comment::find($id);
 
         // 更新
         DB::transaction(function () use ($request, $log) {
 
-            if (Duoshuo::STATUS['ENABLE'] == $request->state) {
+            if (Comment::STATUS['ENABLE'] == $request->state) {
                 // 参与人
                 $participantIds = [];
                 $participantNames = Participant::filterParticipantNames($request->participants);
@@ -102,13 +101,13 @@ class ContributionsController extends Controller
             Cache::forget(Program::INDEX_CACHE_KEY);
 
             // 记录日志
-            Duoshuo::where('id', $log->id)->update([
+            Comment::where('id', $log->id)->update([
                 'ext_is_agree' => $request->state
             ]);
         });
 
         // 回复评论
-        $state = Duoshuo::replyPost(
+        $state = Comment::replyPost(
             $request->reply_message,
             $log->metas->thread_id,
             $log->metas->post_id,

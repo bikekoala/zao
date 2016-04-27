@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Program, ProgramParticipant, Participant, Audio, Duoshuo};
+use App\{Program, ProgramParticipant, Participant, Audio, Comment};
 use App\Console\Tool\SyncAppProgram;
 
 use View, Config, Cache, Request, Response, Redirect;
@@ -217,17 +217,17 @@ class ProgramsController extends Controller
             'participants' => null
         ];
 
-        $logs = Duoshuo::contributed($date)->agreed()->get()->sortByDesc('id');
+        $logs = Comment::contributed($date)->agreed()->get()->sortByDesc('id');
         foreach ($logs as $log) {
             $author = [
                 'name' => $log->metas->author_name,
                 'url'  => $log->metas->author_url
             ];
 
-            if (Duoshuo::STATUS['ENABLE'] === $log->ext_has_topic) {
+            if (Comment::STATUS['ENABLE'] === $log->ext_has_topic) {
                 $contributers['topic'] = $author;
             }
-            if (Duoshuo::STATUS['ENABLE'] === $log->ext_has_participant) {
+            if (Comment::STATUS['ENABLE'] === $log->ext_has_participant) {
                 $contributers['participants'] = $author;
             }
 

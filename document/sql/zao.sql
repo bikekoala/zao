@@ -92,13 +92,13 @@ CREATE TABLE `audios` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `duoshuo`
+-- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `duoshuo`;
+DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `duoshuo` (
+CREATE TABLE `comments` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `log_id` bigint(64) unsigned NOT NULL COMMENT '记录ID',
   `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
@@ -113,7 +113,7 @@ CREATE TABLE `duoshuo` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `log_id` (`log_id`),
   KEY `program_contribution` (`action`,`ext_has_topic`,`ext_has_participant`,`ext_program_date`,`ext_is_agree`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='多说评论表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

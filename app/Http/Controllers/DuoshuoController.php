@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use App\Services\Duoshuo as DuoshuoService;
-use App\Duoshuo as DuoshuoModel;
+use App\Comment as CommentModel;
 use Request, Config, Mail;
 
 /**
@@ -48,12 +48,12 @@ class DuoshuoController extends BaseController
     }
 
     /**
-     * 网站回调
+     * 评论网站回调
      *
      * @param Request $request
      * @return Response
      */
-    public function callback(Request $request)
+    public function comment(Request $request)
     {
         // 验证签名
         if ( ! $this->ds->checkSignature($request::all())) {
@@ -61,7 +61,7 @@ class DuoshuoController extends BaseController
         }
 
         // 拉取最近一条日志
-        $lastLogId = DuoshuoModel::getLastLogId();
+        $lastLogId = CommentModel::getLastLogId();
         $list = $this->ds->getLogList($lastLogId, 50);
         if (empty($list['response'])) {
             return $this->output('Empty response.', true);
@@ -71,18 +71,18 @@ class DuoshuoController extends BaseController
         foreach ($list['response'] as $log) {
 
             // 识别指令
-            $signs = DuoshuoModel::ACTION['CREATE'] === $log['action'] ?
-                DuoshuoModel::recognizeCommands($log['meta']['message']) : [];
+            $signs = CommentModel::ACTION['CREATE'] === $log['action'] ?
+                CommentModel::recognizeCommands($log['meta']['message']) : [];
 
             // 记录日志 
-            $id = DuoshuoModel::import($log, $signs);
+            $id = CommentModel::import($log, $signs);
 
             // 通知
             if ( ! empty($signs)) {
 
                 // 回复评论
                 /*
-                DuoshuoModel::replyPost(
+                CommentModel::replyPost(
                     $this->replyMessage,
                     $log['meta']['thread_id'],
                     $log['meta']['post_id'],

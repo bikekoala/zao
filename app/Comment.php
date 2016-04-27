@@ -11,14 +11,14 @@ use Config;
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-28
  */
-class Duoshuo extends Model
+class Comment extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'duoshuo';
+    protected $table = 'comments';
 
     /**
      * The attributes that are mass assignable.

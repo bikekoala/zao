@@ -25,7 +25,9 @@ Route::get('programs/{date}/pv', 'ProgramsController@getPvCounts');
 Route::get('about', 'AboutController@index');
 
 // 多说评论
-Route::post('duoshuo/callback', 'DuoshuoController@callback');
+//Route::get('duoshuo/login', 'DuoshuoController@login');
+//Route::get('duoshuo/logout', 'DuoshuoController@logout');
+Route::post('duoshuo/comment', 'DuoshuoController@comment');
 
 // 后台管理
 Route::group(['prefix' => 'admin','namespace' => 'Admin',
