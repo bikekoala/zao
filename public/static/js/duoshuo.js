@@ -1,4 +1,10 @@
-var duoshuoQuery = {short_name:"zaoaoaoaoao"};
+var duoshuoQuery = {
+    short_name: 'zaoaoaoaoao',
+    sso: { 
+        login: 'http://zaoaoaoaoao.com/duoshuo/login?callback=' + window.location.href,
+        logout: 'http://zaoaoaoaoao.com/duoshuo/logout?callback=' + window.location.href
+    }
+};
 (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';

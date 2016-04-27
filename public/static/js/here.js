@@ -197,7 +197,7 @@ echarts.init(document.getElementById('canvas')).setOption(option);
 $('#user').on('mouseenter', function() {
     $('#user-tips').removeClass('hide');
 }).on('mouseleave', function() {
-    setTimeout(function(){
+    setTimeout(function() {
         $('#user-tips').addClass('hide');
-    }, 200);
+    }, 100);
 });

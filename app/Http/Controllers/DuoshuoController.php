@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use App\Services\Duoshuo as DuoshuoService;
-use App\Comment as CommentModel;
-use Request, Config, Mail;
+use App\{User, Comment};
+use Request, Redirect, Config, Mail;
 
 /**
  * 多说评论控制器
@@ -14,20 +14,6 @@ use Request, Config, Mail;
  */
 class DuoshuoController extends BaseController
 {
-
-    /**
-     * 回复消息
-     *
-     * @var string
-     */
-    private $replyMessage = '嗨，稍等一下哦~';
-
-    /**
-     * 邮件标题
-     *
-     * @var string
-     */
-    private $emailTitle = '早~ 收到 %s 的协助申请';
 
     /**
      * 多说客户端对象
@@ -48,7 +34,47 @@ class DuoshuoController extends BaseController
     }
 
     /**
-     * 评论网站回调
+     * 登录回调
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function login(Request $request)
+    {
+        // 获取 access token
+        $accessTokenInfo = $this->ds->getAccessToken('code', [
+            'code' => $request::get('code')
+        ]);
+        if (is_string($accessTokenInfo)) {
+            return $this->output($accessTokenInfo, true);
+        }
+
+        // 获取用户信息
+        $userProfile = $this->ds->getUserProfile($accessTokenInfo['user_id']);
+        if (empty($userProfile['response'])) {
+            return $this->output('Get user profile faild.', true);
+        }
+
+        // 存储 session，并跳转
+        $request::session()->put(User::SESSION_KEY, $userProfile['response']);
+        return Redirect::to($request::get('callback', Config::get('app.url')));
+    }
+
+    /**
+     * 登出回调
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function logout(Request $request)
+    {
+        // 删除 session，并跳转
+        $request::session()->forget(User::SESSION_KEY);
+        return Redirect::to($request::get('callback', Config::get('app.url')));
+    }
+
+    /**
+     * 评论回调
      *
      * @param Request $request
      * @return Response
@@ -61,7 +87,7 @@ class DuoshuoController extends BaseController
         }
 
         // 拉取最近一条日志
-        $lastLogId = CommentModel::getLastLogId();
+        $lastLogId = Comment::getLastLogId();
         $list = $this->ds->getLogList($lastLogId, 50);
         if (empty($list['response'])) {
             return $this->output('Empty response.', true);
@@ -71,19 +97,19 @@ class DuoshuoController extends BaseController
         foreach ($list['response'] as $log) {
 
             // 识别指令
-            $signs = CommentModel::ACTION['CREATE'] === $log['action'] ?
-                CommentModel::recognizeCommands($log['meta']['message']) : [];
+            $signs = Comment::ACTION['CREATE'] === $log['action'] ?
+                Comment::recognizeCommands($log['meta']['message']) : [];
 
             // 记录日志 
-            $id = CommentModel::import($log, $signs);
+            $id = Comment::import($log, $signs);
 
             // 通知
             if ( ! empty($signs)) {
 
                 // 回复评论
                 /*
-                CommentModel::replyPost(
-                    $this->replyMessage,
+                Comment::replyPost(
+                    '嗨，稍等一下哦~',
                     $log['meta']['thread_id'],
                     $log['meta']['post_id'],
                     $log['meta']['author_email']
@@ -108,7 +134,7 @@ class DuoshuoController extends BaseController
     private function sendMail($data)
     {
         $email = Config::get('duoshuo.user_email');
-        $subject = sprintf($this->emailTitle, $data['meta']['author_name']);
+        $subject = sprintf('早~ 收到 %s 的协助申请', $data['meta']['author_name']);
 
         Mail::send('emails.duoshuo', $data, function ($message) use ($email, $subject) {
             $message->from($email);

@@ -8,8 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Console\Tool\SyncAppProgram;
-use App\Notification;
-use View, Cache;
+use App\{User, Notification};
+use View, Cache, Session;
 
 class Controller extends BaseController
 {
@@ -24,6 +24,8 @@ class Controller extends BaseController
     {
         $notification = Notification::getLastNotification();
         View::share('notification', collect($notification)->toJson());
+
+        View::share('user', Session::get(User::SESSION_KEY));
     }
 
     /**

@@ -42,6 +42,19 @@ class Duoshuo
     }
 
     /**
+     * 获取多说用户信息
+     *
+     * @param int $userId
+     * @return array
+     */
+    public function getUserProfile($userId)
+    {
+        return $this->request('GET', 'users/profile', [
+            'user_id' => $userId
+        ]);
+    }
+
+    /**
      * 获取日志
      *
      * @param int $sinceId
@@ -134,11 +147,11 @@ class Duoshuo
     public function getAccessToken($type, $keys)
     {
         $params = [
-            'client_id'     =>  $this->shortName,
+            'client_id'     => $this->shortName,
             'client_secret' => $this->secret,
         ];
         
-        switch($type){
+        switch ($type) {
             case 'token':
                 $params['grant_type']    = 'refresh_token';
                 $params['refresh_token'] = $keys['refresh_token'];
@@ -146,7 +159,7 @@ class Duoshuo
             case 'code':
                 $params['grant_type']   = 'authorization_code';
                 $params['code']         = $keys['code'];
-                $params['redirect_uri'] = $keys['redirect_uri'];
+                $params['redirect_uri'] = $keys['redirect_uri'] ?? null;
                 break;
             case 'password':
                 $params['grant_type'] = 'password';
@@ -159,13 +172,14 @@ class Duoshuo
         $accessTokenUrl = 'http://api.duoshuo.com/oauth2/access_token';
         $response = $this->http($accessTokenUrl, $params, 'POST');
 
-        if (is_array($response) and empty($response['error'])) {
+        if (is_array($response) and 0 == $response['code']) {
             $this->accessToken = $response['access_token'];
             if (isset($response['refresh_token'])) {
                 $this->refreshToken = $response['refresh_token'];
             }
+            return $response;
         } else {
-            return $response['error'];
+            return $response['errorMessage'];
         }
     }
 
