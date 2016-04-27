@@ -10,27 +10,24 @@
 |
 */
 
-// 前台
-Route::group(['middleware' => ['web']], function () {
-    // 首页
-    Route::get('/', 'ProgramsController@index');
+// 首页
+Route::get('/', 'ProgramsController@index');
 
-    // 打卡页
-    Route::get('/here', 'HereController@index');
+// 打卡页
+Route::get('/here', 'HereController@index');
 
-    // 节目页
-    Route::get('programs/apptoday', 'ProgramsController@apptoday');
-    Route::get('programs/{date}', 'ProgramsController@detail');
-    Route::get('programs/{date}/pv', 'ProgramsController@getPvCounts');
+// 节目页
+Route::get('programs/apptoday', 'ProgramsController@apptoday');
+Route::get('programs/{date}', 'ProgramsController@detail');
+Route::get('programs/{date}/pv', 'ProgramsController@getPvCounts');
 
-    // 关于页
-    Route::get('about', 'AboutController@index');
+// 关于页
+Route::get('about', 'AboutController@index');
 
-    // 多说评论
-    Route::get('duoshuo/login', 'DuoshuoController@login');
-    Route::get('duoshuo/logout', 'DuoshuoController@logout');
-    Route::post('duoshuo/comment', 'DuoshuoController@comment');
-});
+// 多说评论
+Route::get('duoshuo/login', 'DuoshuoController@login');
+Route::get('duoshuo/logout', 'DuoshuoController@logout');
+Route::post('duoshuo/comment', 'DuoshuoController@comment');
 
 // 后台
 Route::group(['prefix' => 'admin','namespace' => 'Admin',
