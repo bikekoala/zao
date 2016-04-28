@@ -23,7 +23,7 @@
                         <td>{{ $item->id }}</td>
                         <td><a href="/programs/{{ $item->metas->thread_key }}" target="_blank">{{ $item->ext_program_date}}</a></td>
                         <td><a href="{{ $item->metas->author_url }}" target="_blank"> {{ $item->metas->author_name }}</a></td>
-                        <td>{{ $item->metas->message }}</td>
+                        <td>{!! $item->metas->message !!}</td>
                         <td>{{ $item->date }}</td>
                         @if (-1 === $item->ext_is_agree)
                             <td class="text-warning">未通过</td>
