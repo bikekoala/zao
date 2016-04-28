@@ -17,7 +17,11 @@
     <div id="canvas"></div>
     <div id="info">
         <div class="user" id="user">
-            <img src="http://zaoaoaoaoao.com/static/img/avatar.png" alt="" class="avatar">
+            @if (empty($user['user_id']))
+            <img src="/static/img/felix.png" alt="头像" class="avatar">
+            @else
+            <img src="{{ $user['avatar_url']}}" alt="头像" title="{{ $user['name'] }}" class="avatar">
+            @endif
             <div class="tips hide" id="user-tips">
                 <div class="arrow"></div>
                 <ul class="inner">
