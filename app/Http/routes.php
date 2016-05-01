@@ -15,6 +15,7 @@ Route::get('/', 'ProgramsController@index');
 
 // 打卡页
 Route::resource('heres', 'HereController');
+Route::get('here/geo', 'HereController@geo');
 Route::get('here', 'HereController@map');
 
 // 节目页
