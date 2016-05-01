@@ -7,7 +7,6 @@
     <meta name="description" content="ECharts">
     <title>飞鱼人签到地图 - 早</title>
     <link rel="stylesheet" href="/static/css/here.css">
-    <link rel="stylesheet" href="/static/module/bootstrap/css/bootstrap.min.css">
     <!--[if lt IE 9]>
         <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
         <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -26,9 +25,10 @@
                 <div class="arrow"></div>
                 <ul class="inner">
                     @if (empty($user['user_id']))
-                    <li><a href="#" id="login" data-toggle="modal" data-target="#login-modal">签到</a></li>
+                    <li><a id="login" data-toggle="modal" data-target="#login-modal">签到</a></li>
                     @endif
-                    <li><a href="#">自己</a></li>
+                    <li><a class="load-remote-modal" data-url="/heres">打卡</a></li>
+                    <li><a>自己</a></li>
                     <li role="separator" class="divider"></li>
                     @if ( ! empty($user['user_id']))
                     <li><a href="/duoshuo/logout?callback=/here">登出</a></li>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="login-modal">
+    <div class="modal" id="login-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,10 +53,20 @@
             </div>
         </div>
     </div>
-    <script src="/static/module/jquery-2.1.4.min.js"></script>
-    <script src="/static/module/bootstrap/js/bootstrap.min.js"></script>
+    <div class="modal" id="basic-modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="/static/module/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+
     <script src="/static/module/echarts/echarts.min.js"></script>
     <script src="/static/module/echarts/map/china.js"></script>
+    <script src="/static/module/jquery-2.1.4.min.js"></script>
+    <script src="/static/module/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/js/duoshuo.js"></script>
     <script src="/static/js/here.js"></script>
 </body>

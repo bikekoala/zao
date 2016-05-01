@@ -17,9 +17,31 @@ class HereController extends Controller
      *
      * @return Response
      */
+    public function map()
+    {
+        // render page
+        return View::make('here.map');
+    }
+
+    /**
+     * 打卡记录
+     *
+     * @return void
+     */
     public function index()
     {
         // render page
-        return View::make('here');
+        return View::make('here.index');
+    }
+
+    /**
+     * 新增打卡
+     *
+     * @return void
+     */
+    public function create()
+    {
+        // render page
+        return View::make('here.create');
     }
 }

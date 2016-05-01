@@ -201,3 +201,27 @@ $('#user').on('mouseenter', function() {
         $('#user-tips').addClass('hide');
     }, 100);
 });
+
+// Modal 框加载
+function loadRemoteModal() {
+    $('.load-remote-modal').on('click', function() {
+        var url = $(this).attr('data-url');
+        var $modal = $('#basic-modal');
+
+        // 移除数据
+        $modal.removeData('bs.modal');
+
+        // 提示缓冲
+        loadingHtml = '<div class="modal-body">' +
+                      '    <h2 class="text-center">' +
+                      '        <i class="fa fa-spinner fa-spin"></i>' +
+                      '    </h2>' +
+                      '</div>';
+        $modal.find('.modal-content').html(loadingHtml);
+
+        // 异步加载数据，并显示
+        $modal.find('.modal-content').load(url, null, loadRemoteModal);
+        $modal.modal({backdrop: false, show: true});
+    });
+}
+loadRemoteModal();

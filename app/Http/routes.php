@@ -14,7 +14,8 @@
 Route::get('/', 'ProgramsController@index');
 
 // 打卡页
-Route::get('/here', 'HereController@index');
+Route::resource('heres', 'HereController');
+Route::get('here', 'HereController@map');
 
 // 节目页
 Route::get('programs/apptoday', 'ProgramsController@apptoday');
