@@ -204,10 +204,10 @@ $('#user').on('mouseenter', function() {
     }, 100);
 });
 
-// Modal 框加载
-function loadRemoteModal() {
-    $('.load-remote-modal').on('click', function() {
-        var url = $(this).attr('data-url');
+// 加载远程 Modal 框
+function loadRemoteModal($ele) {
+    var load = function($ele) {
+        var url = $ele.attr('data-url');
         var $modal = $('#basic-modal');
 
         // 移除数据
@@ -224,7 +224,15 @@ function loadRemoteModal() {
         // 异步加载数据，并显示
         $modal.find('.modal-content').load(url, null, loadRemoteModal);
         $modal.modal({backdrop: false, show: true});
-    });
+    };
+
+    if ($ele instanceof jQuery) {
+        load($ele);
+    } else {
+        $('.load-remote-modal').on('click', function() {
+            load($(this));
+        });
+    }
 }
 loadRemoteModal();
 

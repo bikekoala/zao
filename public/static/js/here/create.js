@@ -19,7 +19,7 @@ $(function() {
             processResults: function(data) {
                 if ('OK' === data.status) {
                     var list = [];
-                    for (i in data.predictions) {
+                    for (var i in data.predictions) {
                         list[i] = {
                             id: data.predictions[i].place_id,
                             text: data.predictions[i].description
@@ -42,5 +42,53 @@ $(function() {
             cache: true
         },
         theme: 'bootstrap'
+    });
+
+    // Submit
+    $('#submit').on('click', function() {
+        // init
+        var $that = $(this);
+        var $form = $('#form');
+        var $message = $('#message');
+
+        // clean message
+        $message.html('');
+
+        // validation
+        var pmessages = {
+            'location': '请搜寻一个地点',
+            'date'    : '请选择一个日期'
+        };
+        var params = $form.serializeArray();
+        var pnames = {};
+        for (var i in params) {
+            if ('' !== params[i].value) {
+                pnames[params[i].name] = 1;
+            }
+        }
+        for (var pname in pmessages) {
+            if (1 !== pnames[pname]) {
+                $message.html(pmessages[pname]);
+                return false;
+            }
+        }
+
+        // send request
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: params,
+            beforeSend: function() {
+                $message.html('<i class="fa fa-spinner fa-spin"></i> 正在保存...');
+            },
+            success: function(data) {
+                if ('OK' === data.status) {
+                    loadRemoteModal($that);
+                } else {
+                    $message.html('保存失败，请刷新重试，或通知 <a href="http://weibo.com/doyoufly" target="_blank"><u>樹袋大熊</u></a>');
+                }
+            }
+        });
+        return false;
     });
 });

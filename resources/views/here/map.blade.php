@@ -25,10 +25,11 @@
                 <div class="arrow"></div>
                 <ul class="inner">
                     @if (empty($user['user_id']))
-                    <li><a id="login" data-toggle="modal" data-target="#login-modal">签到</a></li>
-                    @endif
-                    <li><a class="load-remote-modal" data-url="/heres">打卡</a></li>
+                    <li><a id="login" data-toggle="modal" data-target="#login-modal">登录</a></li>
+                    @else
+                    <li><a class="load-remote-modal" data-url="/heres">签到</a></li>
                     <li><a>自己</a></li>
+                    @endif
                     <li role="separator" class="divider"></li>
                     @if ( ! empty($user['user_id']))
                     <li><a href="/duoshuo/logout?callback=/here">登出</a></li>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Curl\Curl;
-use View, Request, Response, Config;
+
+use App\User;
+use View, Request, Response, Config, Validator;
 
 /**
  * 打卡控制器
@@ -21,11 +23,11 @@ class HereController extends Controller
     public function map()
     {
         // render page
-        return View::make('here.map');
+        return View::make('here.map')->with('user', User::getCurrent());
     }
 
     /**
-     * 打卡记录
+     * 位置记录
      *
      * @return Response
      */
@@ -36,7 +38,7 @@ class HereController extends Controller
     }
 
     /**
-     * 新增打卡
+     * 新增位置
      *
      * @return Response
      */
@@ -44,6 +46,37 @@ class HereController extends Controller
     {
         // render page
         return Response::view('here.create');
+    }
+
+    /**
+     * 保存位置
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        if ( ! User::isLogin()) {
+            return Response::json(['status' => 'Not login']);
+        }
+
+        $rules = [
+            'date'     => 'required|date',
+            'location' => 'required|size:27',
+        ];
+        $validator = Validator::make(Request::all(), $rules);
+        if ($validator->fails()) {
+            return Response::json(['status' => 'Invalid params']);
+        }
+
+        $date = $request::get('date');
+        $placeId = $request::get('location');
+
+        $details = $this->placeDetails($placeId);
+        if ('OK' !== $details['status']) {
+            return Response::json(['status' => $details['status']]);
+        }
+        print_r($details['result']);
     }
 
     /**
@@ -96,17 +129,18 @@ class HereController extends Controller
         $curl = new Curl();
         $curl->setTimeout(15);
         $curl->setOpt(CURLOPT_SSL_VERIFYHOST, false);
+        $curl->setJsonDecoder(function($string) {
+            return json_decode($string, true);
+        });
         $curl->get(Config::get('googleplaces.api_details'), [
             'key'      => Config::get('googleplaces.key'),
             'language' => 'zh-CN',
             'placeid'  => $placeId
         ]);
         if ($curl->error) {
-            return Response::json([
-                'status' => $curl->errorMessage
-            ]);
+            return ['status' => $curl->errorMessage];
         } else {
-            return Response::json($curl->response);
+            return $curl->response;
         }
     }
 }

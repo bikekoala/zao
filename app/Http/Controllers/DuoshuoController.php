@@ -55,8 +55,8 @@ class DuoshuoController extends BaseController
             return $this->output('Get user profile faild.', true);
         }
 
-        // 存储 session，并跳转
-        $request::session()->put(User::SESSION_KEY, $userProfile['response']);
+        // 登录，并跳转
+        User::login($userProfile['response']);
         return Redirect::to($request::get('callback', Config::get('app.url')));
     }
 
@@ -68,8 +68,8 @@ class DuoshuoController extends BaseController
      */
     public function logout(Request $request)
     {
-        // 删除 session，并跳转
-        $request::session()->forget(User::SESSION_KEY);
+        // 登出，并跳转
+        User::logout();
         return Redirect::to($request::get('callback', Config::get('app.url')));
     }
 

@@ -9,11 +9,18 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Console\Tool\SyncAppProgram;
 use App\{User, Notification};
-use View, Cache, Session;
+use View, Cache;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    /**
+     * 用户数据
+     *
+     * @var array
+     */
+    public $user;
 
     /**
      * Instance
@@ -24,8 +31,6 @@ class Controller extends BaseController
     {
         $notification = Notification::getLastNotification();
         View::share('notification', collect($notification)->toJson());
-
-        View::share('user', Session::get(User::SESSION_KEY));
     }
 
     /**
