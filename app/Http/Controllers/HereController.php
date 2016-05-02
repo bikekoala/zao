@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Curl\Curl;
-use View, Request, Response;
+use View, Request, Response, Config;
 
 /**
  * 打卡控制器
@@ -47,29 +47,63 @@ class HereController extends Controller
     }
 
     /**
-     * Query Autocomplete Requests
+     * Google Places API Web Service
+     * Place Autocomplete
      *
      * @param Request $request
      * @return Response
-     * @see https://developers.google.com/places/web-service/query
+     * @see https://developers.google.com/places/web-service/autocomplete
      */
-    public function geo(Request $request)
+    public function placeAutocomplete(Request $request)
     {
-        $api = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
-        $key = 'AIzaSyA6pLYI91AnL4IJH_GDgh_VZXpmK6hwA_k';
+        // TODO
+        return file_get_contents('/tmp/geo.json');
+
+        $input = trim($request::get('input'));
+        if (empty($input)) {
+            return Response::json([
+                'status' => 'No results found'
+            ]);
+        }
 
         $curl = new Curl();
-        $curl->setTimeout(10);
+        $curl->setTimeout(15);
         $curl->setOpt(CURLOPT_SSL_VERIFYHOST, false);
-        $curl->get($api, [
-            'types'    => 'geocode',
-            //'language' => 'zh',
-            'key'      => $key,
-            'input'    => $request::get('input')
+        $curl->get(Config::get('googleplaces.api_autocomplete'), [
+            'key'   => Config::get('googleplaces.key'),
+            'types' => 'geocode',
+            'input' => $input
         ]);
         if ($curl->error) {
             return Response::json([
-                'status' => $curl->errorCode . ': ' . $curl->errorMessage
+                'status' => $curl->errorMessage
+            ]);
+        } else {
+            return Response::json($curl->response);
+        }
+    }
+
+    /**
+     * Google Places API Web Service
+     * Place Details
+     *
+     * @param string $placeId
+     * @return array
+     * @see https://developers.google.com/places/web-service/details
+     */
+    private function placeDetails($placeId)
+    {
+        $curl = new Curl();
+        $curl->setTimeout(15);
+        $curl->setOpt(CURLOPT_SSL_VERIFYHOST, false);
+        $curl->get(Config::get('googleplaces.api_details'), [
+            'key'      => Config::get('googleplaces.key'),
+            'language' => 'zh-CN',
+            'placeid'  => $placeId
+        ]);
+        if ($curl->error) {
+            return Response::json([
+                'status' => $curl->errorMessage
             ]);
         } else {
             return Response::json($curl->response);

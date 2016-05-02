@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "qiniu/php-sdk": "^7.0",
         "itbdw/laravel-storage-qiniu": "^1.0",
-        "jenssegers/agent": "^2.3"
+        "jenssegers/agent": "^2.3",
+        "php-curl-class/php-curl-class": "^4.11"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

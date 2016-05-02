@@ -1,4 +1,5 @@
 // 加载数据
+/*
 var weiboData;
 $.ajax({  
     url: 'http://zaoaoaoaoao.com/static/module/echarts/weibo.json',
@@ -191,7 +192,8 @@ var option = {
 
 // 渲染地图
 document.getElementsByTagName('body')[0].style.height = document.body.scrollHeight + 'px';
-echarts.init(document.getElementById('canvas')).setOption(option);
+/echarts.init(document.getElementById('canvas')).setOption(option);
+*/
 
 // 用户下拉菜单
 $('#user').on('mouseenter', function() {
@@ -225,3 +227,7 @@ function loadRemoteModal() {
     });
 }
 loadRemoteModal();
+
+// TODO
+$('.load-remote-modal').attr('data-url', '/heres/create');
+$('.load-remote-modal').trigger('click');

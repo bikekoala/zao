@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8583aab57dec59a5a2302452d452631",
-    "content-hash": "4d474db817b0712775eca2c5b97670f0",
+    "hash": "322144cd76356e78076acc10533ba60d",
+    "content-hash": "357b303b7598008b6434585a1a5db042",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -171,7 +171,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itbdw/laravel-storage-qiniu/zipball/d812d2d2ecefa36420f2aad02d4e745546e6b14e",
+                "url": "http://packagist.phpcomposer.com/files/itbdw/laravel-storage-qiniu/d812d2d2ecefa36420f2aad02d4e745546e6b14e.zip",
                 "reference": "d812d2d2ecefa36420f2aad02d4e745546e6b14e",
                 "shasum": ""
             },
@@ -316,7 +316,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/agent/zipball/3068d6372a4677af84014a53d5a212cfa74492c1",
+                "url": "https://packagist.phpcomposer.com/files/jenssegers/agent/3068d6372a4677af84014a53d5a212cfa74492c1.zip",
                 "reference": "3068d6372a4677af84014a53d5a212cfa74492c1",
                 "shasum": ""
             },
@@ -431,7 +431,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/93dc5b0089eef468157fd7200e575c3861ec59a5",
+                "url": "http://packagist.phpcomposer.com/files/laravel/framework/93dc5b0089eef468157fd7200e575c3861ec59a5.zip",
                 "reference": "93dc5b0089eef468157fd7200e575c3861ec59a5",
                 "shasum": ""
             },
@@ -643,7 +643,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/d772569880e7becaec564274a3b93501b3fde700",
+                "url": "https://packagist.phpcomposer.com/files/serbanghita/Mobile-Detect/d772569880e7becaec564274a3b93501b3fde700.zip",
                 "reference": "d772569880e7becaec564274a3b93501b3fde700",
                 "shasum": ""
             },
@@ -916,7 +916,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/dd8998b7c846f6909f4e7a5f67fabebfc412a4f7",
+                "url": "http://packagist.phpcomposer.com/files/paragonie/random_compat/dd8998b7c846f6909f4e7a5f67fabebfc412a4f7.zip",
                 "reference": "dd8998b7c846f6909f4e7a5f67fabebfc412a4f7",
                 "shasum": ""
             },
@@ -953,6 +953,62 @@
                 "random"
             ],
             "time": "2016-01-06 13:31:20"
+        },
+        {
+            "name": "php-curl-class/php-curl-class",
+            "version": "4.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-curl-class/php-curl-class.git",
+                "reference": "f85d7aebe750c1ac21b40c7d433d5a615ffdc5f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/php-curl-class/php-curl-class/f85d7aebe750c1ac21b40c7d433d5a615ffdc5f1.zip",
+                "reference": "f85d7aebe750c1ac21b40c7d433d5a615ffdc5f1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Curl\\": "src/Curl/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Zach Borboa"
+                }
+            ],
+            "description": "PHP Curl Class is an object-oriented wrapper of the PHP cURL extension.",
+            "homepage": "https://github.com/php-curl-class/php-curl-class",
+            "keywords": [
+                "api",
+                "class",
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "json",
+                "php",
+                "requests",
+                "rest",
+                "restful",
+                "web service",
+                "xml"
+            ],
+            "time": "2016-03-09 00:50:07"
         },
         {
             "name": "psr/log",
@@ -1074,7 +1130,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/50e3375a7044d5f94de9570ce5966c1b6174bda3",
+                "url": "http://packagist.phpcomposer.com/files/qiniu/php-sdk/50e3375a7044d5f94de9570ce5966c1b6174bda3.zip",
                 "reference": "50e3375a7044d5f94de9570ce5966c1b6174bda3",
                 "shasum": ""
             },
@@ -2039,7 +2095,7 @@
             ],
             "authors": [
                 {
-                    "name": "François Zaninotto"
+                    "name": "Francois Zaninotto"
                 }
             ],
             "description": "Faker is a PHP library that generates fake data for you.",
@@ -2134,7 +2190,7 @@
             ],
             "authors": [
                 {
-                    "name": "Padraic Brady",
+                    "name": "Pádraic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
