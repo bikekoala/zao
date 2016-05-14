@@ -143,6 +143,28 @@ CREATE TABLE `heres` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `ds_id` char(19) NOT NULL DEFAULT '' COMMENT '多说用户ID',
+  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名字',
+  `url` varchar(256) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `avatar_url` varchar(256) NOT NULL DEFAULT '' COMMENT '头像地址',
+  `meta` text NOT NULL COMMENT '原始信息',
+  `state` tinyint(1) unsigned NOT NULL COMMENT '状态',
+  `created_at` datetime NOT NULL COMMENT '创建时间',
+  `updated_at` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ds_id` (`ds_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `admins`
 --
 
@@ -190,4 +212,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-14 16:14:04
+-- Dump completed on 2016-05-14 17:07:39

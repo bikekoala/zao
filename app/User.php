@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Session;
 
 /**
@@ -9,8 +10,31 @@ use Session;
  *
  * @author popfeng <popfeng@yeah.net> 2016-04-27
  */
-class User
+class User extends Model
 {
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['ds_id', 'name', 'url', 'avatar_url', 'meta', 'state'];
+
+    /**
+     * 状态常量
+     *
+     * @var int
+     */
+    const STATE_ENABLE  = 1;
+    const STATE_DISABLE = 0;
+
     /**
      * session key
      *
@@ -36,6 +60,14 @@ class User
      */
     public static function login(array $data)
     {
+        static::firstOrCreate([
+            'ds_id'      => $data['user_id'],
+            'name'       => $data['name'],
+            'url'        => $data['url'],
+            'avatar_url' => $data['avatar_url'],
+            'meta'       => json_encode($data, JSON_UNESCAPED_UNICODE),
+            'state'      => self::STATE_ENABLE
+        ]);
         Session::put(self::SESSION_KEY, $data);
     }
 
@@ -52,10 +84,18 @@ class User
     /**
      * 获取当前用户信息
      *
-     * @return array
+     * @param int $userId
+     * @return \App\User
      */
-    public static function getCurrent()
+    public static function getInfo($userId = null)
     {
-        return Session::get(self::SESSION_KEY) ?? [];
+        if ($userId) {
+            return static::find($userId);
+        } else {
+            $dsInfo = Session::get(self::SESSION_KEY);
+            if ( ! empty($dsInfo)) {
+                return static::where('ds_id', $dsInfo['user_id'])->first();
+            } else return null;
+        }
     }
 }

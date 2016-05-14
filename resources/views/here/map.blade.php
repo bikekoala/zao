@@ -16,22 +16,22 @@
     <div id="canvas"></div>
     <div id="info">
         <div class="user" id="user">
-            @if (empty($user['user_id']))
+            @if (empty($user))
             <img src="/static/img/felix.png" alt="头像" class="avatar">
             @else
-            <img src="{{ $user['avatar_url']}}" alt="头像" title="{{ $user['name'] }}" class="avatar">
+            <img src="{{ $user->avatar_url }}" alt="头像" title="{{ $user->name }}" class="avatar">
             @endif
             <div class="tips hide" id="user-tips">
                 <div class="arrow"></div>
                 <ul class="inner">
-                    @if (empty($user['user_id']))
+                    @if (empty($user))
                     <li><a id="login" data-toggle="modal" data-target="#login-modal">登录</a></li>
                     @else
                     <li><a class="load-remote-modal" data-url="/heres">签到</a></li>
                     <li><a>自己</a></li>
                     @endif
                     <li role="separator" class="divider"></li>
-                    @if ( ! empty($user['user_id']))
+                    @if ( ! empty($user))
                     <li><a href="/duoshuo/logout?callback=/here">登出</a></li>
                     @endif
                     <li><a href="/">首页</a></li>

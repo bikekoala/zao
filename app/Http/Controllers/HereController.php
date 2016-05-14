@@ -23,7 +23,7 @@ class HereController extends Controller
     public function map()
     {
         // render page
-        return View::make('here.map')->with('user', User::getCurrent());
+        return View::make('here.map')->with('user', User::getInfo());
     }
 
     /**
@@ -94,7 +94,7 @@ class HereController extends Controller
         // save
         $details = $result['result'];
         $data = [
-            'user_id'     => User::getCurrent()['user_id'],
+            'user_id'     => User::getInfo()['id'],
             'date'        => date('Y-m-d', strtotime($date)),
             'lat'         => $details['geometry']['location']['lat'],
             'lng'         => $details['geometry']['location']['lng'],

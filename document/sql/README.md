@@ -8,6 +8,7 @@
         audios \
         comments \
         heres \
+        users \
         admins \
         notifications \
         | sed 's/AUTO_INCREMENT=[0-9]*\s//g' > zao.sql
