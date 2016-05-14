@@ -33,8 +33,11 @@ class HereController extends Controller
      */
     public function index()
     {
+        // get here list
+        $list = Here::usered(User::getInfo()->id)->orderBy('date')->get();
+
         // render page
-        return View::make('here.index');
+        return View::make('here.index')->with('list', $list);
     }
 
     /**
@@ -56,7 +59,11 @@ class HereController extends Controller
      */
     public function edit($id)
     {
-        return View::make('here.edit')->with('data', Here::find($id));
+        // get current data
+        $data = Here::usered(User::getInfo()->id)->find($id);
+
+        // render page
+        return View::make('here.edit')->with('data', $data);
     }
 
     /**
@@ -101,8 +108,8 @@ class HereController extends Controller
             'country'     => $details['address_components']['country']['long_name'] ?? '',
             'province'    => $details['address_components']['administrative_area_level_1']['long_name'] ?? '',
             'location'    => $details['name'],
-            'gm_place_id' => $details['place_id'],
-            'state'       => Here::STATE_ENABLE
+            'gm_url'      => $details['url'],
+            'gm_place_id' => $details['place_id']
         ];
         if ($id) {
             Here::where('id', $id)->update($data);
@@ -112,6 +119,21 @@ class HereController extends Controller
 
         // response
         return Response::json(['status' => 'OK']);
+    }
+
+    /**
+     * 删除位置
+     *
+     * @param int $id 
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        // delete
+        $status = Here::find($id)->delete();
+
+        // response
+        return Response::json(['status' => $status ? 'OK' : 'ERROR']);
     }
 
     /**

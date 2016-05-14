@@ -76,11 +76,11 @@ $(function() {
 
         // send request
         $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('action'),
+            type: 'POST',
+            url: '/heres',
             data: params,
             beforeSend: function() {
-                $message.html('<i class="fa fa-spinner fa-spin"></i> 正在保存...');
+                $message.html('<i class="fa fa-spinner fa-spin"></i> 正在保存 ...');
                 $btns.attr('disabled', true);
             },
             success: function(data) {
@@ -88,6 +88,38 @@ $(function() {
                     loadRemoteModal($that);
                 } else {
                     $message.html('保存失败，请刷新重试，或通知 <a href="http://weibo.com/doyoufly" target="_blank"><u>樹袋大熊</u></a>');
+                    $btns.attr('disabled', false);
+                }
+            }
+        });
+        return false;
+    });
+
+    // Delete
+    $('#delete').on('click', function() {
+        // init
+        var $that = $(this);
+        var $form = $('#form');
+        var $btns = $('.modal-footer>button');
+        var $message = $('#message');
+        var id = $form.children('input[name="id"]').val();
+
+        // clean message
+        $message.html('');
+
+        // send request
+        $.ajax({
+            type: 'DELETE',
+            url: '/heres/' + id,
+            beforeSend: function() {
+                $message.html('<i class="fa fa-spinner fa-spin"></i> 正在删除 ...');
+                $btns.attr('disabled', true);
+            },
+            success: function(data) {
+                if ('OK' === data.status) {
+                    loadRemoteModal($that);
+                } else {
+                    $message.html('删除失败，请刷新重试，或通知 <a href="http://weibo.com/doyoufly" target="_blank"><u>樹袋大熊</u></a>');
                     $btns.attr('disabled', false);
                 }
             }

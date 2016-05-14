@@ -132,13 +132,13 @@ CREATE TABLE `heres` (
   `country` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '国家',
   `province` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '省份',
   `location` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '地点',
+  `gm_url` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'GM URL',
   `gm_place_id` varchar(27) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'GM地名ID',
-  `state` tinyint(1) unsigned NOT NULL COMMENT '状态',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `date_state_index` (`date`,`state`)
+  KEY `date` (`date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='打卡表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -212,4 +212,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-14 17:07:39
+-- Dump completed on 2016-05-14 18:41:59

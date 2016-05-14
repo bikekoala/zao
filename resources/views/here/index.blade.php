@@ -3,12 +3,28 @@
     <h4 class="modal-title">打卡列表</h4>
 </div>
 <div class="modal-body">
-    <div class="te">Excitavit hic ardor milites per municipia plurima, quae isdem conterminant, dispositos et castella, sed quisque serpentes latius pro viribus repellere moliens, nunc globis confertos, aliquotiens et dispersos multitudine superabatur ingenti, quae nata et educata inter editos recurvosque ambitus montium eos ut loca plana persultat et mollia, missilibus obvios eminus lacessens et ululatu truci perterrens.</div>
-    <a href="javascript:;" class="load-remote-modal" data-url="/heres/create">新增</a>
-    <a href="javascript:;" class="load-remote-modal" data-url="/heres/1/edit">编辑</a>
-    <a href="javascript:;" class="test">test</a>
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th class="col-md-2">时间</th>
+                <th>地点</th>
+                <th class="col-md-1">编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ($list as $item)
+            <tr>
+                <td>{{ $item->date }}</td>
+                <td><a href="{{ $item->gm_url }}" target="_blank">{!! $item->location !!}</a></td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs load-remote-modal" data-url="/heres/{{ $item->id }}/edit" title="编辑"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>&nbsp;
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary">Save changes</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+    <button type="button" class="btn btn-info load-remote-modal" data-url="/heres/create">添加</button>
 </div>

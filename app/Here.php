@@ -31,17 +31,10 @@ class Here extends Model
         'country',
         'province',
         'location',
+        'gm_url',
         'gm_place_id',
         'state'
     ];
-
-    /**
-     * 状态常量
-     *
-     * @var int
-     */
-    const STATE_ENABLE  = 1;
-    const STATE_DISABLE = 0;
 
     /**
      * Scope a query to only include usered records.
@@ -63,15 +56,5 @@ class Here extends Model
     public function scopeDated($query, $date)
     {
         return $query->where('date', $date);
-    }
-
-    /**
-     * Scope a query to only include enabled records.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeEnabled($query)
-    {
-        return $query->where('state', self::STATE_ENABLE);
     }
 }

@@ -3,7 +3,7 @@
     <h4 class="modal-title">@if (empty($data)) 添加 @else 编辑 @endif</h4>
 </div>
 <div class="modal-body">
-    <form class="form-horizontal" id="form" action="{{ URL('heres') }}" method="POST">
+    <form class="form-horizontal" id="form">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="id" value="{{ $data->id or '' }}">
         <div class="form-group">
@@ -34,6 +34,9 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default load-remote-modal" data-url="/heres" >返回</button>
+    @if ( ! empty($data))
+    <button type="button" class="btn btn-warning" id="delete" data-url="/heres">删除</button>
+    @endif
     <button type="button" class="btn btn-info" id="submit" data-url="/heres">保存</button>
 </div>
 
