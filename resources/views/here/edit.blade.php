@@ -1,15 +1,16 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">添加</h4>
+    <h4 class="modal-title">@if (empty($data)) 添加 @else 编辑 @endif</h4>
 </div>
 <div class="modal-body">
     <form class="form-horizontal" id="form" action="{{ URL('heres') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="id" value="{{ $data->id or '' }}">
         <div class="form-group">
             <label for="date" class="col-sm-2 control-label">时间</label>
             <div class="col-sm-6">
                 <div class="input-group date" id="date">
-                    <input type='datetime' name="date" class="form-control" value="">
+                    <input type='datetime' name="date" class="form-control" value="{{ $data->date or '' }}">
                     <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                     </span>
@@ -19,7 +20,11 @@
         <div class="form-group">
             <label for="location" class="col-sm-2 control-label">地点</label>
             <div class="col-sm-6">
-                <select id="location" name="location" style="width: 100%"></select>
+                <select id="location" name="location" style="width: 100%">
+                    @if ( ! empty($data))
+                    <option value="{{ $data->gm_place_id}}">{{ $data->location }}</option>
+                    @endif
+                </select>
             </div>
         </div>
         <div class="form-group" style="margin-bottom: 0;">

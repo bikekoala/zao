@@ -237,5 +237,5 @@ function loadRemoteModal($ele) {
 loadRemoteModal();
 
 // TODO
-$('.load-remote-modal').attr('data-url', '/heres/create');
+$('.load-remote-modal').attr('data-url', '/heres/1/edit');
 $('.load-remote-modal').trigger('click');
