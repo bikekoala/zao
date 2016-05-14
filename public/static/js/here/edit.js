@@ -49,6 +49,7 @@ $(function() {
         // init
         var $that = $(this);
         var $form = $('#form');
+        var $btns = $('.modal-footer>button');
         var $message = $('#message');
 
         // clean message
@@ -80,12 +81,14 @@ $(function() {
             data: params,
             beforeSend: function() {
                 $message.html('<i class="fa fa-spinner fa-spin"></i> 正在保存...');
+                $btns.attr('disabled', true);
             },
             success: function(data) {
                 if ('OK' === data.status) {
                     loadRemoteModal($that);
                 } else {
                     $message.html('保存失败，请刷新重试，或通知 <a href="http://weibo.com/doyoufly" target="_blank"><u>樹袋大熊</u></a>');
+                    $btns.attr('disabled', false);
                 }
             }
         });

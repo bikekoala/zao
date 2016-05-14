@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Curl\Curl;
 
-use App\User;
+use App\{User, Here};
 use View, Request, Response, Config, Validator;
 
 /**
@@ -45,7 +45,18 @@ class HereController extends Controller
     public function create()
     {
         // render page
-        return Response::view('here.create');
+        return View::make('here.edit');
+    }
+
+    /**
+     * 编辑位置
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        return View::make('here.edit')->with('data', Here::find($id));
     }
 
     /**
@@ -56,6 +67,7 @@ class HereController extends Controller
      */
     public function store(Request $request)
     {
+        // get params & validate
         if ( ! User::isLogin()) {
             return Response::json(['status' => 'Not login']);
         }
@@ -69,14 +81,37 @@ class HereController extends Controller
             return Response::json(['status' => 'Invalid params']);
         }
 
+        $id = $request::get('id');
         $date = $request::get('date');
         $placeId = $request::get('location');
 
-        $details = $this->placeDetails($placeId);
-        if ('OK' !== $details['status']) {
-            return Response::json(['status' => $details['status']]);
+        // request place details
+        $result = $this->placeDetails($placeId);
+        if ('OK' !== $result['status']) {
+            return Response::json(['status' => $result['status']]);
         }
-        print_r($details['result']);
+
+        // save
+        $details = $result['result'];
+        $data = [
+            'user_id'     => User::getCurrent()['user_id'],
+            'date'        => date('Y-m-d', strtotime($date)),
+            'lat'         => $details['geometry']['location']['lat'],
+            'lng'         => $details['geometry']['location']['lng'],
+            'country'     => $details['address_components']['country']['long_name'] ?? '',
+            'province'    => $details['address_components']['administrative_area_level_1']['long_name'] ?? '',
+            'location'    => $details['name'],
+            'gm_place_id' => $details['place_id'],
+            'state'       => Here::STATE_ENABLE
+        ];
+        if ($id) {
+            Here::where('id', $id)->update($data);
+        } else {
+            Here::create($data);
+        }
+
+        // response
+        return Response::json(['status' => 'OK']);
     }
 
     /**
@@ -140,7 +175,12 @@ class HereController extends Controller
         if ($curl->error) {
             return ['status' => $curl->errorMessage];
         } else {
-            return $curl->response;
+            $response = $curl->response;
+            foreach ($response['result']['address_components'] as $i => $item) {
+                $response['result']['address_components'][$item['types'][0]] = $item;
+                unset($response['result']['address_components'][$i]);
+            }
+            return $response;
         }
     }
 }

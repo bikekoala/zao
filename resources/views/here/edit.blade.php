@@ -3,7 +3,7 @@
     <h4 class="modal-title">添加</h4>
 </div>
 <div class="modal-body">
-    <form class="form-horizontal" id="form" action="/heres" method="POST">
+    <form class="form-horizontal" id="form" action="{{ URL('heres') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <label for="date" class="col-sm-2 control-label">时间</label>
@@ -40,4 +40,4 @@
 <script src="/static/module/moment/locale/zh-cn.js"></script>
 <script src="/static/module/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/static/module/select2/js/select2.min.js"></script>
-<script src="/static/js/here/create.js"></script>
+<script src="/static/js/here/edit.js"></script>

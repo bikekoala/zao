@@ -117,22 +117,29 @@ CREATE TABLE `comments` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `notifications`
+-- Table structure for table `heres`
 --
 
-DROP TABLE IF EXISTS `notifications`;
+DROP TABLE IF EXISTS `heres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `notifications` (
+CREATE TABLE `heres` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `message` varchar(1000) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '消息',
+  `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
+  `date` date NOT NULL COMMENT '日期',
+  `lat` decimal(10,6) NOT NULL COMMENT '纬度',
+  `lng` decimal(10,6) NOT NULL COMMENT '经度',
+  `country` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '国家',
+  `province` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '省份',
+  `location` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '地点',
+  `gm_place_id` varchar(27) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'GM地名ID',
   `state` tinyint(1) unsigned NOT NULL COMMENT '状态',
-  `duration_at` datetime NOT NULL COMMENT '过期时间',
   `created_at` datetime NOT NULL COMMENT '创建时间',
-  `updated_at` datetime NOT NULL COMMENT '更新时间',
+  `updated_at` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
-  KEY `state_duration_at` (`state`,`duration_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='通知消息表';
+  KEY `user_id` (`user_id`),
+  KEY `date_state_index` (`date`,`state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='打卡表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,6 +161,25 @@ CREATE TABLE `admins` (
   UNIQUE KEY `admins_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='后台管理员表';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notifications` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `message` varchar(1000) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '消息',
+  `state` tinyint(1) unsigned NOT NULL COMMENT '状态',
+  `duration_at` datetime NOT NULL COMMENT '过期时间',
+  `created_at` datetime NOT NULL COMMENT '创建时间',
+  `updated_at` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `state_duration_at` (`state`,`duration_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='通知消息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -164,4 +190,4 @@ CREATE TABLE `admins` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-18 19:59:55
+-- Dump completed on 2016-05-14 16:14:04
