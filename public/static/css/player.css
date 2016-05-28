@@ -320,6 +320,8 @@
     padding-top: 6px;
     padding-left: 10px;
     color: #fff;
+    background: #999;
+    background: rgba(120, 120, 120, 0.6);
     font-weight: bold;
     display: block;
 }

@@ -40,6 +40,42 @@
         @endif
         @endforeach
     </div>
+    <table class="post-music">
+        <tr class="title">
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Part</th>
+            <th>Start</th>
+            <th>End</th>
+        </tr>
+        <tr class="list">
+            <td>
+                <div class="title-box">
+                    <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
+                    <a href="#" target="_blank">Don't Cry</a>
+                </div>
+            </td>
+            <td><a href="#" target="_blank">Guns N' Roses</a></td>
+            <td><a href="#" target="_blank">Greatest Hits</a></td>
+            <td>第一时段</td>
+            <td>00:30:00</td>
+            <td>00:35:00</td>
+        </tr>
+        <tr class="list">
+            <td>
+                <div class="title-box">
+                    <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
+                    <a href="#" target="_blank">Don't Cry</a>
+                </div>
+            </td>
+            <td><a href="#" target="_blank">Guns N' Roses</a></td>
+            <td><a href="#" target="_blank">Greatest Hits</a></td>
+            <td>第一时段</td>
+            <td>00:30:00</td>
+            <td>00:35:00</td>
+        </tr>
+    </table>
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
             @if ( ! empty($contributers['topic']))

@@ -384,11 +384,48 @@ header nav a:hover {
     zoom: .7;
     width: 100%;
 }
+.post-music {
+    margin-top: 2.5em;
+    width: 100%;
+    border-collapse: collapse;
+}
+.post-music .title {
+    width: 100%;
+    line-height: 2em;
+    text-align: left;
+}
+.post-music .title th {
+    border-bottom: 2px solid #ccc;
+}
+.post-music .list {
+    padding: 1px;
+    font-size: 0.9em;
+}
+.post-music .list td {
+    height: 2em;
+}
+.post-music .list:hover {
+    background-color: #f7f7f7;
+}
+.post-music .list td .title-box {
+    height: 100%;
+    margin-top: 0.15em;
+}
+.post-music .list td .title-box img {
+    float: left;
+    height: 100%;
+}
+.post-music .list td .title-box a {
+    display: table-cell;
+    height: 3em;
+    padding-left: 0.5em;
+    vertical-align: middle;
+}
 .post-contributers {
     display: none;
 }
 .post-near {
-    margin-top: 8em;
+    margin-top: 7em;
     padding: 0;
     line-height: 1.8em;
     list-style: none;
