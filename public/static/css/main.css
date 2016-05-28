@@ -401,21 +401,24 @@ header nav a:hover {
     padding: 1px;
     font-size: 0.9em;
 }
-.post-music .list td {
-    height: 2em;
-}
 .post-music .list:hover {
     background-color: #f7f7f7;
 }
-.post-music .list td .title-box {
+.post-music .list td {
+    height: 2em;
+}
+.post-music .list .title-box {
     height: 100%;
     margin-top: 0.15em;
 }
-.post-music .list td .title-box img {
+.post-music .list .title-box video {
+    display: none;
+}
+.post-music .list .title-box img {
     float: left;
     height: 100%;
 }
-.post-music .list td .title-box a {
+.post-music .list .title-box a {
     display: table-cell;
     height: 3em;
     padding-left: 0.5em;

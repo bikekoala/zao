@@ -49,32 +49,24 @@
             <th>Start</th>
             <th>End</th>
         </tr>
+        @foreach ([1, 2, 3] as $i => $item)
         <tr class="list">
             <td>
                 <div class="title-box">
-                    <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
-                    <a href="#" target="_blank">Don't Cry</a>
+                    <video id="mp-{{ $i }}" preload="none" width="0" height="0">
+                        <source src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" />
+                    </video>
+                    <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图" id="mp-{{ $i }}-btn">
+                    <a target="_blank">Don't Cry</a>
                 </div>
             </td>
-            <td><a href="#" target="_blank">Guns N' Roses</a></td>
-            <td><a href="#" target="_blank">Greatest Hits</a></td>
+            <td><a target="_blank">Guns N' Roses</a></td>
+            <td><a target="_blank">Greatest Hits</a></td>
             <td>第一时段</td>
             <td>00:30:00</td>
             <td>00:35:00</td>
         </tr>
-        <tr class="list">
-            <td>
-                <div class="title-box">
-                    <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
-                    <a href="#" target="_blank">Don't Cry</a>
-                </div>
-            </td>
-            <td><a href="#" target="_blank">Guns N' Roses</a></td>
-            <td><a href="#" target="_blank">Greatest Hits</a></td>
-            <td>第一时段</td>
-            <td>00:30:00</td>
-            <td>00:35:00</td>
-        </tr>
+        @endforeach
     </table>
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))

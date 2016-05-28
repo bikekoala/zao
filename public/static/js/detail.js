@@ -1,9 +1,9 @@
 'use strict';
-$(function(){
-    // audio player
-    $('video').mediaelementplayer({
+$(function() {
+    // init program player
+    $('.post-content video').mediaelementplayer({
         isVideo: false,
-		enableKeyboard: false,
+        enableKeyboard: false,
         alwaysShowControls: true,
         alwaysShowHours: true,
         videoVolume:'horizontal',
@@ -14,6 +14,22 @@ $(function(){
         },
         defaultSeekForwardInterval: function(media) {
             return (media.duration * 0.02);
+        }
+    });
+
+    // init music player
+    $('.post-music video').mediaelementplayer({
+        isVideo: false,
+        flashName: '/static/module/mediaelement/flashmediaelement.swf',
+        features: [],
+        success: function (me, dom) {
+            $('#' + dom.id + '-btn').click(function() {
+                if (me.paused) {
+                    me.play();
+                } else {
+                    me.pause();
+                }
+            });
         }
     });
 
