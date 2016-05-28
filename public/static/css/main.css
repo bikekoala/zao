@@ -382,7 +382,7 @@ header nav a:hover {
 }
 .post-content audio {
     zoom: .7;
-    width: 85%;
+    width: 100%;
 }
 .post-contributers {
     display: none;
