@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>{{ $title or '早' }} - 飞鱼秀非官方回放</title>
         <meta name="keywords" content="早嗷嗷嗷嗷 飞鱼秀 回放 下载 小飞 喻舟" />
-        <meta name="description" content="{{ $description or '亲爱的飞鱼人，这里可以在线收听自2004年飞鱼秀开播以来的几乎所有的节目回放喔~' }}" />
+        <meta name="description" content="{{ $description or '亲爱的飞鱼人，这里可以在线收听自 2004 年飞鱼秀开播以来的几乎所有的节目回放喔~' }}" />
         <link type="text/plain" rel="author" href="/humans.txt" />
         <link rel="stylesheet" href="/static/??module/tipsy/tipsy.css,module/AmaranJS/css/amaran.min.css,css/font-awesome.min.css,css/main.css,css/amaran.css?v={{ env('STATIC_FILE_VERSION') }}">
         <script src="/static/??module/jquery-2.1.4.min.js,module/tipsy/jquery.tipsy.js,module/js-emoji/js/emoji.min.js,module/jquery.cookie.js,module/AmaranJS/js/jquery.amaran.min.js,js/common.js,js/base.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
@@ -27,7 +27,7 @@
                 </form>
                 <nav>
                     <a href="/"><i class="fa fa-home" original-title="首页"></i></a>
-                    <a href="/programs/apptoday"><i class="fa fa-calendar-check-o" original-title="APP同期节目"></i></a>
+                    <a href="/programs/apptoday"><i class="fa fa-calendar-check-o" original-title="APP 同期节目"></i></a>
                     <a href="/about"><i class="fa fa-about" original-title="关于"> </i></a>
                 </nav>
             </div>

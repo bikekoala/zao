@@ -2,8 +2,8 @@
 
 @section('content')
 <article itemtype="http://schema.org/Article" data-date="{{ $program->dates->id }}">
-    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a @if ($contributers['topic']['url']) href='{{ $contributers['topic']['url'] }}' target='_blank' @else href='#' @endif>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶 话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif @if ($program->dates->id == $appdate)（APP同期节目）@endif</h1>
-    <ul class="post-meta" original-title="@if ($contributers['participants'])by <a @if ($contributers['participants']['url']) href='{{ $contributers['participants']['url'] }}' target='_blank' @else href='#' @endif>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
+    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a @if ($contributers['topic']['url']) href='{{ $contributers['topic']['url'] }}' rel='nofollow' target='_blank' @else href='#' @endif>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶 话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif @if ($program->dates->id == $appdate)（APP同期节目）@endif</h1>
+    <ul class="post-meta" original-title="@if ($contributers['participants'])by <a @if ($contributers['participants']['url']) href='{{ $contributers['participants']['url'] }}' rel='nofollow' target='_blank' @else href='#' @endif>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
         <li>{{ str_replace('-', '.', $program->date) }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
         @if ( ! $program->participants->isEmpty())
@@ -25,7 +25,7 @@
         <p>
             {{ $audio->title }}
             @if ($audio->download_url)
-            <a href="{{ $audio->download_url }}" target="_blank">（下载）</a>
+            <a href="{{ $audio->download_url }}" rel="nofollow" target="_blank">（下载）</a>
             @endif
         </p>
         @if (Agent::isAndroidOS() or Agent::isIOS())
@@ -43,10 +43,10 @@
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
             @if ( ! empty($contributers['topic']))
-                ( 话题 by <a href="{{ $contributers['topic']['url'] }}" target="_blank">{{ $contributers['topic']['name'] }}</a> )
+                ( 话题 by <a href="{{ $contributers['topic']['url'] }}" rel="nofollow" target="_blank">{{ $contributers['topic']['name'] }}</a> )
             @endif
             @if ( ! empty($contributers['participants']))
-                ( 参与人 by <a href="{{ $contributers['participants']['url'] }}" target="_blank">{{ $contributers['participants']['name'] }}</a> )
+                ( 参与人 by <a href="{{ $contributers['participants']['url'] }}" rel="nofollow" target="_blank">{{ $contributers['participants']['name'] }}</a> )
             @endif
         @else
             @if (empty($program->topic) or $program->participants->isEmpty())
