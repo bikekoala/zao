@@ -2,8 +2,8 @@
 
 @section('content')
 <article itemtype="http://schema.org/Article" data-date="{{ $program->dates->id }}">
-    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a @if ($contributers['topic']['url']) href='{{ $contributers['topic']['url'] }}' rel='nofollow' target='_blank' @else href='#' @endif>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶 话题 🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif @if ($program->dates->id == $appdate)（APP同期节目）@endif</h1>
-    <ul class="post-meta" original-title="@if ($contributers['participants'])by <a @if ($contributers['participants']['url']) href='{{ $contributers['participants']['url'] }}' rel='nofollow' target='_blank' @else href='#' @endif>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰参与人|参与人 🐰 @endif @endif">
+    <h1 class="post-title" original-title="@if ($contributers['topic'])by <a @if ($contributers['topic']['url']) href='{{ $contributers['topic']['url'] }}' rel='nofollow' target='_blank' @else href='#' @endif>{{ $contributers['topic']['name'] }}</a>@else @if (empty($program->topic)) 🐶 话题🐶 @endif @endif">@if ($program->topic) {{ $program->topic }} @else 空 @endif @if ($program->dates->id == $appdate)（APP同期节目）@endif</h1>
+    <ul class="post-meta" original-title="@if ($contributers['participants'])by <a @if ($contributers['participants']['url']) href='{{ $contributers['participants']['url'] }}' rel='nofollow' target='_blank' @else href='#' @endif>{{ $contributers['participants']['name'] }}</a>@else @if (empty($program->participants->toArray())) 🐰 参与人 | 参与人🐰 @endif @endif">
         <li>{{ str_replace('-', '.', $program->date) }}</li>
         <li>周{{ $program->dates->dayNum}}</li>
         @if ( ! $program->participants->isEmpty())
@@ -34,7 +34,7 @@
             Your browser does not support the audio element.
         </audio>
         @else
-        <video width="85%" height="30" controls="controls" preload="none">
+        <video width="100%" height="30" controls="controls" preload="none">
             <source src="{{ $audio->url }}" />
         </video>
         @endif
