@@ -18,15 +18,38 @@ $(function() {
     });
 
     // init music player
+    $('.post-music .row').hover(function() {
+        var $that = $(this);
+        if ($that.find('.pause').is(':hidden')) {
+            $that.find('.mask').removeClass('hide');
+            $that.find('.play').removeClass('hide');
+        }
+    }, function() {
+        var $that = $(this);
+        $that.find('.mask').addClass('hide');
+        $that.find('.play').addClass('hide');
+    });
     $('.post-music video').mediaelementplayer({
         isVideo: false,
         flashName: '/static/module/mediaelement/flashmediaelement.swf',
         features: [],
         success: function (me, dom) {
-            $('#' + dom.id + '-btn').click(function() {
+            var $cover = $('#' + dom.id + '-cover');
+            var $row = $cover.parent().parent().parent();
+            var $play = $cover.children('.play');
+            var $pause = $cover.children('.pause');
+            $cover.click(function() {
                 if (me.paused) {
+                    $('.post-music .pause').addClass('hide');
+                    $('.post-music .row').removeClass('row-bg');
+                    $play.addClass('hide');
+                    $pause.removeClass('hide');
+                    $row.addClass('row-bg');
                     me.play();
                 } else {
+                    $pause.addClass('hide');
+                    $play.removeClass('hide');
+                    $row.removeClass('row-bg');
                     me.pause();
                 }
             });

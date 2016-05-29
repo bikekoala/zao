@@ -76,6 +76,9 @@ img.emoji {
 .tipsy .tipsy-inner a {
     text-decoration: underline;
 }
+.hide {
+    display: none;
+}
 
 header {
     zoom: 1;
@@ -384,6 +387,19 @@ header nav a:hover {
     zoom: .7;
     width: 100%;
 }
+.post-contributers {
+    display: none;
+}
+.post-near {
+    margin-top: 7em;
+    padding: 0;
+    line-height: 1.8em;
+    list-style: none;
+    font-size:  0.9em;
+    color: #999;
+}
+
+/* post music player */
 .post-music {
     margin-top: 2.5em;
     width: 100%;
@@ -397,43 +413,81 @@ header nav a:hover {
 .post-music .title th {
     border-bottom: 2px solid #ccc;
 }
-.post-music .list {
+.post-music .row {
     padding: 1px;
     font-size: 0.9em;
 }
-.post-music .list:hover {
+.post-music .row:hover {
     background-color: #f7f7f7;
 }
-.post-music .list td {
+.post-music .row td {
     height: 2em;
 }
-.post-music .list .title-box {
+.post-music .row-bg {
+    background: url('../../static/img/music_row_bg.gif') repeat;
+}
+.post-music .title-box {
     height: 100%;
     margin-top: 0.15em;
 }
-.post-music .list .title-box video {
-    display: none;
-}
-.post-music .list .title-box img {
-    float: left;
-    height: 100%;
-}
-.post-music .list .title-box a {
+.post-music .title-box a {
     display: table-cell;
     height: 3em;
     padding-left: 0.5em;
     vertical-align: middle;
 }
-.post-contributers {
+.post-music video {
     display: none;
 }
-.post-near {
-    margin-top: 7em;
-    padding: 0;
-    line-height: 1.8em;
-    list-style: none;
-    font-size:  0.9em;
-    color: #999;
+.post-music .cover {
+    position: relative;
+    float: left;
+    height: 100%;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.post-music .cover img {
+    height: 100%;
+    border-bottom-left-radius: 1px;
+    border-top-left-radius: 2px;
+}
+.post-music .cover .mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.13;
+    filter: alpha(opacity=13);
+}
+.post-music .cover .btn-bg {
+    background: url(../../static/img/music_sprite.png) no-repeat 0 9999px;
+}
+.post-music .cover .play-bg {
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    width: 26px;
+    height: 26px;
+    background-position: -19px -5px;
+}
+.post-music .cover .play-bg:hover {
+    background-position: -46px -5px;
+}
+.post-music .cover .pause-bg {
+    position: absolute;
+    left: 28px;
+    top: 28px;
+    width: 18px;
+    height: 18px;
+    background-position: -1px -1px;
+}
+.post-music .cover .pause-bg:hover {
+    background-position: -1px -19px;
 }
 
 /* about */

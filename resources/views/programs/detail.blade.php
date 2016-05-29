@@ -49,14 +49,19 @@
             <th>Start</th>
             <th>End</th>
         </tr>
-        @foreach ([1, 2, 3] as $i => $item)
-        <tr class="list">
+        @foreach ([1, 2, 3, 4, 5] as $i => $item)
+        <tr class="row">
             <td>
                 <div class="title-box">
                     <video id="mp-{{ $i }}" preload="none" width="0" height="0">
                         <source src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" />
                     </video>
-                    <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图" id="mp-{{ $i }}-btn">
+                    <div class="cover"  id="mp-{{ $i }}-cover">
+                        <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
+                        <div class="mask hide"></div>
+                        <div class="play btn-bg play-bg hide" data-action="play"></div>
+                        <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
+                    </div>
                     <a target="_blank">Don't Cry</a>
                 </div>
             </td>
