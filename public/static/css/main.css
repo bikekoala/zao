@@ -404,6 +404,7 @@ header nav a:hover {
     position: relative;
     margin-top: 2.5em;
     width: 100%;
+    zoom: 1;
 }
 .post-music table {
     width: 100%;
@@ -436,7 +437,7 @@ header nav a:hover {
 }
 .post-music .title-box a {
     display: table-cell;
-    height: 3em;
+    height: 43px;
     padding-left: 0.5em;
     vertical-align: middle;
 }
@@ -639,5 +640,16 @@ header nav a:hover {
     }
     .post-near {
         font-size: 1em;
+    }
+    .post-music .title-box a {
+        height: 30px;
+    }
+    .post-music .cover .play-bg {
+        left: 3px;
+        top: 3px;
+    }
+    .post-music .cover .pause-bg {
+        left: 14px;
+        top: 14px;
     }
 }
