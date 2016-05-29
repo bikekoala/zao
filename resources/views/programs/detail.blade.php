@@ -40,6 +40,7 @@
         @endif
         @endforeach
     </div>
+    @if (isset($_GET['test']))
     <div class="post-music">
         <table class="list">
             <tr class="title">
@@ -84,6 +85,7 @@
         <a href="http://www.acrcloud.cn/" rel="nofollow" target="_blank" class="logo"><img src="/static/img/acrcloud-logo.png" title="Recognized by ACRCloud"></a>
         @endif
     </div>
+    @endif
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
             @if ( ! empty($contributers['topic']))
