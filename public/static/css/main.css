@@ -401,7 +401,11 @@ header nav a:hover {
 
 /* post music player */
 .post-music {
+    position: relative;
     margin-top: 2.5em;
+    width: 100%;
+}
+.post-music table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -488,6 +492,27 @@ header nav a:hover {
 }
 .post-music .cover .pause-bg:hover {
     background-position: -1px -19px;
+}
+.post-music .logo {
+    position: absolute;
+    bottom: 11px;
+    right: -19px;
+}
+.post-music .logo img {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;
+}
+.post-music .logo img:hover {
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    filter: grayscale(0%);
+    filter: none;
 }
 
 /* about */

@@ -28,7 +28,7 @@
             <a href="{{ $audio->download_url }}" rel="nofollow" target="_blank">（下载）</a>
             @endif
         </p>
-        @if (Agent::isAndroidOS() or Agent::isIOS())
+        @if (Agent::isMobile())
         <audio controls="controls" preload="none">
             <source src="{{ $audio->url }}" type="audio/mpeg"/>
             Your browser does not support the audio element.
@@ -40,39 +40,44 @@
         @endif
         @endforeach
     </div>
-    <table class="post-music">
-        <tr class="title">
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Album</th>
-            <th>Part</th>
-            <th>Start</th>
-            <th>End</th>
-        </tr>
-        @foreach ([1, 2, 3, 4, 5] as $i => $item)
-        <tr class="row">
-            <td>
-                <div class="title-box">
-                    <video id="mp-{{ $i }}" preload="none" width="0" height="0">
-                        <source src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" />
-                    </video>
-                    <div class="cover"  id="mp-{{ $i }}-cover">
-                        <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
-                        <div class="mask hide"></div>
-                        <div class="play btn-bg play-bg hide" data-action="play"></div>
-                        <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
+    <div class="post-music">
+        <table class="list">
+            <tr class="title">
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Part</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+            @foreach ([1, 2, 3, 4, 5] as $i => $item)
+            <tr class="row">
+                <td>
+                    <div class="title-box">
+                        <video id="mp-{{ $i }}" preload="none" width="0" height="0">
+                            <source src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" />
+                        </video>
+                        <div class="cover"  id="mp-{{ $i }}-cover">
+                            <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
+                            <div class="mask hide"></div>
+                            <div class="play btn-bg play-bg hide" data-action="play"></div>
+                            <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
+                        </div>
+                        <a target="_blank">Don't Cry</a>
                     </div>
-                    <a target="_blank">Don't Cry</a>
-                </div>
-            </td>
-            <td><a target="_blank">Guns N' Roses</a></td>
-            <td><a target="_blank">Greatest Hits</a></td>
-            <td>第一时段</td>
-            <td>00:30:00</td>
-            <td>00:35:00</td>
-        </tr>
-        @endforeach
-    </table>
+                </td>
+                <td><a target="_blank">Guns N' Roses</a></td>
+                <td><a target="_blank">Greatest Hits</a></td>
+                <td>第一时段</td>
+                <td>00:30:00</td>
+                <td>00:35:00</td>
+            </tr>
+            @endforeach
+        </table>
+        @if ( ! Agent::isMobile())
+        <a href="http://www.acrcloud.cn/" rel="nofollow" target="_blank" class="logo"><img src="/static/img/acrcloud-logo.png" title="Recognized by ACRCloud"></a>
+        @endif
+    </div>
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
             @if ( ! empty($contributers['topic']))

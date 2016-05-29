@@ -313,6 +313,10 @@
 
 /* Start: Error */
 .me-cannotplay {
+    display: none;
+}
+/*
+.me-cannotplay {
     width: 100% !important;
 }
 
@@ -325,7 +329,7 @@
     font-weight: bold;
     display: block;
 }
-
 .me-cannotplay span {
 }
+*/
 /* End: Error */
