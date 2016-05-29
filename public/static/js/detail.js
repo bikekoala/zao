@@ -63,7 +63,7 @@ $(function() {
             gravity: 'e',
             html: true,
             delayOut: 5000,
-            opacity: 0.6,
+            opacity: 0.5,
             offset: 10
         });
 
