@@ -41,12 +41,12 @@
     <div class="post-music">
         <table class="list">
             <tr class="title">
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Album</th>
-                <th>Part</th>
-                <th>Start</th>
-                <th>End</th>
+                <th>歌曲</th>
+                <th>歌手</th>
+                <th>专辑</th>
+                <th>时段</th>
+                <th>开始</th>
+                <th>结束</th>
             </tr>
             @foreach ([1, 2, 3, 4, 5] as $i => $item)
             <tr class="row">
@@ -65,7 +65,7 @@
                             <div class="play btn-bg play-bg hide" data-action="play"></div>
                             <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
                         </div>
-                        <a href="{{ URL('music/title/1') }}" target="_blank">Don't Cry</a>
+                        <a href="{{ URL('music/1') }}" target="_blank">Don't Cry</a>
                     </div>
                 </td>
                 <td>
@@ -73,9 +73,9 @@
                     <a target="_blank">Other</a>
                 </td>
                 <td><a target="_blank">Greatest Hits</a></td>
-                <td>第一时段</td>
-                <td>00:30:00</td>
-                <td>00:35:00</td>
+                <td>一</td>
+                <td>30:00</td>
+                <td>35:00</td>
             </tr>
             @endforeach
         </table>

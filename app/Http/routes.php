@@ -24,6 +24,10 @@ Route::get('programs/apptoday', 'ProgramsController@apptoday');
 Route::get('programs/{date}', 'ProgramsController@detail');
 Route::get('programs/{date}/pv', 'ProgramsController@getPvCounts');
 
+// 音乐页
+Route::get('music/{id}', 'MusicController@titlePage');
+Route::get('music/artist/{id}', 'MusicController@artistPage');
+
 // 关于页
 Route::get('about', 'AboutController@index');
 
