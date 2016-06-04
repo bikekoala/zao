@@ -26,8 +26,8 @@ a {
     text-decoration: none;
     color: #222;
 }
-a:hover,a:active {
-    text-decoration: none;
+a:hover, a:active {
+    text-decoration: underline;
     opacity: .8;
 }
 blockquote {
@@ -243,6 +243,9 @@ header nav a:hover {
     width: 3px;
     content: "";
     background-color: rgba(0,0,0,.05);
+}
+.archive a {
+    text-decoration: none;
 }
 .archive ul li em {
     font-size: 0.9em;

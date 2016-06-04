@@ -25,7 +25,7 @@
         <p>
             {{ $audio->title }}
             @if ($audio->download_url)
-            <a href="{{ $audio->download_url }}" rel="nofollow" target="_blank">（下载）</a>
+            （<a href="{{ $audio->download_url }}" rel="nofollow" target="_blank">下载</a>）
             @endif
         </p>
         @if (Agent::isMobile())
@@ -65,10 +65,13 @@
                             <div class="play btn-bg play-bg hide" data-action="play"></div>
                             <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
                         </div>
-                        <a target="_blank">Don't Cry</a>
+                        <a href="{{ URL('music/title/1') }}" target="_blank">Don't Cry</a>
                     </div>
                 </td>
-                <td><a target="_blank">Guns N' Roses</a></td>
+                <td>
+                    <a href="{{ URL('music/artist/1') }}" target="_blank">Guns N' Roses</a>
+                    <a target="_blank">Other</a>
+                </td>
                 <td><a target="_blank">Greatest Hits</a></td>
                 <td>第一时段</td>
                 <td>00:30:00</td>
