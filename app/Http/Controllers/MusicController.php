@@ -20,7 +20,7 @@ class MusicController extends Controller
      */
     public function titlePage($id)
     {
-        return View::make('music.title')
+        return View::make('music.song')
             ->with('title', '500 Miles - The Innocence Mission');
     }
 
@@ -32,5 +32,7 @@ class MusicController extends Controller
      */
     public function artistPage($id)
     {
+        return View::make('music.artist')
+            ->with('title', 'The Innocence Mission');
     }
 }

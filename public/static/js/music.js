@@ -2,7 +2,7 @@ option = {
     tooltip: {},
     grid: {
         top: '2%',
-        right: '0',
+        right: '2%',
         bottom: '0',
         left: '0',
         containLabel: true
