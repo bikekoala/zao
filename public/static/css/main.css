@@ -383,10 +383,6 @@ header nav a:hover {
 .post-content video {
     display: none;
 }
-.post-content audio {
-    zoom: .7;
-    width: 100%;
-}
 .post-contributers {
     display: none;
 }
@@ -628,6 +624,10 @@ header nav a:hover {
         margin-top: 1.4em;
         line-height: 1.5em;
     }
+    .post-content audio {
+        zoom: .7;
+        width: 100%;
+    }
     .post-contributers {
         display: block;
         margin-top: 2em;
@@ -640,6 +640,9 @@ header nav a:hover {
     }
     .post-near {
         font-size: 1em;
+    }
+    .post-music audio {
+        display: none;
     }
     .post-music .title-box a {
         height: 30px;

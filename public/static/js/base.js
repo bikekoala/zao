@@ -4,7 +4,7 @@ $(function(){
     if ( ! utils.isMobileClient()) {
         $('nav a i').tipsy({
             gravity: 'n',
-            opacity: 0.6,
+            opacity: 0.5,
             offset: 3
         });
     }

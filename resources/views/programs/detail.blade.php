@@ -29,10 +29,7 @@
             @endif
         </p>
         @if (Agent::isMobile())
-        <audio controls="controls" preload="none">
-            <source src="{{ $audio->url }}" type="audio/mpeg"/>
-            Your browser does not support the audio element.
-        </audio>
+        <audio controls preload src="{{ $audio->url }}" type="audio/mpeg"></audio>
         @else
         <video width="100%" height="30" controls="controls" preload="none">
             <source src="{{ $audio->url }}" />
@@ -56,9 +53,7 @@
                 <td>
                     <div class="title-box">
                         @if (Agent::isMobile())
-                        <audio id="mp-{{ $i }}" preload="none" width="0" height="0">
-                            <source src="{{ $audio->url }}" type="audio/mpeg"/>
-                        </audio>
+                        <audio controls preload src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" type="audio/mpeg"></audio>
                         @else
                         <video id="mp-{{ $i }}" preload="none" width="0" height="0">
                             <source src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" />
@@ -82,7 +77,7 @@
             @endforeach
         </table>
         @if ( ! Agent::isMobile())
-        <a href="http://www.acrcloud.cn/" rel="nofollow" target="_blank" class="logo"><img src="/static/img/acrcloud-logo.png" title="Recognized by ACRCloud"></a>
+        <a href="http://www.acrcloud.cn/" rel="nofollow" target="_blank" class="logo"><img src="/static/img/acrcloud-logo.png" title="音乐识别由 ACRCloud 提供"></a>
         @endif
     </div>
     @endif
