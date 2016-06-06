@@ -12,7 +12,7 @@ use View, Config, Cache, Request, Response, Redirect;
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-11
  */
-class ProgramsController extends Controller
+class ProgramController extends Controller
 { 
 
     /**
@@ -37,7 +37,7 @@ class ProgramsController extends Controller
         }
 
         // render page
-        return View::make('programs.index.frame')->with('archive', $archive);
+        return View::make('program.index.frame')->with('archive', $archive);
     }
 
     /**
@@ -48,7 +48,7 @@ class ProgramsController extends Controller
     public function apptoday()
     {
         return Redirect::to(sprintf(
-            '/programs/%s?from=apptoday',
+            '/program/%s?from=apptoday',
             $this->getAppProgramDate()
         ));
     }
@@ -83,7 +83,7 @@ class ProgramsController extends Controller
         );
 
         // render page
-        return View::make('programs.detail')
+        return View::make('program.detail')
             ->with('appdate', $this->getAppProgramDate())
             ->with('program', $program)
             ->with('audios', $audios)
@@ -144,7 +144,7 @@ class ProgramsController extends Controller
         }
 
         // render page
-        return (string) View::make('programs.index.archive')->with('list', $list);
+        return (string) View::make('program.index.archive')->with('list', $list);
     }
 
     /**

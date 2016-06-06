@@ -5,7 +5,7 @@
 <ul>
     @foreach ($monthList as $program)
     <li id="{{ $program->dates->id }}">
-        <a href="/programs/{{ $program->dates->id }}"><span>[{{ $program->dates->day }} . {{ $program->dates->dayNum }}]</span>@if ($program->topic) {{ $program->topic }} @else 🐶🐶🐶🐶  @endif</a>
+        <a href="/program/{{ $program->dates->id }}"><span>[{{ $program->dates->day }} . {{ $program->dates->dayNum }}]</span>@if ($program->topic) {{ $program->topic }} @else 🐶🐶🐶🐶  @endif</a>
         @if ( ! $program->participants->isEmpty())
         <em>(@foreach ($program->participants as $participant) <a>{{ $participant->name }}</a> @endforeach)</em>
         @else

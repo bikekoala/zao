@@ -119,7 +119,7 @@ $(function() {
     $.cookie('program_date', date, {expires: 365, path: '/'});
 
     // load page view counts
-    var url = '/programs/' + date + '/pv';
+    var url = '/program/' + date + '/pv';
     $.getJSON(url, function(data) {
         $('#post-view-counts').text(data.total);
     });

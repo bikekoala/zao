@@ -25,8 +25,8 @@
     </tr>
     @foreach ([1, 2, 3, 4, 5, 6, 7, 8] as $i => $item)
     <tr class="row">
-        <td><a href="{{ URL('programs/20160201/?test') }}">2010-10-10</a></td>
-        <td><a href="{{ URL('programs/20160201/?test') }}">国庆总结</a></td>
+        <td><a href="{{ URL('program/20160201/?test') }}">2010-10-10</a></td>
+        <td><a href="{{ URL('program/20160201/?test') }}">国庆总结</a></td>
         <td>完整</td>
         <td>30:00</td>
         <td>35:00</td>

@@ -7,7 +7,7 @@
     </ul>
 </p>
 <p>
-    <b>节目：</b><a href="http://zaoaoaoaoao.com/programs/{{ $meta['thread_key'] }}" target="_blank">http://zaoaoaoaoao.com/programs/{{ $meta['thread_key'] }}</a>
+    <b>节目：</b><a href="http://zaoaoaoaoao.com/program/{{ $meta['thread_key'] }}" target="_blank">http://zaoaoaoaoao.com/program/{{ $meta['thread_key'] }}</a>
     <br>
     <b>审核：</b><a href="http://zaoaoaoaoao.com/admin/contributions/{{ $id }}/edit" target="_blank">http://zaoaoaoaoao.com/admin/contributions/{{ $id }}/edit</a>
 </p>

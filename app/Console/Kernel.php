@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Program\Update::class,
         Audio\Download::class,
         Audio\Convert::class,
+        Music\Import::class,
         Tool\UpdateBingCover::class,
         Tool\SyncAppProgram::class,
     ];

@@ -11,7 +11,7 @@
 */
 
 // 首页
-Route::get('/', 'ProgramsController@index');
+Route::get('/', 'ProgramController@index');
 
 // 打卡页
 Route::resource('heres', 'HereController');
@@ -20,9 +20,9 @@ Route::get('here/placeAutocomplete', 'HereController@placeAutocomplete');
 Route::get('here/placeDetails', 'HereController@placeDetails');
 
 // 节目页
-Route::get('programs/apptoday', 'ProgramsController@apptoday');
-Route::get('programs/{date}', 'ProgramsController@detail');
-Route::get('programs/{date}/pv', 'ProgramsController@getPvCounts');
+Route::get('program/apptoday', 'ProgramController@apptoday');
+Route::get('program/{date}', 'ProgramController@detail');
+Route::get('program/{date}/pv', 'ProgramController@getPvCounts');
 
 // 音乐页
 Route::get('music/{id}', 'MusicController@titlePage');
