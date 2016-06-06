@@ -21,7 +21,7 @@
                 @foreach ($list as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td><a href="/program/{{ $item->metas->thread_key }}" target="_blank">{{ $item->ext_program_date}}</a></td>
+                        <td><a href="{{ URL('program') }}/{{ $item->metas->thread_key }}" target="_blank">{{ $item->ext_program_date}}</a></td>
                         <td><a href="{{ $item->metas->author_url }}" target="_blank"> {{ $item->metas->author_name }}</a></td>
                         <td>{!! $item->metas->message !!}</td>
                         <td>{{ $item->date }}</td>
@@ -30,7 +30,7 @@
                         @endif
                         @if (0 === $item->ext_is_agree)
                             <td class="text-muted">
-                                <a href="/admin/contributions/{{ $item->id }}/edit" role="button" class="btn btn-info btn-xs">审核</a>
+                                <a href="{{ URL('admin/contributions') }}/{{ $item->id }}/edit" role="button" class="btn btn-info btn-xs">审核</a>
                             </td>
                         @endif
                         @if (1 === $item->ext_is_agree)

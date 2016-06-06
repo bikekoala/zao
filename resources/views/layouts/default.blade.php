@@ -26,9 +26,9 @@
                     <input type="search" name="s" value="{{ $_GET['s'] or '' }}" placeholder="" autocomplete="off">
                 </form>
                 <nav>
-                    <a href="/"><i class="fa fa-home" original-title="首页"></i></a>
-                    <a href="/program/apptoday"><i class="fa fa-calendar-check-o" original-title="APP 同期节目"></i></a>
-                    <a href="/about"><i class="fa fa-about" original-title="关于"> </i></a>
+                    <a href="{{ URL('/') }}"><i class="fa fa-home" original-title="首页"></i></a>
+                    <a href="{{ URL('program/apptoday') }}"><i class="fa fa-calendar-check-o" original-title="APP 同期节目"></i></a>
+                    <a href="{{ URL('about') }}"><i class="fa fa-about" original-title="关于"> </i></a>
                 </nav>
             </div>
         </header>
@@ -38,7 +38,7 @@
             @yield('content')
 
             <footer id="footer">
-                © 2016 <a href="/">Zao~ao~ao~ao~ao.com</a> @yield('author')
+                © 2016 <a href="{{ URL('/') }}">Zao~ao~ao~ao~ao.com</a> @yield('author')
             </footer>
         </div>
 

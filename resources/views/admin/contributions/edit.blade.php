@@ -30,7 +30,7 @@
                     <label class="col-sm-2 control-label">当前话题</label>
                     <div class="col-sm-8">
                         <p class="form-control-static">
-                            <a href="/program/{{ $program->dates->id }}" target="_blank">@if ($program->topic) {{ $program->topic}} @else 空 @endif</a>
+                            <a href="{{ URL('program') }}/{{ $program->dates->id }}" target="_blank">@if ($program->topic) {{ $program->topic}} @else 空 @endif</a>
                         </p>
                     </div>
                 </div>

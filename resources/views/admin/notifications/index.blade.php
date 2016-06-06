@@ -35,7 +35,7 @@
                             <td>已关闭</td>
                         @endif
                         <td class="text-muted">
-                            <a href="/admin/notifications/{{ $item->id }}/edit" role="button" class="btn btn-info btn-xs">编辑</a>
+                            <a href="{{ URL('admin/notifications') }}/{{ $item->id }}/edit" role="button" class="btn btn-info btn-xs">编辑</a>
                         </td>
                     </tr>
                 @endforeach

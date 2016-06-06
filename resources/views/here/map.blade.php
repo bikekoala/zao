@@ -27,14 +27,14 @@
                     @if (empty($user))
                     <li><a id="login" data-toggle="modal" data-target="#login-modal">登录</a></li>
                     @else
-                    <li><a class="load-remote-modal" data-url="/heres">签到</a></li>
+                    <li><a class="load-remote-modal" data-url="{{ URL('heres') }}">签到</a></li>
                     <li><a>自己</a></li>
                     @endif
                     <li role="separator" class="divider"></li>
                     @if ( ! empty($user))
-                    <li><a href="/duoshuo/logout?callback=/here">登出</a></li>
+                    <li><a href="{{ URL('duoshuo/logout') }}?callback={{ URL('here') }}">登出</a></li>
                     @endif
-                    <li><a href="/">首页</a></li>
+                    <li><a href="{{ URL('/') }}">首页</a></li>
                 </ul>
             </div>
         </div>

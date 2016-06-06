@@ -94,16 +94,16 @@
             @endif
         @else
             @if (empty($program->topic) or $program->participants->isEmpty())
-                ( 了解参与贡献内容的<a href="http://zaoaoaoaoao.com/about#contribute">方式</a> )
+                ( 了解参与贡献内容的<a href="{{ URL('about') }}#contribute">方式</a> )
             @endif
         @endif
     </span>
     <ul class="post-near">
         @if ($pages->prev)
-        <li class="prev">前一天: <a href="/program/{{ $pages->prev->dates->id }}">@if ($pages->prev->topic) {{ $pages->prev->topic }} @else 空 @endif</a></li>
+        <li class="prev">前一天: <a href="{{ URL('program') }}/{{ $pages->prev->dates->id }}">@if ($pages->prev->topic) {{ $pages->prev->topic }} @else 空 @endif</a></li>
         @endif
         @if ($pages->next)
-        <li class="next">后一天: <a href="/program/{{ $pages->next->dates->id }}">@if ($pages->next->topic) {{ $pages->next->topic }} @else 空 @endif</a></li>
+        <li class="next">后一天: <a href="{{ URL('program') }}/{{ $pages->next->dates->id }}">@if ($pages->next->topic) {{ $pages->next->topic }} @else 空 @endif</a></li>
         @endif
     </ul>
 </article>
