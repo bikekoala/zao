@@ -24,7 +24,7 @@ class Import extends Command
      *
      * @var string
      */
-    protected $description = '导入音乐命令（from excel）';
+    protected $description = '导入音乐命令（from txt）';
 
     /**
      * Create a new command instance.
@@ -54,59 +54,60 @@ class Import extends Command
         if ($handle) {
             while (false !== ($buffer = fgets($handle))) {
                 list($path, $result) = explode("\t", $buffer);
-                $result = json_decode($result, true);
-                if ( ! empty($result)) {
-                    $info = isset($result['metadata']['music'][0]) ?
-                        $result['metadata']['music'][0] : 
-                        $result['metadata']['music'];
-                    print_r($info);
-                    exit;
-
-                    // Insert
-                    $this->insertMusics($info);
-
-                    // Output
-                    //$this->info(sprintf("%s\t%s", $data['date'], $topic));
+                $info = json_decode($result, true);
+                if ( ! empty($info)) {
+                    $info = isset($info['metadata']['music'][0]) ?
+                        $info['metadata']['music'][0] : 
+                        $info['metadata']['music'];
                 }
+
+                // Insert
+                $status = $this->insertMusics($path, $info);
+
+                // Output
+                $status and $this->info(sprintf("%s\t%s", $path, $info['title'] ?? ''));
             }
             if ( ! feof($handle)) {
                 return $this->error("Error: unexpected fgets() fail.");
             }
             fclose($handle);
+
+            $this->info('done.');
         }
     }
 
     /**
      * 插入音乐记录
      *
+     * @param string $path
      * @param array $info
-     * @return void
+     * @return bool
      */
-    protected static function insertMusics(array $info)
+    protected static function insertMusics($path, $info)
     {
-        foreach ($group as $data) {
-            $list = ['qiniu' => $data, 'other' => $data];
+        $table = DB::table('tmp_musics');
 
-            if ( ! empty($data['file_name'])) {
-                $list['qiniu']['src'] = Audio::SOURCE_DEFAULT;
-                $list['qiniu']['url'] = self::getQiniuUrl($data['file_name']);
-            }
-
-            if ( ! empty($data['original_url'])) {
-                $list['other']['src'] = $data['url_source'];
-                $list['other']['url'] = $data['original_url'];
-            } else unset($list['other']);
-
-            foreach ($list as $item) {
-                Audio::create([
-                    'date'   => $item['date'],
-                    'part'   => $item['part'],
-                    'title'  => $item['topic'],
-                    'source' => $item['src'],
-                    'url'    => $item['url'],
-                    'state'  => Audio::STATE_ENABLE
-                ]);
-            }
+        if ($table->where('path', $path)->count()) {
+            return false;
         }
+
+        preg_match('|\d{4}\/(\d{8})([a-z]?)\.mp3\/(\d+)\.(\d+)\.mp3|', $path, $file);
+        return (bool) $table->insert([
+            'path'              => $path,
+            'program_date'      => $file[1],
+            'audio_part'        => $file[2] ? : 'all',
+            'audio_start_sec'   => $file[3],
+            'audio_end_sec'     => $file[4],
+            'title'             => $info['title'] ?? '',
+            'album'             => $info['album']['name'] ?? '',
+            'artists'           => isset($info['artists']) ? implode('|', array_column($info['artists'], 'name')) : '',
+            'genres'            => isset($info['genres']) ? implode('|', array_column($info['genres'], 'name')) : '',
+            'release_date'      => $info['release_date'] ?? '',
+            'label'             => $info['label'] ?? '',
+            'acrid'             => $info['acrid'] ?? '',
+            'isrc'              => $info['external_ids']['isrc'] ?? '',
+            'upc'               => $info['external_ids']['upc'] ?? '',
+            'external_metadata' => ! empty($info['external_metadata']) ? json_encode($info['external_metadata'], JSON_UNESCAPED_UNICODE) : ''
+        ]);
     }
 }
