@@ -6,26 +6,26 @@ use App\Console\Command;
 use DB;
 
 /**
- * 导入音乐脚本
+ * 拷贝音乐脚本
  * 临时脚本
  *
- * @author popfeng <popfeng@yeah.net> 2016-05-31
+ * @author popfeng <popfeng@yeah.net> 2016-07-04
  */
-class Import extends Command
+class Copy extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'xmusic:import {path}';
+    protected $signature = 'xmusic:copy {from_id} {to_id}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '导入音乐命令（from txt）';
+    protected $description = '拷贝音乐命令（from_id to_id）';
 
     /**
      * Create a new command instance.
@@ -44,37 +44,23 @@ class Import extends Command
      */
     public function handle()
     {
-        // 获取文本路径
-        $path = $this->argument('path');
-        if ( ! is_file($path)) {
-            return $this->error("Invalid file path {$path}.");
-        }
+        $fromId = $this->argument('from_id');
+        $toIds = explode(',', $this->argument('to_id'));
+        $table = 'tmp_musics';
 
-        // 解析数据，并插入数据库
-        $handle = fopen($path, 'r');
-        if ($handle) {
-            while (false !== ($buffer = fgets($handle))) {
-                list($path, $result) = explode("\t", $buffer);
-                $info = json_decode($result, true);
-                if ( ! empty($info)) {
-                    $info = isset($info['metadata']['music'][0]) ?
-                        $info['metadata']['music'][0] : 
-                        $info['metadata']['music'];
-                }
+        $fromData = (array) DB::table($table)->find($fromId);
+        unset(
+            $fromData['id'],
+            $fromData['path'],
+            $fromData['program_date'],
+            $fromData['audio_part'],
+            $fromData['audio_start_sec'],
+            $fromData['audio_end_sec']
+        );
 
-                // Insert
-                $status = $this->insertMusics($path, $info);
+        DB::table($table)->whereIn('id', $toIds)->update($fromData);
 
-                // Output
-                $status and $this->info(sprintf("%s\t%s", $path, $info['title'] ?? ''));
-            }
-            if ( ! feof($handle)) {
-                return $this->error("Error: unexpected fgets() fail.");
-            }
-            fclose($handle);
-
-            $this->info('done.');
-        }
+        $this->info('done.');
     }
 
     /**
