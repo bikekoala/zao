@@ -51,19 +51,25 @@ class Repair extends Command
         $table = 'tmp_musics';
         $space = [];
         $spaceLength = $outerWidth * 2 + $innerWidth;
-        $dataKey = 'title';
+        $dataKey = 'acrid';
         $counter = 0;
 
-        DB::table($table)
-            ->select('id', 'path', 'program_date', 'audio_part', 'audio_start_sec', 'title')
-            ->chunk(10000, function($data) use(
+        DB::table($table)->select(
+            'id',
+            'path',
+            'program_date',
+            'audio_part',
+            'audio_start_sec',
+            'title',
+            'acrid'
+        )->chunk(10000, function($data) use(
                 &$space,
                 $spaceLength,
                 $outerWidth, 
                 $innerWidth,
                 $dataKey,
                 &$counter
-        ){
+        ) {
             for ($i = 0, $l = count($data); $i < $l; $i++) {
                 // 向寄存器内存入第一条数据
                 if (0 === $i) {
