@@ -25,7 +25,7 @@ class Copy extends Command
      *
      * @var string
      */
-    protected $description = '拷贝音乐命令（from_id to_id）';
+    protected $description = '拷贝音乐命令（来源id|acrid 目标id|acrid）';
 
     /**
      * Create a new command instance.
@@ -48,7 +48,10 @@ class Copy extends Command
         $toIds = explode(',', $this->argument('to_id'));
         $table = 'tmp_musics';
 
-        $fromData = (array) DB::table($table)->find($fromId);
+        $fromData = (array) DB::table($table)->where(function($query) use($fromId) {
+            $query->where(32 === strlen($fromId) ? 'acrid' : 'id', $fromId);
+        })->first();
+
         unset(
             $fromData['id'],
             $fromData['path'],
@@ -58,7 +61,9 @@ class Copy extends Command
             $fromData['audio_end_sec']
         );
 
-        DB::table($table)->whereIn('id', $toIds)->update($fromData);
+        DB::table($table)->where(function($query) use($toIds) {
+            $query->whereIn(32 === strlen($toIds[0]) ? 'acrid' : 'id', $toIds);
+        })->update($fromData);
 
         $this->info('done.');
     }
