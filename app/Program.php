@@ -56,7 +56,12 @@ class Program extends Model
      */
     public function musics()
     {
-        return $this->belongsToMany('App\Music', 'program_music');
+        return $this->belongsToMany('App\Music', 'program_music')->withPivot(
+            'program_part',
+            'start_sec',
+            'end_sec',
+            'url'
+        );
     }
 
     /**

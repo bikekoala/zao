@@ -23,7 +23,7 @@
     <div class="post-content">
         @foreach ($audios as $audio)
         <p>
-            {{ $audio->title }}
+            {{ program_part_title($audio->part) }}
             @if ($audio->download_url)
             （<a href="{{ $audio->download_url }}" rel="nofollow" target="_blank">下载</a>）
             @endif
@@ -37,7 +37,6 @@
         @endif
         @endforeach
     </div>
-    @if (isset($_GET['test']))
     <div class="post-music">
         <table class="list">
             <tr class="title">
@@ -48,15 +47,15 @@
                 <th>开始</th>
                 <th>结束</th>
             </tr>
-            @foreach ([1, 2, 3, 4, 5] as $i => $item)
+            @foreach ($program->musics as $i => $music)
             <tr class="row">
                 <td>
                     <div class="title-box">
                         @if (Agent::isMobile())
-                        <audio controls preload src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" type="audio/mpeg"></audio>
+                        <audio controls preload src="{{ qiniu_url($music->pivot->url) }}" type="audio/mpeg"></audio>
                         @else
                         <video id="mp-{{ $i }}" preload="none" width="0" height="0">
-                            <source src="http://audio.zaoaoaoaoao.com/2011/1214a/20111214a.m3u8" />
+                            <source src="{{ qiniu_url($music->pivot->url) }}" />
                         </video>
                         @endif
                         <div class="cover"  id="mp-{{ $i }}-cover">
@@ -65,17 +64,18 @@
                             <div class="play btn-bg play-bg hide" data-action="play"></div>
                             <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
                         </div>
-                        <a href="{{ URL('music/1') }}" target="_blank">Don't Cry</a>
+                        <a href="{{ URL('music/' . $music->id) }}" target="_blank">{{ $music->title }}</a>
                     </div>
                 </td>
                 <td>
-                    <a href="{{ URL('music/artist/1') }}" target="_blank">Guns N' Roses</a>
-                    <a target="_blank">Other</a>
+                    @foreach ($music->artists as $artist)
+                    <a href="{{ URL('music/artist/' . $artist->id) }}" target="_blank">{{ $artist->name }}</a>
+                    @endforeach
                 </td>
-                <td><a target="_blank">Greatest Hits</a></td>
-                <td>一</td>
-                <td>30:00</td>
-                <td>35:00</td>
+                <td>{{ $music->album }}</td>
+                <td>{{ program_part_title($music->pivot->program_part) }}</td>
+                <td>{{ seconds_to_time($music->pivot->start_sec) }}</td>
+                <td>{{ seconds_to_time($music->pivot->end_sec) }}</td>
             </tr>
             @endforeach
         </table>
@@ -83,7 +83,6 @@
         <a href="http://www.acrcloud.cn/" rel="nofollow" target="_blank" class="logo"><img src="/static/img/acrcloud-logo.png" title="音乐识别由 ACRCloud 提供"></a>
         @endif
     </div>
-    @endif
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))
             @if ( ! empty($contributers['topic']))

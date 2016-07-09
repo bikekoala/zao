@@ -61,18 +61,18 @@ class ProgramController extends Controller
      */
     public function detail($date)
     {
-        // query the specified dates program and audio data
+        // query the specified dates program and audio list
         $program = Program::dated($date)->enabled()->first();
         $audios = $this->getAudios($program);
+
+        // get contributions info
+        $contributers = $this->getProgramContributers($program->date);
 
         // get around pages
         $pages = (object) [
             'prev' => Program::find($program->id - 1),
             'next' => Program::find($program->id + 1)
         ];
-
-        // get contributions info
-        $contributers = $this->getProgramContributers($program->date);
 
         // TDK
         $title = $program->topic . ' (' . $program->date . ') ';
@@ -153,11 +153,10 @@ class ProgramController extends Controller
      * @param Program $program
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    private function getAudios($program)
+    private function getAudios(&$program)
     {
         // filter by source, and sort by time
         $audios = $audiosCopy = $program->audios()->enabled()->get();
-        $domain = Config::get('filesystems.disks.qiniu.domain');
 
         $audioList = [];
         $audioGroups = $audios->groupBy('part');
@@ -174,7 +173,7 @@ class ProgramController extends Controller
                     unset($group[Audio::SOURCE_DEFAULT]);
                 } else {
                     $audio = $group[Audio::SOURCE_DEFAULT][0];
-                    $audio->url = sprintf('http://%s%s', $domain, $audio->url);
+                    $audio->url = qiniu_url($audio->url);
                 }
             }
             $audioList[] = $group->first()->first();
@@ -188,16 +187,7 @@ class ProgramController extends Controller
                 $downloadUrls[$audio->part] = $audio->url;
             }
         }
-
-        // get default title
-        $titles = [
-            'a'   => '第一时段',
-            'b'   => '第二时段',
-            'c'   => '第三时段',
-            'all' => '完整时段'
-        ];
         foreach ($audios as $audio) {
-            $audio->title = $titles[$audio->part];
             $audio->download_url = $downloadUrls[$audio->part] ?? null;
         }
 
