@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         Music\Import::class,
         Music\Copy::class,
         Music\Repair::class,
+        Music\Deploy::class,
         Tool\UpdateBingCover::class,
         Tool\SyncAppProgram::class,
     ];

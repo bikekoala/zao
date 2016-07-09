@@ -50,6 +50,16 @@ class Program extends Model
     }
 
     /**
+     * Get the musics for program.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function musics()
+    {
+        return $this->belongsToMany('App\Music', 'program_music');
+    }
+
+    /**
      * Get the audios for program.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
