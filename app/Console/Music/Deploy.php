@@ -118,6 +118,8 @@ class Deploy extends Command
         });
     }
 
+    private static function getStart
+
     /**
      * 获取七牛音频链接
      *
@@ -131,7 +133,7 @@ class Deploy extends Command
         $dateParts = explode('-', $date);
 
         return sprintf(
-            '/%s/%s/music-%d-%d.m3u8',
+            '/%s/%s/music/%d-%d.mp3',
             $dateParts[0],
             $dateParts[1] . $dateParts[2],
             $start,
