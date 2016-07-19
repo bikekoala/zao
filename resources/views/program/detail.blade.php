@@ -43,28 +43,25 @@
                 <th>歌曲</th>
                 <th>歌手</th>
                 <th>专辑</th>
-                <th>时段</th>
-                <th>开始</th>
-                <th>结束</th>
+                <th class="column-other">时段</th>
+                <th class="column-other">开始</th>
+                <th class="column-other">结束</th>
             </tr>
+            <tr><td class="gap"></td></tr>
             @foreach ($program->musics as $i => $music)
             <tr class="row">
                 <td>
                     <div class="title-box">
-                        @if (Agent::isMobile())
-                        <audio controls preload src="{{ qiniu_url($music->pivot->url) }}" type="audio/mpeg"></audio>
-                        @else
-                        <video id="mp-{{ $i }}" preload="none" width="0" height="0">
-                            <source src="{{ qiniu_url($music->pivot->url) }}" />
-                        </video>
-                        @endif
-                        <div class="cover"  id="mp-{{ $i }}-cover">
-                            <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
-                            <div class="mask hide"></div>
-                            <div class="play btn-bg play-bg hide" data-action="play"></div>
-                            <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
+                        <div class="cover-frame">
+                            <div class="cover">
+                                <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
+                                <div class="mask hide"></div>
+                                <div class="play btn-bg play-bg hide" data-action="play"></div>
+                                <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
+                            </div>
                         </div>
                         <a href="{{ URL('music/' . $music->id) }}" target="_blank">{{ $music->title }}</a>
+                        <audio src="{{ qiniu_url($music->pivot->url) }}"></audio>
                     </div>
                 </td>
                 <td>
@@ -73,9 +70,9 @@
                     @endforeach
                 </td>
                 <td>{{ $music->album }}</td>
-                <td>{{ program_part_title($music->pivot->program_part) }}</td>
-                <td>{{ seconds_to_time($music->pivot->start_sec) }}</td>
-                <td>{{ seconds_to_time($music->pivot->end_sec) }}</td>
+                <td class="column-other">{{ program_part_title($music->pivot->program_part) }}</td>
+                <td class="column-other">{{ seconds_to_time($music->pivot->start_sec) }}</td>
+                <td class="column-other">{{ seconds_to_time($music->pivot->end_sec) }}</td>
             </tr>
             @endforeach
         </table>

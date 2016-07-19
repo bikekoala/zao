@@ -31,60 +31,31 @@ $(function() {
         $that.find('.mask').addClass('hide');
         $that.find('.play').addClass('hide');
     }); 
-    if ( ! utils.isMobileClient()) { 
-        $('.post-music video').mediaelementplayer({
-            isVideo: false,
-            flashName: '/static/module/mediaelement/flashmediaelement.swf',
-            features: [],
-            success: function (me, dom) {
-                var $cover = $('#' + dom.id + '-cover');
-                var $row = $cover.parent().parent().parent();
-                var $play = $cover.children('.play');
-                var $pause = $cover.children('.pause');
-                $cover.click(function() {
-                    if (me.paused) {
-                        $('.post-music .pause').addClass('hide');
-                        $('.post-music .row').removeClass('row-bg');
-                        $play.addClass('hide');
-                        $pause.removeClass('hide');
-                        $row.addClass('row-bg');
-                        me.play();
-                    } else {
-                        $pause.addClass('hide');
-                        $play.removeClass('hide');
-                        $row.removeClass('row-bg');
-                        me.pause();
-                    }
-                });
-            }
-        });
-    } else {
-        $('.post-music .cover').click(function() {
-            var $cover = $(this);
-            var $row = $cover.parent().parent().parent();
-            var $play = $cover.children('.play');
-            var $pause = $cover.children('.pause');
-            var $audio = $cover.siblings('audio');
-            var audio = $audio[0];
+    $('.post-music .cover').click(function() {
+        var $cover = $(this);
+        var $row = $cover.parent().parent().parent();
+        var $play = $cover.children('.play');
+        var $pause = $cover.children('.pause');
+        var $audio = $cover.siblings('audio');
+        var audio = $audio[0];
 
-            if ($pause.hasClass('hide')) {
-                $('.post-music audio').each(function() {
-                    this.pause();
-                });
-                $('.post-music .pause').addClass('hide');
-                $('.post-music .row').removeClass('row-bg');
-                $play.addClass('hide');
-                $pause.removeClass('hide');
-                $row.addClass('row-bg');
-                audio.play();
-            } else {
-                $pause.addClass('hide');
-                $play.removeClass('hide');
-                $row.removeClass('row-bg');
-                audio.pause();
-            }
-        });
-    }
+        if ($pause.hasClass('hide')) {
+            $('.post-music audio').each(function() {
+                this.pause();
+            });
+            $('.post-music .pause').addClass('hide');
+            $('.post-music .row').removeClass('row-bg');
+            $play.addClass('hide');
+            $pause.removeClass('hide');
+            $row.addClass('row-bg');
+            audio.play();
+        } else {
+            $pause.addClass('hide');
+            $play.removeClass('hide');
+            $row.removeClass('row-bg');
+            audio.pause();
+        }
+    });
 
     // tips
     if ( ! utils.isMobileClient()) {
