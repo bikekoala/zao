@@ -50,15 +50,13 @@
             <tr><td class="gap"></td></tr>
             @foreach ($program->musics as $i => $music)
             <tr class="row">
-                <td>
-                    <div class="title-box">
-                        <div class="cover-frame">
-                            <div class="cover">
-                                <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
-                                <div class="mask hide"></div>
-                                <div class="play btn-bg play-bg hide" data-action="play"></div>
-                                <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
-                            </div>
+                <td class="title-box">
+                    <div class="cover-frame">
+                        <div class="cover">
+                            <img src="http://p4.music.126.net/wyrfbTLN3pBI9MHmXqkdGw==/2542070884190423.jpg?param=130y130" alt="封图">
+                            <div class="mask hide"></div>
+                            <div class="play btn-bg play-bg hide" data-action="play"></div>
+                            <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
                         </div>
                         <a href="{{ URL('music/' . $music->id) }}" target="_blank">{{ $music->title }}</a>
                         <audio src="{{ qiniu_url($music->pivot->url) }}"></audio>
