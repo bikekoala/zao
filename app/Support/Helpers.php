@@ -29,6 +29,7 @@ function program_part_title($part) {
         'a'   => '第一时段',
         'b'   => '第二时段',
         'c'   => '第三时段',
+        'd'   => '第四时段',
         'all' => '完整时段'
     ];
     return isset($titles[$part]) ? $titles[$part] : '';
