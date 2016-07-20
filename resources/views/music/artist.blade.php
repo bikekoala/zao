@@ -9,7 +9,7 @@
         <h1>{{ $artist->name }}</h1>
     </div>
 </div>
-<div class="chart" id="chart"></div>
+<div class="chart" id="chart" data='{!! json_encode($total) !!}'></div>
 <table class="table-box">
     <tr class="title">
         <th>歌曲</th>
@@ -34,21 +34,13 @@
     <tr class="title">
         <th>日期</th>
         <th>话题</th>
-        <th>时段</th>
-        <th>开始</th>
-        <th>结束</th>
     </tr>
-    {{--
-    @foreach ($artist->programs => $program)
+    @foreach ($artist->programs as $program)
     <tr class="row">
         <td><a href="{{ URL('program') . '/' . $program->dates->id }}">{{ $program->date }}</a></td>
-        <td><a href="{{ URL('program') . '/' . $program->dates->id }}">{{ $program->topic }}</a></td>
-        <td>{{ program_part_title($program->pivot->program_part) }}</td>
-        <td>{{ seconds_to_time($program->pivot->start_sec) }}</td>
-        <td>{{ seconds_to_time($program->pivot->end_sec) }}</td>
+        <td><a href="{{ URL('program') . '/' . $program->dates->id }}">@if ($program->topic) {{ $program->topic }} @else 🐶🐶🐶🐶  @endif</a></td>
     </tr>
     @endforeach
-    --}}
 </table>
 
 

@@ -58,12 +58,21 @@ class MusicController extends Controller
         // fetch artist
         $artist = Artist::find($id);
 
+        // collect the total counts
+        $total = [];
+        foreach ($artist->programs as $pm) {
+            empty($total[$pm->dates->year]) and $total[$pm->dates->year] = 0;
+            $total[$pm->dates->year]++;
+        }
+        $total = self::fillChartData($total);
+
         // TDK
         $title = $artist->name;
         $description = '飞鱼秀歌曲歌手, 飞鱼秀音乐艺人';
 
         return View::make('music.artist')
             ->with('artist', $artist)
+            ->with('total', $total)
             ->with('title', $title)
             ->with('description', $description);
     }

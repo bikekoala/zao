@@ -103,6 +103,14 @@ class Deploy extends Command
                         )
                     ]);
 
+                    // 插入节目歌手记录
+                    foreach ($music->artists as $artist) {
+                        Program::where(
+                            'date',
+                            $first->program_date
+                        )->first()->artists()->attach($artist->id);
+                    }
+
                     // 输出日志
                     $this->info(implode("\t", [
                         $n,

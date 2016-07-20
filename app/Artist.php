@@ -51,12 +51,6 @@ class Artist extends Model
     public function programs()
     {
         return $this->belongsToMany('App\Program', 'program_artist')
-            ->orderBy('id', 'desc')
-            ->withPivot(
-                'program_part',
-                'start_sec',
-                'end_sec',
-                'url'
-            );
+            ->orderBy('id', 'desc');
     }
 }

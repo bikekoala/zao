@@ -65,6 +65,16 @@ class Program extends Model
     }
 
     /**
+     * Get the artists for the program.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function artists()
+    {
+        return $this->belongsToMany('App\Artist', 'program_artist');
+    }
+
+    /**
      * Get the audios for program.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

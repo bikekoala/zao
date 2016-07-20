@@ -35,7 +35,7 @@
     @foreach ($music->programs as $pm)
     <tr class="row">
         <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">{{ $pm->date }}</a></td>
-        <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">{{ $pm->topic }}</a></td>
+        <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">@if ($pm->topic) {{ $pm->topic }} @else 🐶🐶🐶🐶  @endif</a></td>
         <td>{{ program_part_title($pm->pivot->program_part) }}</td>
         <td>{{ seconds_to_time($pm->pivot->start_sec) }}</td>
         <td>{{ seconds_to_time($pm->pivot->end_sec) }}</td>
