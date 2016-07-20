@@ -48,8 +48,47 @@ CREATE TABLE `program_participant` (
   `program_id` int(11) unsigned NOT NULL COMMENT '节目编号',
   `participant_id` int(11) unsigned NOT NULL COMMENT '参与人编号',
   PRIMARY KEY (`id`),
-  KEY `program_id` (`program_id`)
+  KEY `program_id` (`program_id`),
+  KEY `participant_id` (`participant_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目参与者表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `program_music`
+--
+
+DROP TABLE IF EXISTS `program_music`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `program_music` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `program_id` int(11) unsigned NOT NULL COMMENT '节目编号',
+  `music_id` int(11) unsigned NOT NULL COMMENT '音乐编号',
+  `program_part` varchar(3) COLLATE utf8_unicode_ci NOT NULL COMMENT '节目时段',
+  `start_sec` int(11) unsigned NOT NULL COMMENT '开始秒数',
+  `end_sec` int(11) unsigned NOT NULL COMMENT '结束秒数',
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '链接',
+  PRIMARY KEY (`id`),
+  KEY `program_id` (`program_id`),
+  KEY `music_id` (`music_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目音乐表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `program_artist`
+--
+
+DROP TABLE IF EXISTS `program_artist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `program_artist` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `program_id` int(11) unsigned NOT NULL COMMENT '节目编号',
+  `artist_id` int(11) unsigned NOT NULL COMMENT '歌手编号',
+  PRIMARY KEY (`id`),
+  KEY `program_id` (`program_id`),
+  KEY `artist_id` (`artist_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目歌手表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,13 +121,67 @@ CREATE TABLE `audios` (
   `source` varchar(10) CHARACTER SET utf8 NOT NULL COMMENT '来源',
   `download` tinyint(1) NOT NULL COMMENT '是否下载',
   `state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态',
-  `url` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '链接',
+  `url` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '链接',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `date_part_source` (`date`,`part`,`source`),
   KEY `state` (`state`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='声音表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `musics`
+--
+
+DROP TABLE IF EXISTS `musics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `musics` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '歌曲',
+  `album` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '专辑',
+  `genres` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '流派',
+  `label` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '唱片公司',
+  `release_date` char(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '发行日期',
+  `acrid` char(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'ACR ID',
+  `isrc` char(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'ISRC code',
+  `upc` char(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'UPC code',
+  `external_metadata` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'External 3rd Party IDs and metadata',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='音乐表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `music_artist`
+--
+
+DROP TABLE IF EXISTS `music_artist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `music_artist` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `music_id` int(11) unsigned NOT NULL COMMENT '音乐编号',
+  `artist_id` int(11) unsigned NOT NULL COMMENT '歌手编号',
+  PRIMARY KEY (`id`),
+  KEY `music_id` (`music_id`),
+  KEY `artist_id` (`artist_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='音乐歌手表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `artists`
+--
+
+DROP TABLE IF EXISTS `artists`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `artists` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '名称',
+  `counts` int(11) unsigned NOT NULL COMMENT '次数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='歌手表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +196,7 @@ CREATE TABLE `comments` (
   `log_id` bigint(64) unsigned NOT NULL COMMENT '记录ID',
   `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
   `action` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '操作类型',
-  `meta` text CHARACTER SET utf8mb4 NOT NULL COMMENT 'META',
+  `meta` text NOT NULL COMMENT 'META',
   `date` datetime NOT NULL COMMENT '操作时间',
   `ext_created_at` datetime NOT NULL COMMENT '创建时间',
   `ext_program_date` date DEFAULT NULL COMMENT '节目日期',
@@ -113,7 +206,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `log_id` (`log_id`),
   KEY `program_contribution` (`action`,`ext_has_topic`,`ext_has_participant`,`ext_program_date`,`ext_is_agree`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='多说评论表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='多说评论表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,16 +244,15 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ds_id` char(19) NOT NULL DEFAULT '' COMMENT '多说用户ID',
+  `ds_id` int(11) unsigned NOT NULL COMMENT '多说用户ID',
   `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名字',
   `url` varchar(256) NOT NULL DEFAULT '' COMMENT '链接地址',
   `avatar_url` varchar(256) NOT NULL DEFAULT '' COMMENT '头像地址',
   `meta` text NOT NULL COMMENT '原始信息',
-  `state` tinyint(1) unsigned NOT NULL COMMENT '状态',
+  `state` tinyint(1) unsigned NOT NULL COMMENT '原始信息',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ds_id` (`ds_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -212,4 +304,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-14 18:41:59
+-- Dump completed on 2016-07-20 15:04:25

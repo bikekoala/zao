@@ -4,8 +4,13 @@
     mysqldump --opt --extended-insert -u root -p -d zao \
         programs \
         program_participant \
+        program_music \
+        program_artist \
         participants \
         audios \
+        musics \
+        music_artist \
+        artists \
         comments \
         heres \
         users \
