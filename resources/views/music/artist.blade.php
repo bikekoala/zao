@@ -6,7 +6,7 @@
         <div class="cate">
             <span>歌手</span>
         </div>
-        <h1>The Innocence Mission</h1>
+        <h1>{{ $artist->name }}</h1>
     </div>
 </div>
 <div class="chart" id="chart"></div>
@@ -19,14 +19,14 @@
         <th>发行日期</th>
         <th>唱片公司</th>
     </tr>
-    @foreach ([1, 2, 3, 4, 5, 6, 7, 8] as $i => $item)
+    @foreach ($artist->musics as $music)
     <tr class="row">
-        <td><a href="{{ URL('music/1') }}">500 Miles</a></td>
-        <td><a href="{{ URL('music/artist/1') }}">The Innocence Mission</a></td>
-        <td>Christ Is My Hope</td>
-        <td>Country</td>
-        <td>2000</td>
-        <td>LAMP</td>
+        <td><a href="{{ URL('music') . '/' . $music->id }}">{{ $music->title }}</a></td>
+        <td>@foreach ($music->artists as $artist)<a href="{{ URL('music/artist/' . $artist->id) }}">{{ $artist->name }}</a> @endforeach</td>
+        <td>{{ $music->album }}</td>
+        <td>{{ str_replace('|', ' ', $music->genres) }}</td>
+        <td>{{ $music->release_date }}</td>
+        <td>{{ $music->label }}</td>
     </tr>
     @endforeach
 </table>
@@ -38,15 +38,17 @@
         <th>开始</th>
         <th>结束</th>
     </tr>
-    @foreach ([1, 2, 3, 4, 5, 6, 7, 8] as $i => $item)
+    {{--
+    @foreach ($artist->programs => $program)
     <tr class="row">
-        <td><a>2010-10-10</a></td>
-        <td><a>国庆总结</a></td>
-        <td>完整</td>
-        <td>30:00</td>
-        <td>35:00</td>
+        <td><a href="{{ URL('program') . '/' . $program->dates->id }}">{{ $program->date }}</a></td>
+        <td><a href="{{ URL('program') . '/' . $program->dates->id }}">{{ $program->topic }}</a></td>
+        <td>{{ program_part_title($program->pivot->program_part) }}</td>
+        <td>{{ seconds_to_time($program->pivot->start_sec) }}</td>
+        <td>{{ seconds_to_time($program->pivot->end_sec) }}</td>
     </tr>
     @endforeach
+    --}}
 </table>
 
 

@@ -58,7 +58,7 @@ class Music extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function programMusics()
+    public function programs()
     {
         return $this->belongsToMany('App\Program', 'program_music')
             ->orderBy('id', 'desc')

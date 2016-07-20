@@ -32,4 +32,31 @@ class Artist extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Get the musics for the artist.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function musics()
+    {
+        return $this->belongsToMany('App\Music', 'music_artist');
+    }
+
+    /**
+     * Get the programs for the artist.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function programs()
+    {
+        return $this->belongsToMany('App\Program', 'program_artist')
+            ->orderBy('id', 'desc')
+            ->withPivot(
+                'program_part',
+                'start_sec',
+                'end_sec',
+                'url'
+            );
+    }
 }

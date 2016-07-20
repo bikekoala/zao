@@ -32,7 +32,7 @@
         <th>开始</th>
         <th>结束</th>
     </tr>
-    @foreach ($music->programMusics as $pm)
+    @foreach ($music->programs as $pm)
     <tr class="row">
         <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">{{ $pm->date }}</a></td>
         <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">{{ $pm->topic }}</a></td>
