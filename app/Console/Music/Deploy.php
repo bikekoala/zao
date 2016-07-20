@@ -118,8 +118,6 @@ class Deploy extends Command
         });
     }
 
-    private static function getStart
-
     /**
      * 获取七牛音频链接
      *
