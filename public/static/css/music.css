@@ -25,9 +25,14 @@
     position: absolute;
     top: 0;
     left: 50px;
-    line-height: 0;
+    margin: 0;
     font-size: 40px;
     font-weight: normal;
+    width: 93%;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;          
+    overflow: hidden;
+    white-space: nowrap;
 }
 .intro p {
     margin: 0;
@@ -67,4 +72,24 @@
 }
 .table-box .row td {
     height: 2em;
+}
+
+/* responsive */
+@media(max-width: 768px) {
+    .intro .title .cate {
+        height: 46px;
+    }
+    .intro .title .cate span {
+        padding: 7px 5px;
+        border-bottom-left-radius: 1px;
+        border-top-left-radius: 5px;
+        font-size: 12px;
+    }
+    .intro .title h1 {
+        left: 45px;
+        font-size: 30px;
+    }
+    .chart {
+        margin-top: 25px;
+    }
 }

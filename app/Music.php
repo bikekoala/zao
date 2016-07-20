@@ -52,4 +52,21 @@ class Music extends Model
     {
         return $this->belongsToMany('App\Artist', 'music_artist');
     }
+
+    /**
+     * Get the programs for the program.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function programMusics()
+    {
+        return $this->belongsToMany('App\Program', 'program_music')
+            ->orderBy('id', 'desc')
+            ->withPivot(
+                'program_part',
+                'start_sec',
+                'end_sec',
+                'url'
+            );
+    }
 }

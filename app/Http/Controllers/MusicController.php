@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Music;
 use View;
 
 /**
@@ -20,8 +21,30 @@ class MusicController extends Controller
      */
     public function titlePage($id)
     {
+        // fetch music
+        $music = Music::find($id);
+
+        // collect the total counts
+        $total = [];
+        foreach ($music->programMusics as $pm) {
+            empty($total[$pm->dates->year]) and $total[$pm->dates->year] = 0;
+            $total[$pm->dates->year]++;
+        }
+        $total = self::fillChartData($total);
+
+        // TDK
+        $title = implode(' - ', [
+            $music->title,
+            $music->artists->pluck('name')->implode(', ')
+        ]);
+        $description = '飞鱼秀歌单, 飞鱼秀音乐列表';
+
+        // render
         return View::make('music.song')
-            ->with('title', '500 Miles - The Innocence Mission');
+            ->with('music', $music)
+            ->with('total', $total)
+            ->with('title', $title)
+            ->with('description', $description);
     }
 
     /**
@@ -34,5 +57,20 @@ class MusicController extends Controller
     {
         return View::make('music.artist')
             ->with('title', 'The Innocence Mission');
+    }
+
+    /**
+     * 填充图表数据
+     *
+     * @param array $data
+     * @return array
+     */
+    private static function fillChartData($data)
+    {
+        $list = [];
+        foreach (range(2004, 2016) as $year) {
+            $list[] = isset($data[$year]) ? $data[$year] : 0;
+        }
+        return $list;
     }
 }

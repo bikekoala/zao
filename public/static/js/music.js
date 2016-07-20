@@ -30,7 +30,7 @@ option = {
                     color: 'rgba(249, 146, 149, 0.8)'
                 }
             },
-            data: [820, 932, 901, 934, 1290, 1330, 1320, 1, 1, 1, 1, 1, 100]
+            data: eval('(' + document.getElementById('chart').getAttribute('data') + ')')
         }
     ]
 };
