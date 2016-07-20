@@ -58,9 +58,9 @@
                             <div class="play btn-bg play-bg hide" data-action="play"></div>
                             <div class="pause btn-bg pause-bg hide" data-action="pause"></div>
                         </div>
-                        <a href="{{ URL('music/' . $music->id) }}" target="_blank">{{ $music->title }}</a>
-                        <audio src="{{ qiniu_url($music->pivot->url) }}"></audio>
                     </div>
+                    <a href="{{ URL('music/' . $music->id) }}" target="_blank">{{ $music->title }}</a>
+                    <audio src="{{ qiniu_url($music->pivot->url) }}"></audio>
                 </td>
                 <td>
                     @foreach ($music->artists as $artist)

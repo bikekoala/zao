@@ -36,7 +36,7 @@ $(function() {
         var $row = $cover.parent().parent().parent();
         var $play = $cover.children('.play');
         var $pause = $cover.children('.pause');
-        var $audio = $cover.siblings('audio');
+        var $audio = $cover.parent().siblings('audio');
         var audio = $audio[0];
 
         if ($pause.hasClass('hide')) {
