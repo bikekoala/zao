@@ -20,17 +20,19 @@ $(function() {
     }
 
     // init music player
-    $('.post-music .row').hover(function() {
-        var $that = $(this);
-        if ($that.find('.pause').is(':hidden')) {
-            $that.find('.mask').removeClass('hide');
-            $that.find('.play').removeClass('hide');
-        }
-    }, function() {
-        var $that = $(this);
-        $that.find('.mask').addClass('hide');
-        $that.find('.play').addClass('hide');
-    }); 
+    if ( ! utils.isMobileClient()) {
+        $('.post-music .row').hover(function() {
+            var $that = $(this);
+            if ($that.find('.pause').is(':hidden')) {
+                $that.find('.mask').removeClass('hide');
+                $that.find('.play').removeClass('hide');
+            }
+        }, function() {
+            var $that = $(this);
+            $that.find('.mask').addClass('hide');
+            $that.find('.play').addClass('hide');
+        }); 
+    }
     $('.post-music .cover').click(function() {
         var $cover = $(this);
         var $row = $cover.parent().parent().parent();
@@ -53,6 +55,8 @@ $(function() {
             $pause.addClass('hide');
             $play.removeClass('hide');
             $row.removeClass('row-bg');
+            $row.find('.mask').addClass('hide');
+            $row.find('.play').addClass('hide');
             audio.pause();
         }
     });
