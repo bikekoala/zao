@@ -71,6 +71,7 @@
     background-color: #f7f7f7;
 }
 .table-box .row td {
+    min-width: 6em;
     height: 2em;
 }
 #footer .link:hover {

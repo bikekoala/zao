@@ -28,6 +28,7 @@
     <tr class="title">
         <th>日期</th>
         <th>话题</th>
+        <th>参与人</th>
         <th>时段</th>
         <th>开始</th>
         <th>结束</th>
@@ -36,6 +37,15 @@
     <tr class="row">
         <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">{{ $pm->date }}</a></td>
         <td><a href="{{ URL('program') . '/' . $pm->dates->id }}">@if ($pm->topic) {{ $pm->topic }} @else 🐶🐶🐶🐶  @endif</a></td>
+        <td>
+            @if ( ! $pm->participants->isEmpty())
+                @foreach ($pm->participants as $participant)
+                <a>{{ $participant->name }}</a>
+                @endforeach
+            @else
+                🐰🐰
+            @endif
+        </td>
         <td>{{ program_part_title($pm->pivot->program_part) }}</td>
         <td>{{ seconds_to_time($pm->pivot->start_sec) }}</td>
         <td>{{ seconds_to_time($pm->pivot->end_sec) }}</td>
