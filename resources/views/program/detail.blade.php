@@ -73,10 +73,7 @@
                 <td class="column-other">{{ seconds_to_time($music->pivot->end_sec) }}</td>
             </tr>
             @endforeach
-        </table>
-        @if ( ! Agent::isMobile())
-        <a href="http://www.acrcloud.cn/" rel="nofollow" target="_blank" class="logo"><img src="/static/img/acrcloud-logo.png" title="音乐识别由 ACRCloud 提供"></a>
-        @endif
+        </table> 
     </div>
     <span class="post-contributers">
         @if ( ! empty($contributers['topic']) or ! empty($contributers['participants']))

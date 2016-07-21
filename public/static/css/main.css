@@ -204,6 +204,10 @@ header nav a:hover {
     font-size: 0.8em;
     text-align: center;
 }
+#footer .link {
+    padding-left: 0.5em;
+    font-size: 0.6em;
+}
 
 /* layout */
 .avatar{
@@ -496,27 +500,6 @@ header nav a:hover {
 .post-music .cover .pause-bg:hover {
     background-position: -1px -19px;
 }
-.post-music .logo {
-    position: absolute;
-    bottom: 11px;
-    right: -19px;
-}
-.post-music .logo img {
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: gray;
-}
-.post-music .logo img:hover {
-    -webkit-filter: grayscale(0%);
-    -moz-filter: grayscale(0%);
-    -ms-filter: grayscale(0%);
-    -o-filter: grayscale(0%);
-    filter: grayscale(0%);
-    filter: none;
-}
 
 /* about */
 .post-about {
@@ -532,10 +515,6 @@ header nav a:hover {
 }
 .post-about .qrcode img{
     width: 46%;
-}
-.post-about .link {
-    padding-left: 1.3em;
-    font-size: 0.6em;
 }
 .post-about-contribute {
     display: block;

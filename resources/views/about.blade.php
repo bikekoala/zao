@@ -28,6 +28,6 @@
 
 @endsection
 
-@section('author')
+@section('extra')
 <a href="https://github.com/popfeng/zao/blob/master/readme.md" rel="nofollow" target="_blank" class="link">@popfeng</a>
 @endsection

@@ -73,6 +73,9 @@
 .table-box .row td {
     height: 2em;
 }
+#footer .link:hover {
+    color: #30aee5;
+}
 
 /* responsive */
 @media(max-width: 768px) {

@@ -38,7 +38,7 @@
             @yield('content')
 
             <footer id="footer">
-                © 2016 <a href="{{ URL('/') }}">Zao~ao~ao~ao~ao.com</a> @yield('author')
+                © 2016 <a href="{{ URL('/') }}">Zao~ao~ao~ao~ao.com</a> @yield('extra')
             </footer>
         </div>
 
