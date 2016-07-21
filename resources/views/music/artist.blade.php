@@ -34,11 +34,21 @@
     <tr class="title">
         <th>日期</th>
         <th>话题</th>
+        <th>参与人</th>
     </tr>
     @foreach ($artist->programs as $program)
     <tr class="row">
         <td><a href="{{ URL('program') . '/' . $program->dates->id }}">{{ $program->date }}</a></td>
         <td><a href="{{ URL('program') . '/' . $program->dates->id }}">@if ($program->topic) {{ $program->topic }} @else 🐶🐶🐶🐶  @endif</a></td>
+        <td>
+            @if ( ! $program->participants->isEmpty())
+                @foreach ($program->participants as $participant)
+                <a>{{ $participant->name }}</a>
+                @endforeach
+            @else
+                🐰🐰
+            @endif
+        </td>
     </tr>
     @endforeach
 </table>
