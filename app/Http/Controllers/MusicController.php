@@ -23,11 +23,14 @@ class MusicController extends Controller
         // get params
         $cate = $request::get('cate', 'all');
         $limit = 'all' === $cate ? $request::get('limit', 50) : 100000;
+        $isFlush = $request::get('flush');
 
-        // collect data
+        // cache it
         $cacheKey = Music::INDEX_ALL_CACHE_PREFIX . $cate;
-        $data = Cache::get($cacheKey) ?: [];
-        if (empty($data)) {
+        $archive = Cache::get($cacheKey);
+        if ($isFlush or empty($archive)) {
+            // collect data
+            $data = [];
             if (in_array($cate, ['all', 'music'])) {
                 $musics = Music::select('id', 'title', 'album', 'counts')
                     ->orderBy('counts', 'desc')
@@ -45,26 +48,28 @@ class MusicController extends Controller
                 $data['artist'] = ['list' => $artists, 'counts' => $artistCounts];
             }
 
-            Cache::forever($cacheKey, $data);
+            // TDK
+            $title = '飞鱼秀 の 大歌单';
+            if ('artist' === $cate) {
+                $title = $title . ' - 全部歌手';
+            }
+            if ('music' === $cate) {
+                $title = $title . ' - 全部歌曲';
+            }
+            $description = '飞鱼秀歌单, 飞鱼秀音乐列表';
+
+            // render
+            $archive = (string) View::make('music.index')
+                ->with('data', $data)
+                ->with('cate', $cate)
+                ->with('limit', $limit)
+                ->with('title', $title)
+                ->with('description', $description);
+
+            Cache::forever($cacheKey, $archive);
         }
 
-        // TDK
-        $title = '飞鱼秀 の 大歌单';
-        if ('artist' === $cate) {
-            $title = $title . ' - 全部歌手';
-        }
-        if ('music' === $cate) {
-            $title = $title . ' - 全部歌曲';
-        }
-        $description = '飞鱼秀歌单, 飞鱼秀音乐列表';
-
-        // render
-        return View::make('music.index')
-            ->with('data', $data)
-            ->with('cate', $cate)
-            ->with('limit', $limit)
-            ->with('title', $title)
-            ->with('description', $description);
+        echo $archive;
     }
 
     /**
