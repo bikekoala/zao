@@ -24,7 +24,7 @@
 
 @include('layouts.donate')
 
-<script src="/static/??js/about.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+<script src="/static/js/about.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 
 @endsection
 
