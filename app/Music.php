@@ -44,6 +44,11 @@ class Music extends Model
     public $timestamps = false;
 
     /**
+     * 首页全部缓存KEY
+     */
+    const INDEX_ALL_CACHE_PREFIX = 'music_all_';
+
+    /**
      * Get the artists for the program.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

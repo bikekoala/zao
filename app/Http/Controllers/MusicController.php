@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\{Music, Artist};
-use View, Request;
+use View, Request, Cache;
 
 /**
  * 音乐控制器
@@ -21,29 +21,47 @@ class MusicController extends Controller
     public function index(Request $request)
     {
         // get params
-        $cate = $request::get('cate');
-        $limit = $request::get('limit', 50);
+        $cate = $request::get('cate', 'all');
+        $limit = 'all' === $cate ? $request::get('limit', 50) : 100000;
 
         // collect data
-        $musics = Music::select('id', 'title', 'album', 'counts')
-            ->orderBy('counts', 'desc')
-            ->take($limit)
-            ->get();
-        $artists = Artist::orderBy('counts', 'desc')->take($limit)->get();
+        $cacheKey = Music::INDEX_ALL_CACHE_PREFIX . $cate;
+        $data = Cache::get($cacheKey) ?: [];
+        if (empty($data)) {
+            if (in_array($cate, ['all', 'music'])) {
+                $musics = Music::select('id', 'title', 'album', 'counts')
+                    ->orderBy('counts', 'desc')
+                    ->take($limit)
+                    ->get();
+                $musicCounts = Music::count();
 
-        $musicCounts = Music::count();
-        $artistCounts = Artist::count();
+                $data['music'] = ['list' => $musics, 'counts' => $musicCounts];
+            }
+
+            if (in_array($cate, ['all', 'artist'])) {
+                $artists = Artist::orderBy('counts', 'desc')->take($limit)->get();
+                $artistCounts = Artist::count();
+
+                $data['artist'] = ['list' => $artists, 'counts' => $artistCounts];
+            }
+
+            Cache::forever($cacheKey, $data);
+        }
 
         // TDK
-        $title = '飞鱼秀の大歌单';
+        $title = '飞鱼秀 の 大歌单';
+        if ('artist' === $cate) {
+            $title = $title . ' - 全部歌手';
+        }
+        if ('music' === $cate) {
+            $title = $title . ' - 全部歌曲';
+        }
         $description = '飞鱼秀歌单, 飞鱼秀音乐列表';
 
         // render
         return View::make('music.index')
-            ->with('musics', $musics)
-            ->with('artists', $artists)
-            ->with('music_counts', $musicCounts)
-            ->with('artist_counts', $artistCounts)
+            ->with('data', $data)
+            ->with('cate', $cate)
             ->with('limit', $limit)
             ->with('title', $title)
             ->with('description', $description);

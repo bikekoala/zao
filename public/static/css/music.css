@@ -59,6 +59,10 @@
     font-size: 18px;
     text-align: left;
 }
+.table-box caption a {
+    display: none;
+    font-size: 14px;
+}
 .table-box .title {
     width: 100%;
     line-height: 2em;
