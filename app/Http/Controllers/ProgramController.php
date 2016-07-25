@@ -18,6 +18,7 @@ class ProgramController extends Controller
     /**
      * 首页
      *
+     * @param Request $request
      * @return Response
      */
     public function index(Request $request)

@@ -54,6 +54,11 @@
     border-collapse: collapse;
     zoom: 1;
 }
+.table-box caption {
+    padding-bottom: 10px;
+    font-size: 18px;
+    text-align: left;
+}
 .table-box .title {
     width: 100%;
     line-height: 2em;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\{Music, Artist};
-use View;
+use View, Request;
 
 /**
  * 音乐控制器
@@ -12,6 +12,42 @@ use View;
  */
 class MusicController extends Controller
 { 
+    /**
+     * 首页
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        // get params
+        $cate = $request::get('cate');
+        $limit = $request::get('limit', 50);
+
+        // collect data
+        $musics = Music::select('id', 'title', 'album', 'counts')
+            ->orderBy('counts', 'desc')
+            ->take($limit)
+            ->get();
+        $artists = Artist::orderBy('counts', 'desc')->take($limit)->get();
+
+        $musicCounts = Music::count();
+        $artistCounts = Artist::count();
+
+        // TDK
+        $title = '飞鱼秀の大歌单';
+        $description = '飞鱼秀歌单, 飞鱼秀音乐列表';
+
+        // render
+        return View::make('music.index')
+            ->with('musics', $musics)
+            ->with('artists', $artists)
+            ->with('music_counts', $musicCounts)
+            ->with('artist_counts', $artistCounts)
+            ->with('limit', $limit)
+            ->with('title', $title)
+            ->with('description', $description);
+    }
 
     /**
      * 音乐页面

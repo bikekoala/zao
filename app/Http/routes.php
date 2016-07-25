@@ -25,6 +25,7 @@ Route::get('program/{date}', 'ProgramController@detail');
 Route::get('program/{date}/pv', 'ProgramController@getPvCounts');
 
 // 音乐页
+Route::get('music', 'MusicController@index');
 Route::get('music/{id}', 'MusicController@titlePage');
 Route::get('music/artist/{id}', 'MusicController@artistPage');
 
