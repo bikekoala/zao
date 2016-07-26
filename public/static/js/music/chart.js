@@ -3,7 +3,7 @@ option = {
     grid: {
         top: '2%',
         right: '2%',
-        bottom: '0',
+        bottom: '1%',
         left: '0',
         containLabel: true
     },
