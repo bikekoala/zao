@@ -39,8 +39,8 @@
     @foreach ($artist->programs as $program)
     <tr class="row">
         <td><a href="{{ URL('program') . '/' . $program->dates->id }}">{{ $program->date }}</a></td>
-        <td><a href="{{ URL('program') . '/' . $program->dates->id }}">@if ($program->topic) {{ $program->topic }} @else 🐶🐶🐶🐶  @endif</a></td>
-        <td>
+        <td class="emoji-related"><a href="{{ URL('program') . '/' . $program->dates->id }}">@if ($program->topic) {{ $program->topic }} @else 🐶🐶🐶🐶  @endif</a></td>
+        <td class="emoji-related">
             @if ( ! $program->participants->isEmpty())
                 @foreach ($program->participants as $participant)
                 <a>{{ $participant->name }}</a>
@@ -55,7 +55,7 @@
 
 
 <link rel="stylesheet" href="/static/??css/music.css?v={{ env('STATIC_FILE_VERSION') }}">
-<script src="/static/??module/echarts/echarts.min.js,js/music/chart.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+<script src="/static/??module/echarts/echarts.min.js,js/music/chart.js,js/music/artist.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 @endsection
 
 @section('extra')
