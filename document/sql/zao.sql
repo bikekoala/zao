@@ -148,7 +148,9 @@ CREATE TABLE `musics` (
   `isrc` char(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'ISRC code',
   `upc` char(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'UPC code',
   `external_metadata` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'External 3rd Party IDs and metadata',
-  PRIMARY KEY (`id`)
+  `counts` int(11) unsigned NOT NULL COMMENT '次数',
+  PRIMARY KEY (`id`),
+  KEY `counts` (`counts`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='音乐表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -180,7 +182,8 @@ CREATE TABLE `artists` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '名称',
   `counts` int(11) unsigned NOT NULL COMMENT '次数',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `counts` (`counts`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='歌手表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -304,4 +307,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-20 15:04:25
+-- Dump completed on 2016-07-26 15:43:22
