@@ -6,9 +6,9 @@
     <table class="table table-condensed table-hover">
         <thead>
             <tr>
-                <th class="col-md-2">时间</th>
-                <th>地点</th>
-                <th class="col-md-1">编辑</th>
+                <th class="col-sm-2">时间</th>
+                <th class="col-sm-4">地点</th>
+                <th class="col-sm-1">编辑</th>
             </tr>
         </thead>
         <tbody>

@@ -15,7 +15,7 @@
 <body>
     <div id="canvas"></div>
     <div id="info">
-        <div class="user" id="user">
+        <div class="user" id="user" data-map-mode="{{ empty($user) ? 'world' : 'self' }}">
             @if (empty($user))
             <img src="/static/img/felix.png" alt="头像" class="avatar">
             @else
@@ -28,7 +28,7 @@
                     <li><a id="login" data-toggle="modal" data-target="#login-modal">登录</a></li>
                     @else
                     <li><a class="load-remote-modal" data-url="{{ URL('heres') }}">签到</a></li>
-                    <li><a>自己</a></li>
+                    <li id="switch-map">世界</li>
                     @endif
                     <li role="separator" class="divider"></li>
                     @if ( ! empty($user))
@@ -69,6 +69,7 @@
     <script src="/static/module/jquery-2.1.4.min.js"></script>
     <script src="/static/module/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/js/duoshuo.js"></script>
+    <script src="/static/js/here/map-base.js"></script>
     <script src="/static/js/here/map.js"></script>
 </body>
 </html>

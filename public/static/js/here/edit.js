@@ -41,7 +41,8 @@ $(function() {
             },
             cache: true
         },
-        theme: 'bootstrap'
+        theme: 'bootstrap',
+        minimumInputLength: 1
     });
 
     // Submit
