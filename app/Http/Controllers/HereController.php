@@ -146,9 +146,6 @@ class HereController extends Controller
      */
     public function placeAutocomplete(Request $request)
     {
-        // TODO
-        return file_get_contents('/tmp/geo.json');
-
         $input = trim($request::get('input'));
         if (empty($input)) {
             return Response::json([

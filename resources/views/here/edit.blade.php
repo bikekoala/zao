@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group" style="margin-bottom: 0;">
-            <span class="col-md-offset-2 col-sm-6 text-muted" id="message"></span>
+            <span class="col-sm-offset-2 col-sm-6 text-muted" id="message"></span>
         </div>
     </form>
 </div>

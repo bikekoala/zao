@@ -60,14 +60,15 @@ class User extends Model
      */
     public static function login(array $data)
     {
-        static::firstOrCreate([
-            'ds_id'      => $data['user_id'],
-            'name'       => $data['name'],
-            'url'        => $data['url'],
-            'avatar_url' => $data['avatar_url'],
-            'meta'       => json_encode($data, JSON_UNESCAPED_UNICODE),
-            'state'      => self::STATE_ENABLE
-        ]);
+        $user = static::where('ds_id', $data['user_id'])->first() ? : new static;
+        $user->ds_id      = $data['user_id'];
+        $user->name       = $data['name'];
+        $user->url        = $data['url'];
+        $user->avatar_url = $data['avatar_url'];
+        $user->meta       = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $user->state      = self::STATE_ENABLE;
+        $user->save();
+
         Session::put(self::SESSION_KEY, $data);
     }
 
