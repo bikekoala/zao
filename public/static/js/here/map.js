@@ -1,19 +1,21 @@
 // 初始化地图
 $.maps.draw();
 
-// 重载地图
+// 切换地图
 $('#switch-map').click(function() {
-    //this.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+    var mode = this.innerHTML;
+    var that = this;
 
-    $('#user-tips').addClass('hide');
+    this.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
 
-    if ('自己' === this.innerHTML) {
-        $.maps.draw('personal');
-        this.innerHTML = '世界';
-    } else {
-        $.maps.draw('world');
-        this.innerHTML = '自己';
-    }
+    setTimeout(function() {
+        document.getElementById('user-tips').className += ' hide';
+        that.innerHTML = {'自己': '世界', '世界': '自己'}[mode];
+    }, 1000);
+
+    setTimeout(function() {
+        $.maps.draw({'自己': 'personal', '世界': 'world'}[mode]);
+    }, 0);
 });
 
 // 用户下拉菜单
@@ -25,7 +27,7 @@ $('#user').on('mouseenter', function() {
     }, 100);
 });
 
-// 加载远程 Modal 框
+// 绑定加载远程 Modal 框
 var loadRemoteModal = function($ele) {
     var load = function($ele) {
         var url = $ele.attr('data-url');

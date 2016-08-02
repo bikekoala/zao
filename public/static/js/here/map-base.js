@@ -4,36 +4,37 @@
 $.maps = (function() {
     var Return = {
         draw: function(mode) {
-            var option = getOption(mode);
+            if ( ! mode) {
+                mode = $('#user').attr('data-map-mode');
+            }
 
-            document.getElementsByTagName('body')[0].style.height = document.body.scrollHeight + 'px';
-            echarts.init(document.getElementById('canvas')).setOption(option);
+            var api = {
+                //world: 'http://zaoaoaoaoao.com/here/worldMapData',
+                world: 'http://zaoaoaoaoao.com/static/module/echarts/weibo.json',
+                personal: 'http://zaoaoaoaoao.com/here/personalMapData' 
+            };
+
+            $.ajax({
+                url: api[mode],
+                dataType: 'json'
+            }).done(function(data) {
+                var option;
+                if ('personal' === mode) {
+                    draw(getPersonalOption(data));
+                }
+                if ('world' === mode) {
+                    draw(getWorldOption(data));
+                }
+            });
         }
     }
 
-    var getOption = function(mode) {
-        if ( ! mode) {
-            mode = $('#user').attr('data-map-mode');
-        }
-
-        if ('world' === mode) {
-            return getWorldOption();
-        }
-        if ('personal' === mode) {
-            return getPersonalOption();
-        }
+    var draw = function(option) {
+        document.getElementsByTagName('body')[0].style.height = document.body.scrollHeight + 'px';
+        echarts.init(document.getElementById('canvas')).setOption(option);
     }
 
-    var getPersonalOption = function() {
-        var mapData;
-        $.ajax({  
-            url: 'http://zaoaoaoaoao.com/here/personalMapData',
-            async: false,
-            dataType: 'json'
-        }).done(function(data) {
-            mapData = data;
-        });
-
+    var getPersonalOption = function(mapData) {
         var convertData = function (data) {
             var res = [];
             for (var i = 0; i < data.length; i++) {
@@ -132,7 +133,7 @@ $.maps = (function() {
             });
         });
 
-        var option = {
+        return {
             backgroundColor: '#404a59',
             tooltip : {
                 trigger: 'item'
@@ -163,35 +164,27 @@ $.maps = (function() {
             },
             series: series
         };
-        return option;
     }
 
-    var getWorldOption = function() {
-        var weiboData;
-        $.ajax({  
-            url: 'http://zaoaoaoaoao.com/static/module/echarts/weibo.json',
-            async: false,
-            dataType: 'json'
-        }).done(function(data) {
-            weiboData = data.map(function (serieData, idx) {
-                var px = serieData[0] / 1000;
-                var py = serieData[1] / 1000;
-                var res = [[px, py]];
+    var getWorldOption = function(mapData) {
+        var weiboData = mapData.map(function (serieData, idx) {
+            var px = serieData[0] / 1000;
+            var py = serieData[1] / 1000;
+            var res = [[px, py]];
         
-                for (var i = 2; i < serieData.length; i += 2) {
-                    var dx = serieData[i] / 1000;
-                    var dy = serieData[i + 1] / 1000;
-                    var x = px + dx;
-                    var y = py + dy;
-                    res.push([x, y, 1]);
+            for (var i = 2; i < serieData.length; i += 2) {
+                var dx = serieData[i] / 1000;
+                var dy = serieData[i + 1] / 1000;
+                var x = px + dx;
+                var y = py + dy;
+                res.push([x, y, 1]);
         
-                    px = x;
-                    py = y;
-                }
-                return res;
-            });
+                px = x;
+                py = y;
+            }
+            return res;
         });
-        
+
         return {
             baseOption: {
                 backgroundColor: '#404a59',
