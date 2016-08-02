@@ -1,31 +1,169 @@
 /**
  * 地图类
  */
-$.map = (function() {
+$.maps = (function() {
     var Return = {
-        draw: function(isOther) {
-            var option = getOption(isOther);
+        draw: function(mode) {
+            var option = getOption(mode);
 
             document.getElementsByTagName('body')[0].style.height = document.body.scrollHeight + 'px';
             echarts.init(document.getElementById('canvas')).setOption(option);
         }
     }
 
-    var getOption = function(isOther) {
-        var isSelf = $('#user').attr('data-map-mode') === 'self';
-        if (isOther) {
-            isSelf = ! isSelf;
+    var getOption = function(mode) {
+        if ( ! mode) {
+            mode = $('#user').attr('data-map-mode');
         }
 
-        if (isSelf) {
-            return getSelfOption();
-        } else {
+        if ('world' === mode) {
             return getWorldOption();
+        }
+        if ('personal' === mode) {
+            return getPersonalOption();
         }
     }
 
-    var getSelfOption = function() {
-        return {};
+    var getPersonalOption = function() {
+        var mapData;
+        $.ajax({  
+            url: 'http://zaoaoaoaoao.com/here/personalMapData',
+            async: false,
+            dataType: 'json'
+        }).done(function(data) {
+            mapData = data;
+        });
+
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var dataItem = data[i];
+                var fromCoord = mapData['coord'][dataItem[0].name];
+                var toCoord = mapData['coord'][dataItem[1].name];
+                if (fromCoord && toCoord) {
+                    res.push({
+                        fromName: dataItem[0].name,
+                        toName: dataItem[1].name,
+                        coords: [fromCoord, toCoord]
+                    });
+                }
+            }
+            return res;
+        };
+
+        var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+        var color = ['#a6c84c', '#ffa022', '#46bee9', '#a6c84c', '#ffa022', '#46bee9', '#a6c84c', '#ffa022', '#46bee9', '#a6c84c', '#ffa022', '#46bee9'];
+
+        var series = [];
+        mapData['data'].forEach(function (item, i) {
+            series.push({
+                type: 'lines',
+                zlevel: 1,
+                effect: {
+                    show: true,
+                    period: 6,
+                    trailLength: 0.7,
+                    color: '#fff',
+                    symbolSize: 3
+                },
+                lineStyle: {
+                    normal: {
+                        color: color[i],
+                        width: 0,
+                        curveness: 0.2
+                    }
+                },
+                data: convertData(item[1])
+            },
+            {
+                type: 'lines',
+                zlevel: 2,
+                effect: {
+                    show: true,
+                    period: 6,
+                    trailLength: 0,
+                    symbol: planePath,
+                    symbolSize: 15
+                },
+                lineStyle: {
+                    normal: {
+                        color: color[i],
+                        width: 1,
+                        opacity: 0.4,
+                        curveness: 0.2
+                    }
+                },
+                data: convertData(item[1])
+            },
+            {
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                zlevel: 2,
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'left',
+                        formatter: '{b}'
+                    }
+                },
+                symbolSize: function (val) {
+                    return val[2] / 8;
+                },
+                itemStyle: {
+                    normal: {
+                        color: color[i]
+                    }
+                },
+                tooltip: {
+                    formatter: function(dataItem) {
+                        return '时间: ' + mapData['date'][dataItem.name] + '<br>' +
+                               '地点: ' + mapData['address'][dataItem.name];
+                    }
+                },
+                data: item[1].map(function (dataItem) {
+                    return {
+                        name: dataItem[1].name,
+                        value: mapData['coord'][dataItem[1].name].concat([50])
+                    };
+                })
+            });
+        });
+
+        var option = {
+            backgroundColor: '#404a59',
+            tooltip : {
+                trigger: 'item'
+            },
+            geo: {
+                map: 'china',
+                roam: true,
+                top: 10,
+                bottom: 10,
+                scaleLimit: {
+                    min: 1,
+                    max: 5
+                },
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#323c48',
+                        borderColor: '#111'
+                    },
+                    emphasis: {
+                        areaColor: '#2a333d'
+                    }
+                }
+            },
+            series: series
+        };
+        return option;
     }
 
     var getWorldOption = function() {
@@ -54,7 +192,7 @@ $.map = (function() {
             });
         });
         
-        return { 
+        return {
             baseOption: {
                 backgroundColor: '#404a59',
                 tooltip: {

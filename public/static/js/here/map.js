@@ -1,17 +1,17 @@
 // 初始化地图
-$.map.draw();
+$.maps.draw();
 
 // 重载地图
 $('#switch-map').click(function() {
-    this.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
-
-    $.map.draw(true);
+    //this.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
 
     $('#user-tips').addClass('hide');
 
     if ('自己' === this.innerHTML) {
+        $.maps.draw('personal');
         this.innerHTML = '世界';
     } else {
+        $.maps.draw('world');
         this.innerHTML = '自己';
     }
 });
@@ -26,7 +26,7 @@ $('#user').on('mouseenter', function() {
 });
 
 // 加载远程 Modal 框
-function loadRemoteModal($ele) {
+var loadRemoteModal = function($ele) {
     var load = function($ele) {
         var url = $ele.attr('data-url');
         var $modal = $('#basic-modal');

@@ -142,7 +142,7 @@ class HereController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function selfMapData(Request $request)
+    public function personalMapData(Request $request)
     {
         // check login status
         if ( ! User::isLogin()) {
@@ -155,21 +155,32 @@ class HereController extends Controller
             ->get()
             ->toArray();
 
-        $coord = $data = [];
+        $coord = $address = $date = $data = [];
         for ($i = 0, $n = count($list); $i < $n; $i++) {
             $coord[$list[$i]['location']] = [
                 $list[$i]['lng'],
                 $list[$i]['lat']
             ];
 
-            $data[$i] = [[
-                ['name' => $list[$i - 1]['location'] ?? []],
-                ['name' => $list[$i]['location']]
-            ]];
+            $address[$list[$i]['location']] = sprintf(
+                '%s %s',
+                $list[$i]['province'],
+                $list[$i]['location']
+            );
+
+            $date[$list[$i]['location']] = $list[$i]['date'];
+
+            $data[$i] = [
+                $list[$i]['location'],
+                [[
+                    ['name' => $list[$i - 1]['location'] ?? []],
+                    ['name' => $list[$i]['location']]
+                ]]
+            ];
         }
 
         // response json
-        return Response::json(compact('coord', 'data'));
+        return Response::json(compact('coord', 'address', 'date', 'data'));
     }
 
     /**

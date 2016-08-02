@@ -15,7 +15,7 @@
 <body>
     <div id="canvas"></div>
     <div id="info">
-        <div class="user" id="user" data-map-mode="{{ empty($user) ? 'world' : 'self' }}">
+        <div class="user" id="user" data-map-mode="{{ empty($user) ? 'world' : 'personal' }}">
             @if (empty($user))
             <img src="/static/img/felix.png" alt="头像" class="avatar">
             @else
