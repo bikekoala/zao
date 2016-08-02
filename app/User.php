@@ -67,6 +67,7 @@ class User extends Model
         $user->avatar_url = $data['avatar_url'];
         $user->meta       = json_encode($data, JSON_UNESCAPED_UNICODE);
         $user->state      = self::STATE_ENABLE;
+        $user->updated_at = date('Y-m-d H:i:s');
         $user->save();
 
         Session::put(self::SESSION_KEY, $data);

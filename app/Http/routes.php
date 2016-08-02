@@ -13,11 +13,11 @@
 // 首页
 Route::get('/', 'ProgramController@index');
 
-// 打卡页
+// 签到页
 Route::resource('heres', 'HereController');
 Route::get('here', 'HereController@map');
+Route::get('here/selfMapData', 'HereController@selfMapData');
 Route::get('here/placeAutocomplete', 'HereController@placeAutocomplete');
-Route::get('here/placeDetails', 'HereController@placeDetails');
 
 // 节目页
 Route::get('program/apptoday', 'ProgramController@apptoday');

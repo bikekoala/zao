@@ -46,15 +46,4 @@ class Here extends Model
     {
         return $query->where('user_id', $userId);
     }
-
-    /**
-     * Scope a query to only include dated records.
-     *
-     * @param string $date
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDated($query, $date)
-    {
-        return $query->where('date', $date);
-    }
 }

@@ -60,7 +60,7 @@ class HereController extends Controller
     public function edit($id)
     {
         // get current data
-        $data = Here::usered(User::getInfo()->id)->find($id);
+        $data = Here::find($id);
 
         // render page
         return View::make('here.edit')->with('data', $data);
@@ -134,6 +134,42 @@ class HereController extends Controller
 
         // response
         return Response::json(['status' => $status ? 'OK' : 'ERROR']);
+    }
+
+    /**
+     * 「自己」模式地图数据
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function selfMapData(Request $request)
+    {
+        // check login status
+        if ( ! User::isLogin()) {
+            return Response::json(['status' => 'Not login']);
+        }
+
+        // get here list
+        $list = Here::usered(User::getInfo()->id)
+            ->orderBy('date')
+            ->get()
+            ->toArray();
+
+        $coord = $data = [];
+        for ($i = 0, $n = count($list); $i < $n; $i++) {
+            $coord[$list[$i]['location']] = [
+                $list[$i]['lng'],
+                $list[$i]['lat']
+            ];
+
+            $data[$i] = [[
+                ['name' => $list[$i - 1]['location'] ?? []],
+                ['name' => $list[$i]['location']]
+            ]];
+        }
+
+        // response json
+        return Response::json(compact('coord', 'data'));
     }
 
     /**
