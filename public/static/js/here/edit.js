@@ -88,7 +88,7 @@ $(function() {
                 if ('OK' === data.status) {
                     loadRemoteModal($that);
                 } else {
-                    $message.html('保存失败，请刷新重试，或通知 <a href="http://weibo.com/doyoufly" target="_blank"><u>樹袋大熊</u></a>');
+                    $message.html('保存失败，请刷新重试，或通知 <a href="https://www.douban.com/doumail/write?to=52564675" target="_blank"><u>樹袋大熊</u></a>');
                     $btns.attr('disabled', false);
                 }
             }
@@ -120,7 +120,7 @@ $(function() {
                 if ('OK' === data.status) {
                     loadRemoteModal($that);
                 } else {
-                    $message.html('删除失败，请刷新重试，或通知 <a href="http://weibo.com/doyoufly" target="_blank"><u>樹袋大熊</u></a>');
+                    $message.html('删除失败，请刷新重试，或通知 <a href="https://www.douban.com/doumail/write?to=52564675" target="_blank"><u>樹袋大熊</u></a>');
                     $btns.attr('disabled', false);
                 }
             }
