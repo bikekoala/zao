@@ -9,7 +9,7 @@ $.maps = (function() {
             }
 
             var api = {
-                world: 'http://zaoaoaoaoao.com/static/module/echarts/weibo.json',
+                world:    'http://zaoaoaoaoao.com/here/mapData?mode=world',
                 personal: 'http://zaoaoaoaoao.com/here/mapData?mode=personal'
             };
 
@@ -163,25 +163,6 @@ $.maps = (function() {
     }
 
     var getWorldOption = function(mapData) {
-        var weiboData = mapData.map(function (serieData, idx) {
-            var px = serieData[0] / 1000;
-            var py = serieData[1] / 1000;
-            var res = [[px, py]];
-        
-            for (var i = 2; i < serieData.length; i += 2) {
-                var dx = serieData[i] / 1000;
-                var dy = serieData[i + 1] / 1000;
-                var x = px + dx;
-                var y = py + dy;
-                res.push([x, y, 1]);
-        
-                px = x;
-                py = y;
-            }
-            return res;
-        });
-        console.log(weiboData[2]);
-
         return {
             baseOption: {
                 backgroundColor: '#404a59',
@@ -253,28 +234,32 @@ $.maps = (function() {
                             borderColor: 'rgba(140, 140, 140, 0.4)',
                         }
                     }, 
-                    data: [
-                        {
-                            value: '2006',
+                    data: mapData.map(function (data) {
+                        return {
+                            value: data[0],
                             tooltip: {
-                                formatter: '333'
+                                formatter: function() {
+                                    var count = 0;
+                                    data[1].forEach(function(item) {
+                                        count += item[2]
+                                    });
+                                    return count + ' 人次';
+                                }
                             }
-                        },
-                    ]
-                /**
-                 *
-                 */
+                        }
+                    })
                 }
             },
-            options: [
-                {
-                    series : [
+            options: mapData.map(function (data) {
+                return {
+                    series: [
                         {
-                            name: '2006',
+                            name: data[0],
                             type: 'scatter',
                             coordinateSystem: 'geo',
-                            symbolSize: 3,
-                            large: true,
+                            symbolSize: function (val) {
+                                return Math.min(val[2] + 2, 5);
+                            },
                             itemStyle: {
                                 normal: {
                                     shadowBlur: 2,
@@ -282,11 +267,14 @@ $.maps = (function() {
                                     color: 'rgba(255, 255, 255, 0.8)'
                                 }
                             },
-                            data: weiboData[2]
+                            tooltip : {
+                                show: false
+                            },
+                            data: data[1]
                         }
                     ]
-                },
-            ]
+                }
+            })
         };
     }
 

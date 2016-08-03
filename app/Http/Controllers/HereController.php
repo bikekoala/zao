@@ -186,6 +186,59 @@ class HereController extends Controller
     }
 
     /**
+     * 「世界」模式地图数据
+     *
+     * @return array
+     */
+    private function getWorldMapData()
+    {
+        // get here list
+        $list = Here::select('lng', 'lat', 'date', 'gm_place_id')
+            ->orderBy('date')
+            ->get()
+            ->toArray();
+
+        // grouping
+        $listOne = [];
+        foreach ($list as $item) {
+            $listOne[substr($item['date'], 0, 4)][] = $item;
+        }
+
+        $listTwo = $listCache = [];
+        foreach ($listOne as $year => $dataItem) {
+            $listTwo[$year] = array_merge($listCache, $dataItem);
+            $listCache = array_merge($listCache, $dataItem);
+        }
+
+        $listThree = $gmpidCounts = [];
+        foreach ($listTwo as $year => $dataItem) {
+            foreach ($dataItem as $item) {
+                if (isset($gmpidCounts[$year][$item['gm_place_id']])) {
+                    $gmpidCounts[$year][$item['gm_place_id']]++;
+                } else {
+                    $gmpidCounts[$year][$item['gm_place_id']] = 1;
+                }
+            }
+            foreach ($dataItem as $item) {
+                $listThree[$year][$item['gm_place_id']][] = $item;
+            }
+        }
+
+        $list = [];
+        $yearIndex = 0;
+        foreach ($gmpidCounts as $year => $dataItem) {
+            $list[$yearIndex][0] = $year;
+            foreach ($dataItem as $gmpid => $count) {
+                $item = $listThree[$year][$gmpid][0];
+                $list[$yearIndex][1][] = [$item['lng'], $item['lat'], $count];
+            }
+            $yearIndex++;
+        }
+
+        return $list;
+    }
+
+    /**
      * 「自己」模式地图数据
      *
      * @return array

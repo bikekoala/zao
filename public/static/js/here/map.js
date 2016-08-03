@@ -31,7 +31,7 @@ $('#user').on('mouseenter', function() {
 bindRemoteModal();
 
 // 关闭 Modal 框时刷新地图
-$('#basic-modal').on('hide.bs.modal', function(e) {
+$('#basic-modal').on('hide.bs.modal', function() {
     var mode = document.getElementById('switch-map').innerHTML;
     $.maps.draw({'自己': 'world', '世界': 'personal'}[mode]);
 })

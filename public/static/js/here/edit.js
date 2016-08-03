@@ -86,7 +86,7 @@ $(function() {
             },
             success: function(data) {
                 if ('OK' === data.status) {
-                    loadRemoteModal($that);
+                    bindRemoteModal($that);
                 } else {
                     $message.html('保存失败，请刷新重试，或通知 <a href="https://www.douban.com/doumail/write?to=52564675" target="_blank"><u>樹袋大熊</u></a>');
                     $btns.attr('disabled', false);
@@ -118,7 +118,7 @@ $(function() {
             },
             success: function(data) {
                 if ('OK' === data.status) {
-                    loadRemoteModal($that);
+                    bindRemoteModal($that);
                 } else {
                     $message.html('删除失败，请刷新重试，或通知 <a href="https://www.douban.com/doumail/write?to=52564675" target="_blank"><u>樹袋大熊</u></a>');
                     $btns.attr('disabled', false);
