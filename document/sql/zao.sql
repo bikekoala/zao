@@ -223,8 +223,8 @@ CREATE TABLE `heres` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
   `date` date NOT NULL COMMENT '日期',
-  `lat` decimal(10,6) NOT NULL COMMENT '纬度',
   `lng` decimal(10,6) NOT NULL COMMENT '经度',
+  `lat` decimal(10,6) NOT NULL COMMENT '纬度',
   `country` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '国家',
   `province` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '省份',
   `location` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '地点',
@@ -247,15 +247,16 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ds_id` int(11) unsigned NOT NULL COMMENT '多说用户ID',
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名字',
+  `ds_id` varchar(20) NOT NULL DEFAULT '' COMMENT '多说用户ID',
+  `name` varchar(128) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '名字',
   `url` varchar(256) NOT NULL DEFAULT '' COMMENT '链接地址',
   `avatar_url` varchar(256) NOT NULL DEFAULT '' COMMENT '头像地址',
-  `meta` text NOT NULL COMMENT '原始信息',
+  `meta` text CHARACTER SET utf8mb4 NOT NULL COMMENT '原始信息',
   `state` tinyint(1) unsigned NOT NULL COMMENT '原始信息',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ds_id` (`ds_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -307,4 +308,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-26 15:43:22
+-- Dump completed on 2016-08-03 18:27:51
