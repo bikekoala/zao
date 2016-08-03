@@ -201,9 +201,10 @@ $.maps = (function() {
                     }
                 ],
                 timeline: {
-                    autoPlay: true,
+                    autoPlay: false,
                     playInterval: 2000,
                     bottom: 5,
+                    currentIndex: mapData.length - 1,
                     label: {
                         position: 'bottom',
                         normal: {
@@ -212,6 +213,11 @@ $.maps = (function() {
                             },
                             textStyle: {
                                 color: 'rgba(180, 180, 180, 0.5)',
+                            }
+                        },
+                        emphasis: {
+                            textStyle: {
+                                color: 'rgba(180, 180, 180, 0.8)',
                             }
                         }
                     },
@@ -226,14 +232,30 @@ $.maps = (function() {
                             shadowBlur: 10,
                             borderWidth: 10,
                             borderColor: 'rgba(200, 200, 200, 0.5)',
+                        },
+                        emphasis: {
+                            color: 'rgba(249, 146, 149, 1)',
+                            shadowColor: 'rgba(0, 0, 0, 0)',
+                            shadowBlur: 10,
+                            borderWidth: 10,
+                            borderColor: 'rgba(200, 200, 200, 0.5)',
                         }
                     },
                     controlStyle: {
                         normal: {
                             color: 'rgba(180, 180, 180, 0.5)',
                             borderColor: 'rgba(140, 140, 140, 0.4)',
+                        },
+                        emphasis: {
+                            color: 'rgba(180, 180, 180, 0.8)',
+                            borderColor: 'rgba(140, 140, 140, 0.7)',
                         }
                     }, 
+                    checkpointStyle: {
+                        color: 'rgba(249, 146, 149, 0.8)',
+                        borderWidth: 10,
+                        borderColor: 'rgba(0, 0, 0, 0)',
+                    },
                     data: mapData.map(function (data) {
                         return {
                             value: data[0],
@@ -258,7 +280,7 @@ $.maps = (function() {
                             type: 'scatter',
                             coordinateSystem: 'geo',
                             symbolSize: function (val) {
-                                return Math.min(val[2] + 2, 5);
+                                return Math.min(val[2] + 2, 50);
                             },
                             itemStyle: {
                                 normal: {
