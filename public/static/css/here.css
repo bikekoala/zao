@@ -16,6 +16,9 @@ body {
     right: 0;
     height: 100%;
 }
+#ds-login .ds-renren, #ds-login .ds-kaixin {
+    display: none;
+}
 .user {
     float: right;
     margin-top: 10px;
