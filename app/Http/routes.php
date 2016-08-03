@@ -16,7 +16,7 @@ Route::get('/', 'ProgramController@index');
 // 签到页
 Route::resource('heres', 'HereController');
 Route::get('here', 'HereController@map');
-Route::get('here/personalMapData', 'HereController@personalMapData');
+Route::get('here/mapData', 'HereController@mapData');
 Route::get('here/placeAutocomplete', 'HereController@placeAutocomplete');
 
 // 节目页

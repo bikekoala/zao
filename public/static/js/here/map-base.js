@@ -9,15 +9,11 @@ $.maps = (function() {
             }
 
             var api = {
-                //world: 'http://zaoaoaoaoao.com/here/worldMapData',
                 world: 'http://zaoaoaoaoao.com/static/module/echarts/weibo.json',
-                personal: 'http://zaoaoaoaoao.com/here/personalMapData' 
+                personal: 'http://zaoaoaoaoao.com/here/mapData?mode=personal'
             };
 
-            $.ajax({
-                url: api[mode],
-                dataType: 'json'
-            }).done(function(data) {
+            $.get(api[mode]).done(function(data) {
                 var option;
                 if ('personal' === mode) {
                     draw(getPersonalOption(data));
@@ -184,6 +180,7 @@ $.maps = (function() {
             }
             return res;
         });
+        console.log(weiboData[2]);
 
         return {
             baseOption: {
@@ -258,72 +255,25 @@ $.maps = (function() {
                     }, 
                     data: [
                         {
-                            value: '2004',
-                            tooltip: {
-                                formatter: '111'
-                            }
-                        },
-                        {
-                            value: '2005',
-                            tooltip: {
-                                formatter: '222'
-                            }
-                        },
-                        {
                             value: '2006',
                             tooltip: {
                                 formatter: '333'
                             }
                         },
                     ]
+                /**
+                 *
+                 */
                 }
             },
             options: [
                 {
                     series : [
                         {
-                            name: '2004',
-                            type: 'scatter',
-                            coordinateSystem: 'geo',
-                            symbolSize: 1,
-                            large: true,
-                            itemStyle: {
-                                normal: {
-                                    shadowBlur: 2,
-                                    shadowColor: 'rgba(37, 140, 249, 0.8)',
-                                    color: 'rgba(37, 140, 249, 0.8)'
-                                }
-                            },
-                            data: weiboData[0]
-                        }
-                    ]
-                },
-                {
-                    series : [
-                        {
-                            name: '2005',
-                            type: 'scatter',
-                            coordinateSystem: 'geo',
-                            symbolSize: 1,
-                            large: true,
-                            itemStyle: {
-                                normal: {
-                                    shadowBlur: 2,
-                                    shadowColor: 'rgba(14, 241, 242, 0.8)',
-                                    color: 'rgba(14, 241, 242, 0.8)'
-                                }
-                            },
-                            data: weiboData[1]
-                        }
-                    ]
-                },
-                {
-                    series : [
-                        {
                             name: '2006',
                             type: 'scatter',
                             coordinateSystem: 'geo',
-                            symbolSize: 1,
+                            symbolSize: 3,
                             large: true,
                             itemStyle: {
                                 normal: {

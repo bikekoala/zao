@@ -34,7 +34,8 @@ class HereController extends Controller
     public function index()
     {
         // get here list
-        $list = Here::usered(User::getInfo()->id)->orderBy('date')->get();
+        $list = User::isLogin() ?
+            Here::usered(User::getInfo()->id)->orderBy('date')->get() : [];
 
         // render page
         return View::make('here.index')->with('list', $list);
@@ -137,50 +138,17 @@ class HereController extends Controller
     }
 
     /**
-     * 「自己」模式地图数据
+     * 地图数据接口
      *
      * @param Request $request
      * @return Response
      */
-    public function personalMapData(Request $request)
+    public function mapData(Request $request)
     {
-        // check login status
-        if ( ! User::isLogin()) {
-            return Response::json(['status' => 'Not login']);
-        }
+        $mode = Request::get('mode', 'world');
+        $method = sprintf('get%sMapData', ucfirst($mode));
 
-        // get here list
-        $list = Here::usered(User::getInfo()->id)
-            ->orderBy('date')
-            ->get()
-            ->toArray();
-
-        $coord = $address = $date = $data = [];
-        for ($i = 0, $n = count($list); $i < $n; $i++) {
-            $coord[$list[$i]['location']] = [
-                $list[$i]['lng'],
-                $list[$i]['lat']
-            ];
-
-            $address[$list[$i]['location']] = sprintf(
-                '%s %s',
-                $list[$i]['province'],
-                $list[$i]['location']
-            );
-
-            $date[$list[$i]['location']] = $list[$i]['date'];
-
-            $data[$i] = [
-                $list[$i]['location'],
-                [[
-                    ['name' => $list[$i - 1]['location'] ?? []],
-                    ['name' => $list[$i]['location']]
-                ]]
-            ];
-        }
-
-        // response json
-        return Response::json(compact('coord', 'address', 'date', 'data'));
+        return Response::json($this->$method());
     }
 
     /**
@@ -215,6 +183,52 @@ class HereController extends Controller
         } else {
             return Response::json($curl->response);
         }
+    }
+
+    /**
+     * 「自己」模式地图数据
+     *
+     * @return array
+     */
+    private function getPersonalMapData()
+    {
+        // check login status
+        if ( ! User::isLogin()) {
+            return ['status' => 'Not login'];
+        }
+
+        // get here list
+        $list = Here::usered(User::getInfo()->id)
+            ->orderBy('date')
+            ->get()
+            ->toArray();
+
+        $coord = $address = $date = $data = [];
+        for ($i = 0, $n = count($list); $i < $n; $i++) {
+            $coord[$list[$i]['location']] = [
+                $list[$i]['lng'],
+                $list[$i]['lat']
+            ];
+
+            $address[$list[$i]['location']] = sprintf(
+                '%s %s',
+                $list[$i]['province'],
+                $list[$i]['location']
+            );
+
+            $date[$list[$i]['location']] = $list[$i]['date'];
+
+            $data[$i] = [
+                $list[$i]['location'],
+                [[
+                    ['name' => $list[$i - 1]['location'] ?? []],
+                    ['name' => $list[$i]['location']]
+                ]]
+            ];
+        }
+
+        // return data
+        return compact('coord', 'address', 'date', 'data');
     }
 
     /**
