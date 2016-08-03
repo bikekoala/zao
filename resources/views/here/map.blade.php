@@ -69,6 +69,8 @@
     <script src="/static/module/jquery-2.1.4.min.js"></script>
     <script src="/static/module/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/js/duoshuo.js"></script>
+
+    <script src="/static/js/here/common.js"></script>
     <script src="/static/js/here/map-base.js"></script>
     <script src="/static/js/here/map.js"></script>
 </body>
