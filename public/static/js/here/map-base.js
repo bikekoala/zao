@@ -244,7 +244,7 @@ $.maps = (function() {
                                 formatter: function() {
                                     var count = 0;
                                     data[1].forEach(function(item) {
-                                        count += item[2]
+                                        count += item[3]
                                     });
                                     return count + ' 人次';
                                 }
@@ -261,7 +261,7 @@ $.maps = (function() {
                             type: 'scatter',
                             coordinateSystem: 'geo',
                             symbolSize: function (val) {
-                                return Math.min(val[2] + 2, 50);
+                                return Math.min(val[3] + 2, 50);
                             },
                             itemStyle: {
                                 normal: {
@@ -272,7 +272,10 @@ $.maps = (function() {
                             },
                             tooltip : {
                                 formatter: function(dataItem) {
-                                    return dataItem['data'][2] + ' 人次';
+                                    return dataItem['data'][2] +
+                                           '，' +
+                                           dataItem['data'][3] +
+                                           ' 人次';
                                 }
                             },
                             data: data[1]

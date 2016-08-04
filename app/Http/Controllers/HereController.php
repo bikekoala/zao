@@ -189,7 +189,7 @@ class HereController extends Controller
     private function getWorldMapData()
     {
         // get here list
-        $list = Here::select('lng', 'lat', 'date', 'gm_place_id')
+        $list = Here::select('date', 'lng', 'lat', 'location', 'gm_place_id')
             ->orderBy('date')
             ->get()
             ->toArray();
@@ -226,7 +226,12 @@ class HereController extends Controller
             $list[$yearIndex][0] = $year;
             foreach ($dataItem as $gmpid => $count) {
                 $item = $listThree[$year][$gmpid][0];
-                $list[$yearIndex][1][] = [$item['lng'], $item['lat'], $count];
+                $list[$yearIndex][1][] = [
+                    $item['lng'],
+                    $item['lat'],
+                    $item['location'],
+                    $count
+                ];
             }
             $yearIndex++;
         }
