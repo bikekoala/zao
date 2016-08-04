@@ -2,7 +2,7 @@ $(function() {
     // Datatime Picker
     $('#date').datetimepicker({
         locale: 'zh-cn',
-        format: 'YYYY-MM'
+        format: 'YYYY'
     });
 
     // Google Maps Autocomplete input

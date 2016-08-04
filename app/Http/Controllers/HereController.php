@@ -80,21 +80,17 @@ class HereController extends Controller
             return Response::json(['status' => 'Not login']);
         }
 
-        $rules = [
-            'date'     => 'required|date',
-            'location' => 'required|size:27',
-        ];
-        $validator = Validator::make(Request::all(), $rules);
+        $params = $request::all();
+        $validator = Validator::make($params, [
+            'date'     => 'required|in:2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016',
+            'location' => 'required|size:27'
+        ]);
         if ($validator->fails()) {
             return Response::json(['status' => 'Invalid params']);
         }
 
-        $id = $request::get('id');
-        $date = $request::get('date');
-        $placeId = $request::get('location');
-
         // request place details
-        $result = $this->placeDetails($placeId);
+        $result = $this->placeDetails($params['location']);
         if ('OK' !== $result['status']) {
             return Response::json(['status' => $result['status']]);
         }
@@ -103,7 +99,7 @@ class HereController extends Controller
         $details = $result['result'];
         $data = [
             'user_id'     => User::getInfo()['id'],
-            'date'        => date('Y-m-d', strtotime($date)),
+            'date'        => $params['date'],
             'lat'         => $details['geometry']['location']['lat'],
             'lng'         => $details['geometry']['location']['lng'],
             'country'     => $details['address_components']['country']['long_name'] ?? '',
@@ -112,8 +108,8 @@ class HereController extends Controller
             'gm_url'      => $details['url'],
             'gm_place_id' => $details['place_id']
         ];
-        if ($id) {
-            Here::where('id', $id)->update($data);
+        if ( ! empty($params['id'])) {
+            Here::where('id', $params['id'])->update($data);
         } else {
             Here::create($data);
         }
@@ -201,7 +197,7 @@ class HereController extends Controller
         // grouping
         $listOne = [];
         foreach ($list as $item) {
-            $listOne[substr($item['date'], 0, 4)][] = $item;
+            $listOne[$item['date']][] = $item;
         }
 
         $listTwo = $listCache = [];

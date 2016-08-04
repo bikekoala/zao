@@ -222,7 +222,7 @@ DROP TABLE IF EXISTS `heres`;
 CREATE TABLE `heres` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
-  `date` date NOT NULL COMMENT '日期',
+  `date` year(4) NOT NULL COMMENT '日期',
   `lng` decimal(10,6) NOT NULL COMMENT '经度',
   `lat` decimal(10,6) NOT NULL COMMENT '纬度',
   `country` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '国家',
@@ -308,4 +308,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-03 18:27:51
+-- Dump completed on 2016-08-04 12:23:26
