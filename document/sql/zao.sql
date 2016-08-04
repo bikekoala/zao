@@ -229,7 +229,7 @@ CREATE TABLE `heres` (
   `province` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '省份',
   `location` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '地点',
   `gm_url` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'GM URL',
-  `gm_place_id` varchar(27) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'GM地名ID',
+  `gm_place_id` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'GM地名ID',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
@@ -308,4 +308,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-04 12:23:26
+-- Dump completed on 2016-08-04 16:32:22

@@ -83,7 +83,7 @@ class HereController extends Controller
         $params = $request::all();
         $validator = Validator::make($params, [
             'date'     => 'required|in:2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016',
-            'location' => 'required|size:27'
+            'location' => 'required|min:27|max:39'
         ]);
         if ($validator->fails()) {
             return Response::json(['status' => 'Invalid params']);
