@@ -253,7 +253,7 @@ class HereController extends Controller
             ->toArray();
 
         $coord = $address = $date = $data = [];
-        for ($i = 0, $n = count($list); $i < $n; $i++) {
+        for ($i = 0, $n = count($list); $i < $n; $i++) { 
             $coord[$list[$i]['location']] = [
                 $list[$i]['lng'],
                 $list[$i]['lat']
@@ -276,8 +276,14 @@ class HereController extends Controller
             ];
         }
 
+        $map = map_mode();
+        for ($i = 0, $n = count($list); $i < $n; $i++) {
+            $map = map_mode($list[$i]['country']);
+            if ('world' === $map) break;
+        }
+
         // return data
-        return compact('coord', 'address', 'date', 'data');
+        return compact('map', 'coord', 'address', 'date', 'data');
     }
 
     /**

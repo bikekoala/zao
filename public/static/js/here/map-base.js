@@ -116,7 +116,7 @@ $.maps = (function() {
                 trigger: 'item'
             },
             geo: {
-                map: 'china',
+                map: mapData.map,
                 roam: true,
                 top: 10,
                 bottom: 10,

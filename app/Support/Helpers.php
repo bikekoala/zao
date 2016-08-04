@@ -48,3 +48,16 @@ function qiniu_url($path) {
         $path
     );
 }
+
+/**
+ * 地图模式
+ *
+ * @param string $country
+ * @return string
+ */
+function map_mode($country = '') {
+    $modes = ['world', 'china'];
+    $regions = ['中国', '香港', '澳门', '台湾', ''];
+
+    return $modes[(int) in_array($country, $regions)];
+}
