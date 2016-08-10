@@ -40,7 +40,8 @@ class Artist extends Model
      */
     public function musics()
     {
-        return $this->belongsToMany('App\Music', 'music_artist');
+        return $this->belongsToMany('App\Music', 'music_artist')
+            ->orderBy('release_date', 'desc');
     }
 
     /**

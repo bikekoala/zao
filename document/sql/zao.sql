@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.27, for debian-linux-gnu (armv7l)
+-- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: zao
+-- Host: 127.0.0.1    Database: zao
 -- ------------------------------------------------------
--- Server version	5.5.27-0ubuntu2
+-- Server version	5.5.46-0ubuntu0.14.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,8 +48,7 @@ CREATE TABLE `program_participant` (
   `program_id` int(11) unsigned NOT NULL COMMENT '节目编号',
   `participant_id` int(11) unsigned NOT NULL COMMENT '参与人编号',
   PRIMARY KEY (`id`),
-  KEY `program_id` (`program_id`),
-  KEY `participant_id` (`participant_id`)
+  KEY `program_id` (`program_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -150,7 +149,8 @@ CREATE TABLE `musics` (
   `external_metadata` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'External 3rd Party IDs and metadata',
   `counts` int(11) unsigned NOT NULL COMMENT '次数',
   PRIMARY KEY (`id`),
-  KEY `counts` (`counts`)
+  KEY `counts` (`counts`),
+  KEY `release_date` (`release_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='音乐表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -248,10 +248,10 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `ds_id` varchar(20) NOT NULL DEFAULT '' COMMENT '多说用户ID',
-  `name` varchar(128) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '名字',
+  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名字',
   `url` varchar(256) NOT NULL DEFAULT '' COMMENT '链接地址',
   `avatar_url` varchar(256) NOT NULL DEFAULT '' COMMENT '头像地址',
-  `meta` text CHARACTER SET utf8mb4 NOT NULL COMMENT '原始信息',
+  `meta` text NOT NULL COMMENT '原始信息',
   `state` tinyint(1) unsigned NOT NULL COMMENT '原始信息',
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '更新时间',
@@ -308,4 +308,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-04 16:32:22
+-- Dump completed on 2016-08-10 15:51:01
