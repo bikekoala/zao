@@ -87,7 +87,7 @@ header {
     top: 0;
     bottom: 0;
     background-size: cover;
-    background-image: url("/static/img/cover/default.png");
+    background-image: url("/static/img/cover/thumbnail/default.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     letter-spacing: normal;
@@ -164,6 +164,13 @@ header nav i {
 }
 header nav a:hover {
     background-color: rgba(255,255,255,0.15);
+}
+header .image-copyright {
+    position: absolute;
+    bottom: 5px;
+    left: 8px;
+    font-size: 0.5em;
+    color: rgba(255,255,255,0.55);
 }
 .content {
     padding: 1.5em 4em 0;

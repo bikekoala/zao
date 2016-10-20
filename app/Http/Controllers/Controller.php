@@ -29,7 +29,19 @@ class Controller extends BaseController
      */
     public function __construct()
     {
+        $this->showCoverInfo();
         $this->showNotification();
+    }
+
+    /**
+     * 展示封图信息
+     *
+     * @return void
+     */
+    protected function showCoverInfo()
+    {
+        $coverInfo = Cache::get(UpdateBingCover::COVER_CACHE_KEY);
+        View::share('cover', $coverInfo);
     }
 
     /**

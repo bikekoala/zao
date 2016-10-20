@@ -91,7 +91,7 @@ class UpdateBingCover extends Command
     private function cacheImageInfo($info)
     {
         $data = [
-            'original'  => strstr($this->paths['original'], 'public'),
+            'original'  => strstr($this->paths['original'], 'static'),
             'copyright' => $info['copyright']
         ];
 

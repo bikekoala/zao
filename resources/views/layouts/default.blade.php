@@ -31,6 +31,10 @@
                     <a href="{{ URL('program/apptoday') }}"><i class="fa fa-calendar-check-o" original-title="APP 同期节目"></i></a>
                     <a href="{{ URL('about') }}"><i class="fa fa-about" original-title="关于"></i></a>
                 </nav>
+
+                @if ( ! Agent::isMobile())
+                <a href="/{{ $cover['original'] }}" target="_blank" class="image-copyright">{{ $cover['copyright'] }}</a>
+                @endif
             </div>
         </header>
 
