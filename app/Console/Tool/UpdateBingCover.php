@@ -3,6 +3,7 @@
 namespace App\Console\Tool;
 
 use App\Console\Command;
+use Cache, Imagick;
 
 /**
  * 更新Bing封图
@@ -33,6 +34,20 @@ class UpdateBingCover extends Command
     protected $api = 'http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1';
 
     /**
+     * 文件路径
+     *
+     * @var array
+     */
+    protected $paths;
+
+    /**
+     * 封图信息 缓存KEY
+     *
+     * @var string
+     */
+    const COVER_CACHE_KEY = 'app_cover_info';
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -40,6 +55,8 @@ class UpdateBingCover extends Command
     public function __construct()
     {
         parent::__construct();
+
+        $this->paths = $this->getFilePaths();
     }
 
     /**
@@ -49,37 +66,109 @@ class UpdateBingCover extends Command
      */
     public function handle()
     {
-        $image = $this->getImage();
-        $paths = $this->getFilePaths();
-        if ( ! is_file($paths['archive'])) {
-            if ($image = $this->getImage()) {
-                file_put_contents($paths['archive'], $image);
-            } else {
-                return $this->error('Get Bing-cover failed.');
-            }
+        $image = $this->getImageInfo();
+        if ( ! $image) {
+            return $this->error('Get Bing-cover failed.');
         }
 
-        is_link($paths['default']) and unlink($paths['default']);
-        symlink($paths['archive'], $paths['default']);
+        $this->saveOriginalImage($image['blob']);
+
+        $this->saveThumbnailImage($image['blob'], 1390, 782);
+
+        $this->createImageSymlink();
+
+        $this->cacheImageInfo($image['info']);
 
         $this->info('Success.');
     }
 
     /**
-     * 获取Bing图片文件
+     * 缓存图片信息
      *
-     * @return string
+     * @param array $info
+     * @return bool
      */
-    private function getImage()
+    private function cacheImageInfo($info)
     {
-        $info = json_decode(file_get_contents($this->api), true);
-        $url = $info['images'][0]['url'];
+        $data = [
+            'original'  => strstr($this->paths['original'], 'public'),
+            'copyright' => $info['copyright']
+        ];
 
-        if ('http' !== substr($url, '0', 4)) {
-            $url = 'http://www.bing.com' . $url;
+        return Cache::forever(self::COVER_CACHE_KEY, $data);
+    }
+
+    /**
+     * 创建软连接
+     *
+     * @return bool
+     */
+    private function createImageSymlink()
+    {
+        if (is_link($this->paths['thumbnail_default'])) {
+            unlink($this->paths['thumbnail_default']);
         }
 
-        return file_get_contents($url);
+        return symlink(
+            $this->paths['thumbnail'],
+            $this->paths['thumbnail_default']
+        );
+    }
+
+    /**
+     * 保存缩略图
+     *
+     * @param blob $image
+     * @param int $width
+     * @param int $height
+     * @return bool
+     */
+    private function saveThumbnailImage($image, $width, $height, $quality = 0.85)
+    {
+        $im = new Imagick();
+        $im->readImageBlob($image);
+        $im->setInterlaceScheme(imagick::INTERLACE_PLANE);
+        $im->resizeImage($width, $height, Imagick::FILTER_CATROM, 1, true);
+        $im->setImageCompression(Imagick::COMPRESSION_JPEG);
+        $im->setImageCompressionQuality($im->getImageCompressionQuality() * $quality);
+        return $im->writeImage($this->paths['thumbnail']);
+    }
+
+    /**
+     * 保存原始图片
+     *
+     * @param blob $image
+     * @return bool
+     */
+    private function saveOriginalImage($image)
+    {
+        return (bool) file_put_contents($this->paths['original'], $image);
+    }
+
+    /**
+     * 获取 Bing 图片文件信息
+     *
+     * @return array | false
+     */
+    private function getImageInfo()
+    {
+        $result = json_decode(file_get_contents($this->api), true);
+
+        if ( ! empty($result['images'])) {
+            $info = current($result['images']);
+
+            if ('http' !== substr($info['url'], '0', 4)) {
+                $info['url'] = 'http://www.bing.com' . $info['url'];
+            }
+
+            $blob = file_get_contents($info['url']);
+
+            if ($blob) {
+                return ['blob' => $blob, 'info' => $info];
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -90,10 +179,12 @@ class UpdateBingCover extends Command
     private function getFilePaths()
     {
         $basePath = public_path() . '/static/img/cover';
+        $imageFile = date('Y-m-d') . '.jpg';
 
         return [
-            'default' => $basePath . '/default.png',
-            'archive' => sprintf('%s/%s.png', $basePath, date('Y-m-d'))
+            'original'          => $basePath . '/original/' . $imageFile,
+            'thumbnail'         => $basePath . '/thumbnail/' . $imageFile,
+            'thumbnail_default' => $basePath . '/thumbnail/default.jpg'
         ];
     }
 }
