@@ -35,9 +35,9 @@
     <a class="btn-donate" id="btn-donate" href="javascript:;"></a>
     <div class="donate-guide">
         <div class="donate-qrcode">
-            <img src="/static/img/donate_alipay.png" alt="支付宝" title="支付宝">
-            <img src="/static/img/feiyushow.png" alt="飞鱼全家福">
-            <img src="/static/img/donate_wechat.png" alt="微信" title="微信">
+            <img src="/static/img/donate_alipay.jpg" alt="支付宝" title="支付宝">
+            <img src="/static/img/feiyushow.jpg" alt="飞鱼全家福">
+            <img src="/static/img/donate_wechat.jpg" alt="微信" title="微信">
         </div>
         <span>这将用于支付AWS服务器和七牛云存储、带宽的账单，谢谢你</span>
     </div>

@@ -19,7 +19,7 @@
     <body>
         <header>
             <div class="sidebar">
-                <img class="avatar" src="/static/img/avatar.png">
+                <img class="avatar" src="/static/img/avatar.jpg">
                 <h2 class="description">再见飞鱼秀，不散的飞鱼人</h2>
                 <form action="/" method="get" class="search">
                     <i class="fa fa-search"></i>
