@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use App\Console\Tool\SyncAppProgram;
+use App\Console\Tool\UpdateBingCover;
 use App\{User, Notification};
 use View, Cache;
 
@@ -29,17 +29,17 @@ class Controller extends BaseController
      */
     public function __construct()
     {
-        $notification = Notification::getLastNotification();
-        View::share('notification', collect($notification)->toJson());
+        $this->showNotification();
     }
 
     /**
-     * 获取App节目日期
+     * 展示通知
      *
-     * @return string
+     * @return void
      */
-    protected function getAppProgramDate()
+    protected function showNotification()
     {
-        return Cache::get(SyncAppProgram::DATE_CACHE_KEY, '20040802');
+        $notification = Notification::getLastNotification();
+        View::share('notification', collect($notification)->toJson());
     }
 }

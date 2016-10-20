@@ -229,4 +229,14 @@ class ProgramController extends Controller
 
         return $contributers;
     }
+
+    /**
+     * 获取App节目日期
+     *
+     * @return string
+     */
+    private function getAppProgramDate()
+    {
+        return Cache::get(SyncAppProgram::DATE_CACHE_KEY, '20040802');
+    }
 }
