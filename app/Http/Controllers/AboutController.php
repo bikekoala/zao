@@ -27,8 +27,8 @@ class AboutController extends Controller
      *
      * @return Response
      */
-    public function donateList()
+    public function donationList()
     {
-        return View::make('about.donate')->with('title', '打赏记录');
+        return View::make('about.donation')->with('title', '打赏记录');
     }
 }
