@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>早后台</title>
     <link href="/static/module//bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" src="/static/module/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/static/module/jquery/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="/static/module/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>

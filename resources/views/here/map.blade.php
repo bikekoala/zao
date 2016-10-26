@@ -65,7 +65,7 @@
 
     <link rel="stylesheet" href="/static/module/bootstrap/css/bootstrap.min.css?v={{ env('STATIC_FILE_VERSION') }}">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css?v={{ env('STATIC_FILE_VERSION') }}">
-    <script src="/static/??module/echarts/echarts.min.js,module/jquery-2.1.4.min.js,module/bootstrap/js/bootstrap.min.js,js/duoshuo.js,js/here/common.js,js/here/map-base.js,js/here/map.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+    <script src="/static/??module/echarts/echarts.min.js,module/jquery/jquery-2.1.4.min.js,module/bootstrap/js/bootstrap.min.js,js/duoshuo.js,js/here/common.js,js/here/map-base.js,js/here/map.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
     <script src="/static/??module/echarts/map/china.js,module/echarts/map/world.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
 </body>
 </html>

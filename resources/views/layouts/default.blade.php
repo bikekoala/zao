@@ -10,7 +10,7 @@
         <meta name="description" content="{{ $description or '亲爱的飞鱼人，这里可以在线收听或下载自 2004 年飞鱼秀开播以来的几乎所有的节目回放喔~' }}" />
         <link type="text/plain" rel="author" href="/humans.txt" />
         <link rel="stylesheet" href="/static/??module/tipsy/tipsy.css,module/AmaranJS/css/amaran.min.css,css/font-awesome.min.css,css/main.css,css/amaran.css?v={{ env('STATIC_FILE_VERSION') }}">
-        <script src="/static/??module/jquery-2.1.4.min.js,module/tipsy/jquery.tipsy.js,module/js-emoji/js/emoji.min.js,module/jquery.cookie.js,module/AmaranJS/js/jquery.amaran.min.js,js/common.js,js/base.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+        <script src="/static/??module/jquery/jquery-2.1.4.min.js,module/tipsy/jquery.tipsy.js,module/js-emoji/js/emoji.min.js,module/jquery/jquery.cookie.js,module/AmaranJS/js/jquery.amaran.min.js,js/common.js,js/base.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
