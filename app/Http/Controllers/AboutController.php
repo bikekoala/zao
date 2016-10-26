@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use View;
+use App\Comment;
+use View, Request, Cache;
 
 /**
  * 关于控制器
@@ -30,5 +31,35 @@ class AboutController extends Controller
     public function donationList()
     {
         return View::make('about.donation')->with('title', '打赏记录');
+    }
+
+    /**
+     * 贡献记录
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function contributionList(Request $request)
+    {
+        // get params
+        $isFlush = $request::get('flush');
+
+        // cache it
+        $cacheKey = Comment::CONTRIBUTION_CACHE_KEY;
+        $archive = Cache::get($cacheKey);
+        if ($isFlush or empty($archive)) {
+            $comments = Comment::select('meta', 'date', 'ext_program_date')
+                ->agreed()
+                ->orderBy('id', 'DESC')
+                ->get();
+
+            $archive = (string) View::make('about.contribution')
+                ->with('title', '贡献记录')
+                ->with('comments', $comments);
+
+            Cache::forever($cacheKey, $archive);
+        }
+
+        echo $archive;
     }
 }

@@ -100,6 +100,9 @@ class ContributionsController extends Controller
             // 刷新首页文件缓存
             Cache::forget(Program::INDEX_CACHE_KEY);
 
+            // 刷新贡献记录页文件缓存
+            Cache::forget(Comment::CONTRIBUTION_CACHE_KEY);
+
             // 记录日志
             Comment::where('id', $log->id)->update([
                 'ext_is_agree' => $request->state

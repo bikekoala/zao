@@ -45,6 +45,11 @@ class Comment extends Model
     public $timestamps = false;
 
     /**
+     * 贡献记录页缓存KEY
+     */
+    const CONTRIBUTION_CACHE_KEY = 'about_contribution_html';
+
+    /**
      * 操作类型
      *
      * $var array

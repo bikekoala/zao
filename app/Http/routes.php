@@ -32,6 +32,7 @@ Route::get('music/artist/{id}', 'MusicController@artistPage');
 // 关于页
 Route::get('about', 'AboutController@index');
 Route::get('about/donation', 'AboutController@donationList');
+Route::get('about/contribution', 'AboutController@contributionList');
 
 // 多说评论
 Route::get('duoshuo/login', 'DuoshuoController@login');
