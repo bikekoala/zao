@@ -2,8 +2,6 @@
 
 @section('content')
 {!! $archive !!}
-
-<link rel="stylesheet" href="/static/??css/music.css?v={{ env('STATIC_FILE_VERSION') }}">
 @endsection
 
 @section('extra')

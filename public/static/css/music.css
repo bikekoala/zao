@@ -47,42 +47,6 @@
     margin-top: 35px;
     height: 300px;
 }
-.table-box {
-    position: relative;
-    width: 100%;
-    margin-top: 2.6em;
-    border-collapse: collapse;
-    zoom: 1;
-}
-.table-box caption {
-    padding-bottom: 10px;
-    font-size: 18px;
-    text-align: left;
-}
-.table-box caption a {
-    display: none;
-    font-size: 14px;
-}
-.table-box .title {
-    width: 100%;
-    line-height: 2em;
-    text-align: left;
-}
-.table-box .title th {
-    border-bottom: 2px solid #ccc;
-    font-weight: normal;
-}
-.table-box .row {
-    padding: 1px;
-    font-size: 0.9em;
-}
-.table-box .row:hover {
-    background-color: #f7f7f7;
-}
-.table-box .row td {
-    min-width: 6em;
-    height: 2em;
-}
 
 /* responsive */
 @media(max-width: 768px) {

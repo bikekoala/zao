@@ -1,10 +1,10 @@
 <h1 class="post-title">{{ $title }}</h1>
-<table class="table-box">
+<table class="post-contribution table-box">
     <tr class="title">
-        <th width="100">节目</th>
-        <th width="160">作者</th>
+        <th>节目</th>
+        <th>作者</th>
         <th>内容</th>
-        <th width="140">时间</th>
+        <th>时间</th>
     </tr>
     @foreach ($comments as $item)
     <tr class="row">

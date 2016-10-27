@@ -74,8 +74,6 @@
         <td>2016-03-28</td>
     </tr>
 </table>
-
-<link rel="stylesheet" href="/static/??css/music.css?v={{ env('STATIC_FILE_VERSION') }}">
 @endsection
 
 @section('extra')
