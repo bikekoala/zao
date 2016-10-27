@@ -53,13 +53,14 @@ class AboutController extends Controller
                 ->orderBy('id', 'DESC')
                 ->get();
 
-            $archive = (string) View::make('about.contribution')
+            $archive = (string) View::make('about.contribution.archive')
                 ->with('title', '贡献记录')
                 ->with('comments', $comments);
 
             Cache::forever($cacheKey, $archive);
         }
 
-        echo $archive;
+        // render page
+        return View::make('about.contribution.frame')->with('archive', $archive);
     }
 }

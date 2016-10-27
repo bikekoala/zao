@@ -59,7 +59,7 @@ class MusicController extends Controller
             $description = '飞鱼秀歌单, 飞鱼秀音乐列表';
 
             // render
-            $archive = (string) View::make('music.index')
+            $archive = (string) View::make('music.index.archive')
                 ->with('data', $data)
                 ->with('cate', $cate)
                 ->with('limit', $limit)
@@ -69,7 +69,8 @@ class MusicController extends Controller
             Cache::forever($cacheKey, $archive);
         }
 
-        echo $archive;
+        // render page
+        return View::make('music.index.frame')->with('archive', $archive);
     }
 
     /**

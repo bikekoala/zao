@@ -26,15 +26,15 @@ class ProgramController extends Controller
         $isFlush = $request::get('flush');
         $keyword = $request::get('s');
 
-        // get archive html
+        // get programs archive html
         if (empty($keyword)) {
             $archive = Cache::get(Program::INDEX_CACHE_KEY);
             if ($isFlush or empty($archive)) {
-                $archive = $this->getArchiveHtml();
+                $archive = $this->getProgramsArchiveHtml();
                 Cache::forever(Program::INDEX_CACHE_KEY, $archive);
             }
         } else {
-            $archive = $this->getArchiveHtml($keyword);
+            $archive = $this->getProgramsArchiveHtml($keyword);
         }
 
         // render page
@@ -113,7 +113,7 @@ class ProgramController extends Controller
      * @param string $keyword
      * @return string
      */
-    private function getArchiveHtml($keyword = '')
+    private function getProgramsArchiveHtml($keyword = '')
     {
         // query program list, and sort by date
         $programs = Program::with('participants')
