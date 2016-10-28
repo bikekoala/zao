@@ -215,15 +215,13 @@ class ProgramController extends Controller
                 'url'  => $log->metas->author_url
             ];
 
-            if (Comment::STATUS['ENABLE'] === $log->ext_has_topic) {
+            if (null === $contributers['topic'] and
+                Comment::STATUS['ENABLE'] === $log->ext_has_topic) {
                 $contributers['topic'] = $author;
             }
-            if (Comment::STATUS['ENABLE'] === $log->ext_has_participant) {
+            if (null === $contributers['participants'] and
+                Comment::STATUS['ENABLE'] === $log->ext_has_participant) {
                 $contributers['participants'] = $author;
-            }
-
-            if ($contributers['topic'] and $contributers['participants']) {
-                break;
             }
         }
 
