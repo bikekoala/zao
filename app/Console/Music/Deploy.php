@@ -68,7 +68,7 @@ class Deploy extends Command
                     $artistIds = [];
                     foreach (explode('|', $first->artists) as $name) {
                         $artist = Artist::firstOrCreate(['name' => $name]);
-                        $artist->increment('counts', 1);
+                        //$artist->increment('counts', 1);
                         $artistIds[] = $artist->id;
                     }
 
@@ -89,16 +89,20 @@ class Deploy extends Command
                     $music->artists()->sync($artistIds);
 
                     // 插入节目音乐记录
+                    $musicStartSec = $first->audio_start_sec ?
+                        $first->audio_start_sec - 10 : 0;
+
                     Program::where(
                         'date',
                         $first->program_date
                     )->first()->musics()->attach($music->id, [
                         'program_part' => $first->audio_part,
-                        'start_sec'    => $first->audio_start_sec,
+                        'start_sec'    => $musicStartSec,
                         'end_sec'      => $end->audio_start_sec,
                         'url'          => self::getQiniuUrl(
                             $first->program_date,
-                            $first->audio_start_sec,
+                            $first->audio_part,
+                            $musicStartSec,
                             $end->audio_start_sec
                         )
                     ]);
@@ -130,18 +134,20 @@ class Deploy extends Command
      * 获取七牛音频链接
      *
      * @param string $date
+     * @param string $part
      * @param string $start
      * @param string $end
      * @return string
      */
-    private static function getQiniuUrl($date, $start, $end)
+    private static function getQiniuUrl($date, $part, $start, $end)
     {
         $dateParts = explode('-', $date);
+        $audioPart = 'all' === $part ? '' : $part;
 
         return sprintf(
             '/%s/%s/music/%d-%d.mp3',
             $dateParts[0],
-            $dateParts[1] . $dateParts[2],
+            $dateParts[1] . $dateParts[2] . $audioPart,
             $start,
             $end
         );
