@@ -6,11 +6,21 @@
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>{{ $title or '早' }} - 飞鱼秀非官方回放</title>
-        <meta name="keywords" content="早嗷嗷嗷嗷 飞鱼秀 回放 下载 小飞 喻舟" />
-        <meta name="description" content="{{ $description or '亲爱的飞鱼人，这里可以在线收听或下载自 2004 年飞鱼秀开播以来的几乎所有的节目回放喔~' }}" />
-        <link type="text/plain" rel="author" href="/humans.txt" />
-        <link rel="stylesheet" href="/static/??module/tipsy/tipsy.css,module/AmaranJS/css/amaran.min.css,css/font-awesome.min.css,css/main.css,css/amaran.css?v={{ env('STATIC_FILE_VERSION') }}">
-        <script src="/static/??module/jquery/jquery-2.1.4.min.js,module/tipsy/jquery.tipsy.js,module/js-emoji/js/emoji.min.js,module/jquery/jquery.cookie.js,module/AmaranJS/js/jquery.amaran.min.js,js/common.js,js/base.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+        <meta name="keywords" content="早嗷嗷嗷嗷 飞鱼秀 回放 下载 小飞 喻舟">
+        <meta name="description" content="{{ $description or '亲爱的飞鱼人，这里可以在线收听或下载自 2004 年飞鱼秀开播以来的几乎所有的节目回放喔~' }}">
+        <link type="text/plain" rel="author" href="/humans.txt">
+        <link rel="stylesheet" href="/static/module/tipsy/tipsy.css">
+        <link rel="stylesheet" href="/static/module/AmaranJS/css/amaran.min.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/amaran.css">
+        <script src="/static/module/jquery/jquery-2.1.4.min.js"></script>
+        <script src="/static/module/jquery/jquery.cookie.js"></script>
+        <script src="/static/module/tipsy/jquery.tipsy.js"></script>
+        <script src="/static/module/js-emoji/js/emoji.min.js"></script>
+        <script src="/static/module/AmaranJS/js/jquery.amaran.min.js"></script>
+        <script src="/static/js/common.js"></script>
+        <script src="/static/js/base.js"></script>
         <!--[if lt IE 9]>
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>

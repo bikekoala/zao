@@ -101,8 +101,8 @@
 
 <div class="ds-thread" data-thread-key="{{ $program->dates->id }}" data-title="{{ $program->date }} - {{ $program->topic }}" data-url="{{ Config::get('app.url') }}/program/{{ $program->dates->id }}"></div>
 
-<link rel="stylesheet" href="/static/??css/player.css,css/duoshuo.css?v={{ env('STATIC_FILE_VERSION') }}">
-<script src="/static/??module/mediaelement/mediaelement-and-player.min.js,js/duoshuo.js,js/detail.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+<link rel="stylesheet" href="/static/??css/player.css,css/duoshuo.css">
+<script src="/static/??module/mediaelement/mediaelement-and-player.min.js,js/duoshuo.js,js/detail.js"></script>
 
 @endsection
 

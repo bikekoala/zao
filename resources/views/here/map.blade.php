@@ -8,7 +8,7 @@
     <title>飞鱼人签到地图 - 早</title>
     <meta name="keywords" content="飞鱼人签到地图" />
     <meta name="description" content="飞鱼人签到地图" />
-    <link rel="stylesheet" href="/static/css/here.css?v={{ env('STATIC_FILE_VERSION') }}">
+    <link rel="stylesheet" href="/static/css/here.css">
     <!--[if lt IE 9]>
         <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
         <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
@@ -63,9 +63,9 @@
         </div>
     </div>
 
-    <link rel="stylesheet" href="/static/module/bootstrap/css/bootstrap.min.css?v={{ env('STATIC_FILE_VERSION') }}">
-    <link rel="stylesheet" href="/static/css/font-awesome.min.css?v={{ env('STATIC_FILE_VERSION') }}">
-    <script src="/static/??module/echarts/echarts.min.js,module/jquery/jquery-2.1.4.min.js,module/bootstrap/js/bootstrap.min.js,js/duoshuo.js,js/here/common.js,js/here/map-base.js,js/here/map.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
-    <script src="/static/??module/echarts/map/china.js,module/echarts/map/world.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+    <link rel="stylesheet" href="/static/module/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src="/static/??module/echarts/echarts.min.js,module/jquery/jquery-2.1.4.min.js,module/bootstrap/js/bootstrap.min.js,js/duoshuo.js,js/here/common.js,js/here/map-base.js,js/here/map.js"></script>
+    <script src="/static/??module/echarts/map/china.js,module/echarts/map/world.js"></script>
 </body>
 </html>

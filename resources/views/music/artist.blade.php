@@ -54,8 +54,8 @@
 </table>
 
 
-<link rel="stylesheet" href="/static/??css/music.css?v={{ env('STATIC_FILE_VERSION') }}">
-<script src="/static/??module/echarts/echarts.min.js,js/music/chart.js,js/music/artist.js?v={{ env('STATIC_FILE_VERSION') }}"></script>
+<link rel="stylesheet" href="/static/??css/music.css">
+<script src="/static/??module/echarts/echarts.min.js,js/music/chart.js,js/music/artist.js"></script>
 @endsection
 
 @section('extra')
