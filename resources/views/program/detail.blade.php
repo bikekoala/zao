@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <a href="{{ URL('music/' . $music->id) }}" target="_blank">{{ $music->title }}</a>
-                    <audio src="{{ qiniu_url($music->pivot->url) }}"></audio>
+                    <audio data-src="{{ qiniu_url($music->pivot->url) }}"></audio>
                 </td>
                 <td>
                     @foreach ($music->artists as $artist)

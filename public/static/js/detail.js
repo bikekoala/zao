@@ -50,6 +50,8 @@ $(function() {
             $play.addClass('hide');
             $pause.removeClass('hide');
             $row.addClass('row-bg');
+
+            audio.src = $audio.attr('data-src');
             audio.play();
         } else {
             $pause.addClass('hide');
@@ -57,6 +59,7 @@ $(function() {
             $row.removeClass('row-bg');
             $row.find('.mask').addClass('hide');
             $row.find('.play').addClass('hide');
+
             audio.pause();
         }
     });
