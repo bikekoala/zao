@@ -101,7 +101,8 @@ CREATE TABLE `participants` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `name` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '姓名',
   `counts` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '次数',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`) 
+  KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 

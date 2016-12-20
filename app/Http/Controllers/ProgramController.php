@@ -131,7 +131,7 @@ class ProgramController extends Controller
                 )->lists('program_id')->flip()->toArray();
                 foreach ($programs as $i => $program) {
                     if (false === strpos(strtolower($program->topic) , $keyword) and
-                        empty($programIds[$program->id])) {
+                        ! isset($programIds[$program->id])) {
                         unset($programs[$i]);
                     }
                 }
