@@ -5,10 +5,17 @@
 <table class="table-box">
     <tr class="title">
         <th>昵称</th>
-        <th>邮箱/网址</th>
+        <th>邮箱/网址/电话</th>
         <th>来源</th>
         <th>金额（元）</th>
         <th>日期</th>
+    </tr>
+    <tr class="row">
+        <td>半个西瓜</td>
+        <td>con***@163.com</td>
+        <td>alipay</td>
+        <td>6.66</td>
+        <td>2016-12-30</td>
     </tr>
     <tr class="row">
         <td>桔子</td>
