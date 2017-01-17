@@ -40,6 +40,12 @@
     <button type="button" class="btn btn-info" id="submit" data-url="/heres">保存</button>
 </div>
 
-<link rel="stylesheet" href="/static/??module/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css,module/select2/css/select2.min.css,module/select2/css/select2-bootstrap.min.css">
+<link rel="stylesheet" href="/static/module/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="/static/module/select2/css/select2.min.css">
+<link rel="stylesheet" href="/static/module/select2/css/select2-bootstrap.min.css">
 
-<script src="/static/??module/moment/min/moment.min.js,module/moment/locale/zh-cn.js,module/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js,module/select2/js/select2.min.js,js/here/edit.js"></script>
+<script src="/static/module/moment/min/moment.min.js"></script>
+<script src="/static/module/moment/locale/zh-cn.js"></script>
+<script src="/static/module/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/static/module/select2/js/select2.min.js"></script>
+<script src="/static/js/here/edit.js"></script>

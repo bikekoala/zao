@@ -65,7 +65,15 @@
 
     <link rel="stylesheet" href="/static/module/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
-    <script src="/static/??module/echarts/echarts.min.js,module/jquery/jquery-2.1.4.min.js,module/bootstrap/js/bootstrap.min.js,js/duoshuo.js,js/here/common.js,js/here/map-base.js,js/here/map.js"></script>
-    <script src="/static/??module/echarts/map/china.js,module/echarts/map/world.js"></script>
+
+    <script src="/static/module/echarts/echarts.min.js"></script>
+    <script src="/static/module/jquery/jquery-2.1.4.min.js"></script>
+    <script src="/static/module/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/duoshuo.js"></script>
+    <script src="/static/js/here/common.js"></script>
+    <script src="/static/js/here/map-base.js"></script>
+    <script src="/static/js/here/map.js"></script>
+    <script src="/static/module/echarts/map/china.js"></script>
+    <script src="/static/module/echarts/map/world.js"></script>
 </body>
 </html>
