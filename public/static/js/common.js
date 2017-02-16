@@ -7,6 +7,7 @@ var utils = {
         return navigator.userAgent.indexOf('Windows', 0) != -1;
     },
     emoji : function() {
+        var emoji = new EmojiConvertor();
         emoji.init_env();
         emoji.img_sets = {'apple': {'path': '/static/module/js-emoji/emoji-data/img-apple-64/'}};
         emoji.img_set = 'apple';
