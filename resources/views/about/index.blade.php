@@ -20,6 +20,9 @@
     <br>
     <br>
     用两只毛豆包住「话题」，用两只呆呆包住「参与人」，多个参与人用「 | 」分割，然后点击发布。此时我会收到一封邮件，几分钟后你所贡献的内容和花名就会出现在页面上啦~
+    <br>
+    <br>
+    受多说评论系统关闭的影响，自 2017 年 6 月 1 日后，上述反馈会慢一点，还请谅解。
 </span>
 <span id="thanks" class="post-about-quote">
     这里是「<a href="{{ URL('about/contribution') }}" target="_blank">贡献记录</a>」和「<a href="{{ URL('about/donation') }}" target="_blank">打赏记录</a>」，谢谢你们 ❤️
