@@ -8,7 +8,7 @@
 </style>
 
 <div id="comment"></div>
-<script src="/disqus/disqus-api.js?shortname=zaoaoaoaoao"></script>
+<script src="/disqus/disqus-api.js?shortname=zao"></script>
 <link rel="stylesheet" href="/disqus/disqus-api.css" />
 
 <!--div id="disqus_thread"></div-->
