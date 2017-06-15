@@ -85,11 +85,8 @@ class Comment extends Model
         }
 
         // 新增
-        preg_match('/program\/([0-9]+)/', $comment->thread->link, $matches);
-        $programDate = $matches[1] ?? 0;
-
         $data = [
-            'program_date'    => $programDate,
+            'program_date'    => program_date_from_url($comment->thread->link),
             'message'         => $comment->raw_message,
             'author_name'     => $comment->author->name,
             'author_url'      => $comment->author->url,

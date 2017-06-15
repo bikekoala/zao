@@ -4,7 +4,7 @@ namespace App\Console\Comment;
 
 use App\Console\Command;
 use App\{Program, Participant, Comment};
-use DB, Disqus;
+use DB, Cache, Disqus;
 
 /**
  * 同步评论脚本
@@ -64,6 +64,13 @@ class Sync extends Command
 
             // 记录日志 
             Comment::import($comment, $signs);
+
+            // 更新节目
+            if ( ! empty($signs)) {
+                $date = program_date_from_url($comment->thread->link);
+
+                $this->updateProgram($date, $signs);
+            }
 
         }
 
@@ -128,5 +135,42 @@ class Sync extends Command
         return $result;
     }
 
+    /**
+     * 更新节目
+     *
+     * @param string $date
+     * @param array $signs
+     * @return void
+     */
+    private function updateProgram($date, $signs)
+    {
+        // 参与人
+        $participantIds = [];
+        if (isset($signs['PARTICIPANT'])) {
+            foreach ($signs['PARTICIPANT'] as $name) {
+                $participant = Participant::firstOrCreate(['name' => $name]);
+                $participant->increment('counts', 1);
+                $participantIds[] = $participant->id;
+            }
+        }
+
+        // 节目
+        $program = Program::where('date', $date)->first();
+        if (isset($signs['TOPIC'])) {
+            $topic = Program::filterTopic($signs['TOPIC']);
+            if ( ! empty($topic)) {
+                $program->update(['topic' => $topic]);
+            }
+        }
+        if ( ! empty($participantIds)) {
+            $program->participants()->sync($participantIds);
+        }
+
+        // 刷新首页文件缓存
+        Cache::forget(Program::INDEX_CACHE_KEY);
+
+        // 刷新贡献记录页文件缓存
+        Cache::forget(Comment::CONTRIBUTION_CACHE_KEY);
+    }
 
 }

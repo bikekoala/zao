@@ -36,6 +36,17 @@ function program_part_title($part) {
 }
 
 /**
+ * 从节目URL中获取节目日期
+ *
+ * @param string $url
+ * @return int
+ */
+function program_date_from_url($url) {
+    preg_match('/program\/([0-9]+)/', $url, $matches);
+    return (int) ($matches[1] ?? 0);
+}
+
+/**
  * 七牛URL
  *
  * @param string $path
