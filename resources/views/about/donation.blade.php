@@ -6,115 +6,21 @@
     <tr class="title">
         <th>昵称</th>
         <th>邮箱/网址/电话</th>
+        <th>留言</th>
         <th>来源</th>
         <th>金额（元）</th>
         <th>日期</th>
     </tr>
+    @foreach ($list as $item)
     <tr class="row">
-        <td>--</td>
-        <td>--</td>
-        <td>wechat</td>
-        <td>100</td>
-        <td>2017-04-02</td>
+        <td>{{ $item->name ?: '--' }}</td>
+        <td>{{ $item->profile ?: '--' }}</td>
+        <td>{{ $item->message ?: '--' }}</td>
+        <td>{{ $item->source }}</td>
+        <td>{{ $item->amount}}</td>
+        <td>{{ $item->date }}</td>
     </tr>
-    <tr class="row">
-        <td>--</td>
-        <td>--</td>
-        <td>wechat</td>
-        <td>5</td>
-        <td>2017-03-08</td>
-    </tr>
-    <tr class="row">
-        <td>宾果</td>
-        <td>137***5580</td>
-        <td>alipay</td>
-        <td>30</td>
-        <td>2017-03-01</td>
-    </tr>
-    <tr class="row">
-        <td>EZYL</td>
-        <td>yil***@qq.com</td>
-        <td>alipay</td>
-        <td>20</td>
-        <td>2017-01-13</td>
-    </tr>
-    <tr class="row">
-        <td>半个西瓜</td>
-        <td>con***@163.com</td>
-        <td>alipay</td>
-        <td>6.66</td>
-        <td>2016-12-30</td>
-    </tr>
-    <tr class="row">
-        <td>桔子</td>
-        <td>159***3125</td>
-        <td>alipay</td>
-        <td>2.22</td>
-        <td>2016-12-08</td>
-    </tr>
-    <tr class="row">
-        <td>晓雯</td>
-        <td>lul***&lt;at&gt;hotmail.com</td>
-        <td>alipay</td>
-        <td>50</td>
-        <td>2016-10-04</td>
-    </tr>
-    <tr class="row">
-        <td>--</td>
-        <td>--</td>
-        <td>wechat</td>
-        <td>8.88</td>
-        <td>2016-09-22</td>
-    </tr>
-    <tr class="row">
-        <td>--</td>
-        <td>--</td>
-        <td>wechat</td>
-        <td>50</td>
-        <td>2016-08-27</td>
-    </tr>
-    <tr class="row">
-        <td>贝壳</td>
-        <td>--</td>
-        <td>wechat</td>
-        <td>18</td>
-        <td>2016-07-21</td>
-    </tr>
-    <tr class="row">
-        <td>媛</td>
-        <td><a href="http://weibo.com/sophiemilu" rel="nofollow" target="_blank">http://weibo.com/sophiemilu</a></td>
-        <td>alipay</td>
-        <td>10</td>
-        <td>2016-05-03</td>
-    </tr>
-    <tr class="row">
-        <td>夹心糖</td>
-        <td>jfz***&lt;at&gt;vip.sina.com</td>
-        <td>alipay</td>
-        <td>100</td>
-        <td>2016-04-30</td>
-    </tr>
-    <tr class="row">
-        <td>dongqingxia</td>
-        <td>--</td>
-        <td>wechat</td>
-        <td>100</td>
-        <td>2016-04-23</td>
-    </tr>
-    <tr class="row">
-        <td>Vincent</td>
-        <td>vincentme&lt;at&gt;gmail.com</td>
-        <td>wechat</td>
-        <td>10</td>
-        <td>2016-04-05</td>
-    </tr>
-    <tr class="row">
-        <td>Siru</td>
-        <td>siru.zhou&lt;at&gt;gmail.com</td>
-        <td>wechat</td>
-        <td>50</td>
-        <td>2016-03-28</td>
-    </tr>
+    @endforeach
 </table>
 @endsection
 

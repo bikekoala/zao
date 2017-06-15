@@ -298,6 +298,25 @@ CREATE TABLE `notifications` (
   KEY `state_duration_at` (`state`,`duration_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='通知消息表';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `donation`
+--
+
+DROP TABLE IF EXISTS `donation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `donation` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '姓名',
+  `profile` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '介绍',
+  `message` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '留言',
+  `source` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '来源',
+  `amount` varchar(10) COLLATE utf8_unicode_ci NOT NULL COMMENT '金额',
+  `date` date NOT NULL COMMENT '日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='捐助表';
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -308,4 +327,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-15  7:10:19
+-- Dump completed on 2017-06-15  8:28:04

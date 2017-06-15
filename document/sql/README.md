@@ -16,5 +16,6 @@
         users \
         admins \
         notifications \
+        donation \
         | sed 's/AUTO_INCREMENT=[0-9]*\s//g' > zao.sql
 ```

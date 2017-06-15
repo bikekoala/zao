@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\{Comment, Donation};
 use View, Request, Cache;
 
 /**
@@ -30,7 +30,11 @@ class AboutController extends Controller
      */
     public function donationList()
     {
-        return View::make('about.donation')->with('title', '打赏记录');
+        $list = Donation::orderBy('id', 'desc')->get();
+
+        return View::make('about.donation')
+            ->with('list', $list)
+            ->with('title', '打赏记录');
     }
 
     /**
