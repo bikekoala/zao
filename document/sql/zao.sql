@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: zao
+-- Host: localhost    Database: zao
 -- ------------------------------------------------------
--- Server version	5.5.46-0ubuntu0.14.04.2
+-- Server version	5.7.17-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -101,7 +101,7 @@ CREATE TABLE `participants` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `name` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '姓名',
   `counts` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '次数',
-  PRIMARY KEY (`id`) 
+  PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -196,21 +196,20 @@ DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comments` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `log_id` bigint(64) unsigned NOT NULL COMMENT '记录ID',
-  `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
-  `action` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '操作类型',
-  `meta` text NOT NULL COMMENT 'META',
-  `date` datetime NOT NULL COMMENT '操作时间',
-  `ext_created_at` datetime NOT NULL COMMENT '创建时间',
-  `ext_program_date` date DEFAULT NULL COMMENT '节目日期',
-  `ext_has_topic` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有话题',
-  `ext_has_participant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有参与人',
-  `ext_is_agree` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否同意',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `program_date` date NOT NULL COMMENT '节目日期',
+  `message` varchar(255) NOT NULL DEFAULT '' COMMENT '评论',
+  `author_name` varchar(255) NOT NULL DEFAULT '' COMMENT '作者名称',
+  `author_url` varchar(255) NOT NULL DEFAULT '' COMMENT '作者链接',
+  `cmt_id` varchar(20) NOT NULL DEFAULT '' COMMENT '评论 ID',
+  `cmt_url` varchar(255) NOT NULL DEFAULT '' COMMENT '评论链接',
+  `cmt_created_at` datetime NOT NULL COMMENT '评论创建时间',
+  `has_topic` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有话题',
+  `has_participant` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否有参与人',
+  `created_at` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `log_id` (`log_id`),
-  KEY `program_contribution` (`action`,`ext_has_topic`,`ext_has_participant`,`ext_program_date`,`ext_is_agree`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='多说评论表';
+  KEY `program_date` (`program_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='评论记录表（disqus）';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,4 +308,4 @@ CREATE TABLE `notifications` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-10 15:51:01
+-- Dump completed on 2017-06-15  7:10:19

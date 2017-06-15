@@ -17,7 +17,7 @@ class Comment extends Model
      *
      * @var string
      */
-    protected $table = 'comments_disqus';
+    protected $table = 'comments';
 
     /**
      * The attributes that aren't mass assignable.
