@@ -8,10 +8,10 @@
     </tr>
     @foreach ($comments as $item)
     <tr class="row">
-        <td><a href="{{ URL('program') }}/{{ $item->metas->thread_key }}" target="_blank">{{ $item->ext_program_date}}</a></td>
-        <td><a href="{{ $item->metas->author_url }}" target="_blank"> {{ $item->metas->author_name }}</a></td>
-        <td class="emoji-related">{!! $item->metas->message !!}</td>
-        <td>{{ $item->date }}</td>
+        <td><a href="{{ $item->cmt_url }}" target="_blank">{{ $item->program_date}}</a></td>
+        <td><a href="{{ $item->author_url }}" target="_blank"> {{ $item->author_name }}</a></td>
+        <td class="emoji-related">{!! trim($item->message) !!}</td>
+        <td>{{ $item->cmt_created_at }}</td>
     </tr>
     @endforeach
 </table>

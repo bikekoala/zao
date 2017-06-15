@@ -161,6 +161,7 @@ return [
          */
         itbdw\QiniuStorage\QiniuFilesystemServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Roumen\Disqus\DisqusServiceProvider::class,
 
     ],
 

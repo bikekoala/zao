@@ -23,6 +23,7 @@ class Kernel extends ConsoleKernel
         Music\Deploy::class,
         Tool\UpdateBingCover::class,
         Tool\SyncAppProgram::class,
+        Comment\Sync::class,
     ];
 
     /**

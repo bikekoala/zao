@@ -48,10 +48,7 @@ class AboutController extends Controller
         $cacheKey = Comment::CONTRIBUTION_CACHE_KEY;
         $archive = Cache::get($cacheKey);
         if ($isFlush or empty($archive)) {
-            $comments = Comment::select('meta', 'date', 'ext_program_date')
-                ->agreed()
-                ->orderBy('id', 'DESC')
-                ->get();
+            $comments = Comment::contributed()->orderBy('id', 'DESC')->get();
 
             $archive = (string) View::make('about.contribution.archive')
                 ->with('title', '贡献记录')

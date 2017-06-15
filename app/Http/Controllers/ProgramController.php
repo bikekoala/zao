@@ -208,19 +208,19 @@ class ProgramController extends Controller
             'participants' => null
         ];
 
-        $logs = Comment::contributed($date)->agreed()->get()->sortByDesc('id');
+        $logs = Comment::contributed($date)->get()->sortByDesc('id');
         foreach ($logs as $log) {
             $author = [
-                'name' => $log->metas->author_name,
-                'url'  => $log->metas->author_url
+                'name' => $log->author_name,
+                'url'  => $log->author_url
             ];
 
             if (null === $contributers['topic'] and
-                Comment::STATUS['ENABLE'] === $log->ext_has_topic) {
+                Comment::STATUS['ENABLE'] === $log->has_topic) {
                 $contributers['topic'] = $author;
             }
             if (null === $contributers['participants'] and
-                Comment::STATUS['ENABLE'] === $log->ext_has_participant) {
+                Comment::STATUS['ENABLE'] === $log->has_participant) {
                 $contributers['participants'] = $author;
             }
         }
