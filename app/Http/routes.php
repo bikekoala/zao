@@ -42,8 +42,6 @@ Route::post('duoshuo/comment', 'DuoshuoController@comment');
 // 后台
 Route::group(['prefix' => 'admin','namespace' => 'Admin',
     'middleware' => ['web']], function () {
-    // 协同列表
-    Route::resource('contributions', 'ContributionsController');
     // 通知消息
     Route::resource('notifications', 'NotificationsController');
 
@@ -52,7 +50,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin',
         if (Auth::guest()) {
             return Redirect::to('/admin/auth/login');
         } else {
-            return Redirect::to('/admin/contributions');
+            return Redirect::to('/admin/notifications');
         }
     });
     Route::controllers([
