@@ -9,7 +9,7 @@
     @foreach ($comments as $item)
     <tr class="row">
         <td><a href="{{ $item->cmt_url }}" target="_blank">{{ $item->program_date}}</a></td>
-        <td><a href="{{ $item->author_url }}" target="_blank"> {{ $item->author_name }}</a></td>
+        <td><a href="{{ $item->author_url ?: 'javascript:;'}}" target="_blank"> {{ $item->author_name }}</a></td>
         <td class="emoji-related">{!! trim($item->message) !!}</td>
         <td>{{ $item->cmt_created_at }}</td>
     </tr>
