@@ -9,7 +9,7 @@
 
 <div id="comment"></div>
 <link rel="stylesheet" href="/disqus/dist/iDisqus.min.css" />
-<script src="/disqus/iDisqus.min.js"></script>
+<script src="/disqus/dist/iDisqus.min.js"></script>
 <script type="text/javascript">
     (function() {
         new iDisqus('comment', {
