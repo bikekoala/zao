@@ -21,7 +21,7 @@
             init: true
         });
     })();
-</script-->
+</script>
 
 <!--div id="disqus_thread"></div-->
 <!--script type="text/javascript">
