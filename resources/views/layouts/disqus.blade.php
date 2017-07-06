@@ -8,8 +8,20 @@
 </style>
 
 <div id="comment"></div>
-<script src="/disqus/disqus-api.js?shortname=zao"></script>
-<link rel="stylesheet" href="/disqus/disqus-api.css" />
+<link rel="stylesheet" href="/disqus/dist/iDisqus.min.css" />
+<script src="/disqus/iDisqus.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        new iDisqus('comment', {
+            forum: 'zao',
+            api: 'http://zaoaoaoaoao.com/disqus/api',
+            site: 'http://zaoaoaoaoao.com',
+            mode: 1,
+            timeout: 3000,
+            init: true
+        });
+    })();
+</script-->
 
 <!--div id="disqus_thread"></div-->
 <!--script type="text/javascript">
