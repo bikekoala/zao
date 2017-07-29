@@ -13,7 +13,6 @@
         artists \
         comments \
         heres \
-        users \
         admins \
         notifications \
         donation \

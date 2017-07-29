@@ -15,6 +15,8 @@ Route::get('/', 'ProgramController@index');
 
 // 签到页
 Route::resource('heres', 'HereController');
+Route::post('here/login', 'HereController@login');
+Route::get('here/logout', 'HereController@logout');
 Route::get('here', 'HereController@map');
 Route::get('here/mapData', 'HereController@mapData');
 Route::get('here/placeAutocomplete', 'HereController@placeAutocomplete');

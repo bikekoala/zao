@@ -18,11 +18,7 @@
     <div id="canvas"></div>
     <div id="info">
         <div class="user" id="user" data-map-mode="{{ empty($user) ? 'world' : 'personal' }}">
-            @if (empty($user))
             <img src="/static/img/felix.png" alt="头像" class="avatar">
-            @else
-            <img src="{{ $user->avatar_url }}" alt="头像" title="{{ $user->name }}" class="avatar">
-            @endif
             <div class="tips hide" id="user-tips">
                 <div class="arrow"></div>
                 <ul class="inner">
@@ -34,7 +30,7 @@
                     @endif
                     <li role="separator" class="divider"></li>
                     @if ( ! empty($user))
-                    <li><a href="{{ URL('duoshuo/logout') }}?callback={{ URL('here') }}">登出</a></li>
+                    <li><a href="{{ URL('here/logout') }}">登出</a></li>
                     @endif
                     <li><a href="{{ URL('/') }}">首页</a></li>
                 </ul>
@@ -44,15 +40,23 @@
     <div class="modal" id="login-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">社交账号登录</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="ds-login"></div>
-                    <br>
-                    <br>
-                </div>
+                <form class="form-horizontal" action="{{ URL('here/login') }}" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">邮箱登录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="message" class="col-sm-2 control-label">邮箱</label>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control" name="email" autocomplete="on" autofocus="autofocus" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info">登录</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -69,7 +73,6 @@
     <script src="/static/module/echarts/echarts.min.js"></script>
     <script src="/static/module/jquery/jquery-2.1.4.min.js"></script>
     <script src="/static/module/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/js/duoshuo.js"></script>
     <script src="/static/js/here/common.js"></script>
     <script src="/static/js/here/map-base.js"></script>
     <script src="/static/js/here/map.js"></script>

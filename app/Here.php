@@ -19,31 +19,20 @@ class Here extends Model
     protected $table = 'heres';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'user_id',
-        'date',
-        'lat',
-        'lng',
-        'country',
-        'province',
-        'location',
-        'gm_url',
-        'gm_place_id',
-        'state'
-    ];
+    protected $guarded = [];
 
     /**
-     * Scope a query to only include usered records.
+     * Scope a query to only include email records.
      *
-     * @param int $userId 
+     * @param string $email
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeUsered($query, int $userId)
+    public function scopeEmail($query, $email)
     {
-        return $query->where('user_id', $userId);
+        return $query->where('email', $email);
     }
 }

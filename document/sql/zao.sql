@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.27, for debian-linux-gnu (armv7l)
 --
 -- Host: localhost    Database: zao
 -- ------------------------------------------------------
--- Server version	5.7.17-0ubuntu0.16.04.1
+-- Server version	5.5.27-0ubuntu2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,7 +48,8 @@ CREATE TABLE `program_participant` (
   `program_id` int(11) unsigned NOT NULL COMMENT '节目编号',
   `participant_id` int(11) unsigned NOT NULL COMMENT '参与人编号',
   PRIMARY KEY (`id`),
-  KEY `program_id` (`program_id`)
+  KEY `program_id` (`program_id`),
+  KEY `participant_id` (`participant_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='节目参与者表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -221,7 +222,7 @@ DROP TABLE IF EXISTS `heres`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `heres` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `user_id` int(11) unsigned NOT NULL COMMENT '用户ID',
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱',
   `date` year(4) NOT NULL COMMENT '日期',
   `lng` decimal(10,6) NOT NULL COMMENT '经度',
   `lat` decimal(10,6) NOT NULL COMMENT '纬度',
@@ -233,31 +234,9 @@ CREATE TABLE `heres` (
   `created_at` datetime NOT NULL COMMENT '创建时间',
   `updated_at` datetime NOT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
+  KEY `email` (`email`),
   KEY `date` (`date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='打卡表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `ds_id` varchar(20) NOT NULL DEFAULT '' COMMENT '多说用户ID',
-  `name` varchar(128) NOT NULL DEFAULT '' COMMENT '名字',
-  `url` varchar(256) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `avatar_url` varchar(256) NOT NULL DEFAULT '' COMMENT '头像地址',
-  `meta` text NOT NULL COMMENT '原始信息',
-  `state` tinyint(1) unsigned NOT NULL COMMENT '原始信息',
-  `created_at` datetime NOT NULL COMMENT '创建时间',
-  `updated_at` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ds_id` (`ds_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,4 +306,4 @@ CREATE TABLE `donation` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-15  8:28:04
+-- Dump completed on 2017-07-29 18:20:40

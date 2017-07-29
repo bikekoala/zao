@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Curl\Curl;
-
-use App\{User, Here};
-use View, Request, Response, Config, Validator;
+use App\Here;
+use View, Request, Response, Redirect, Config, Validator, Session;
 
 /**
  * 打卡控制器
@@ -16,6 +15,50 @@ class HereController extends Controller
 { 
 
     /**
+     * email session key
+     *
+     * @var string
+     */
+    const EMAIL_SESSION_KEY = 'email';
+
+    /**
+     * 登录
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function login(Request $request)
+    {
+        // validate params
+        $params = $request::all();
+        $validator = Validator::make($params, [
+            'email' => 'required|email',
+        ]);
+
+        // save session
+        if ( ! $validator->fails()) {
+            Session::put(self::EMAIL_SESSION_KEY, $params['email']);
+        }
+
+        // redirect
+        return Redirect::to('/here');
+    }
+
+    /**
+     * 登出
+     *
+     * @return void
+     */
+    public function logout()
+    {
+        // forget session
+        Session::forget(self::EMAIL_SESSION_KEY);
+
+        // redirect
+        return Redirect::to('/here');
+    }
+
+    /**
      * 首页
      *
      * @return Response
@@ -23,7 +66,8 @@ class HereController extends Controller
     public function map()
     {
         // render page
-        return View::make('here.map')->with('user', User::getInfo());
+        return View::make('here.map')
+            ->with('user', Session::get(self::EMAIL_SESSION_KEY));
     }
 
     /**
@@ -34,8 +78,10 @@ class HereController extends Controller
     public function index()
     {
         // get here list
-        $list = User::isLogin() ?
-            Here::usered(User::getInfo()->id)->orderBy('date')->get() : [];
+        $list = [];
+        if ($email = Session::get(self::EMAIL_SESSION_KEY)) {
+            $list = Here::email($email)->orderBy('date')->get();
+        }
 
         // render page
         return View::make('here.index')->with('list', $list);
@@ -76,13 +122,14 @@ class HereController extends Controller
     public function store(Request $request)
     {
         // get params & validate
-        if ( ! User::isLogin()) {
+        $email = Session::get(self::EMAIL_SESSION_KEY);
+        if (empty($email)) {
             return Response::json(['status' => 'Not login']);
         }
 
         $params = $request::all();
         $validator = Validator::make($params, [
-            'date'     => 'required|in:2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016',
+            'date'     => 'required|min:2004|max:2016',
             'location' => 'required|min:27|max:39'
         ]);
         if ($validator->fails()) {
@@ -98,7 +145,7 @@ class HereController extends Controller
         // save
         $details = $result['result'];
         $data = [
-            'user_id'     => User::getInfo()['id'],
+            'email'       => $email,
             'date'        => $params['date'],
             'lat'         => $details['geometry']['location']['lat'],
             'lng'         => $details['geometry']['location']['lng'],
@@ -247,12 +294,13 @@ class HereController extends Controller
     private function getPersonalMapData()
     {
         // check login status
-        if ( ! User::isLogin()) {
+        $email = Session::get(self::EMAIL_SESSION_KEY);
+        if (empty($email)) {
             return ['status' => 'Not login'];
         }
 
         // get here list
-        $list = Here::usered(User::getInfo()->id)
+        $list = Here::email($email)
             ->orderBy('date')
             ->get()
             ->toArray();
@@ -323,4 +371,5 @@ class HereController extends Controller
             return $response;
         }
     }
+
 }
