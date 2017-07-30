@@ -6,8 +6,6 @@
     <tr class="title">
         <th>昵称</th>
         <th>邮箱/网址/电话</th>
-        <th>留言</th>
-        <th>来源</th>
         <th>金额（元）</th>
         <th>日期</th>
     </tr>
@@ -15,8 +13,6 @@
     <tr class="row">
         <td>{{ $item->name ?: '--' }}</td>
         <td>{{ $item->profile ?: '--' }}</td>
-        <td>{{ $item->message ?: '--' }}</td>
-        <td>{{ $item->source }}</td>
         <td>{{ $item->amount}}</td>
         <td>{{ $item->date }}</td>
     </tr>
