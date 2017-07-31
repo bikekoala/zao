@@ -49,7 +49,13 @@
                         <div class="form-group">
                             <label for="message" class="col-sm-2 control-label">邮箱</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" name="email" autocomplete="on" autofocus="autofocus" required="required">
+                                <input type="email" class="form-control" name="email" autocomplete="on" autofocus="autofocus" required="required" placeholder="必填">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="nickname" autocomplete="on"  placeholder="选填，但最好填">
                             </div>
                         </div>
                     </div>

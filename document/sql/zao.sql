@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.27, for debian-linux-gnu (armv7l)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
 -- Host: localhost    Database: zao
 -- ------------------------------------------------------
--- Server version	5.5.27-0ubuntu2
+-- Server version	5.7.17-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -223,6 +223,7 @@ DROP TABLE IF EXISTS `heres`;
 CREATE TABLE `heres` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '编号',
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱',
+  `nickname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '昵称',
   `date` year(4) NOT NULL COMMENT '日期',
   `lng` decimal(10,6) NOT NULL COMMENT '经度',
   `lat` decimal(10,6) NOT NULL COMMENT '纬度',
@@ -306,4 +307,4 @@ CREATE TABLE `donation` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-29 18:20:40
+-- Dump completed on 2017-07-31  3:47:21

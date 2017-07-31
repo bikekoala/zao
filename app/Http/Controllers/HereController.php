@@ -15,11 +15,11 @@ class HereController extends Controller
 { 
 
     /**
-     * email session key
+     * user session key
      *
      * @var string
      */
-    const EMAIL_SESSION_KEY = 'email';
+    const USER_SESSION_KEY = 'user';
 
     /**
      * 登录
@@ -37,8 +37,10 @@ class HereController extends Controller
 
         // save session
         if ( ! $validator->fails()) {
-            $email = strtolower(trim($params['email']));
-            Session::put(self::EMAIL_SESSION_KEY, $email);
+            Session::put(self::USER_SESSION_KEY, [
+                'email'    => strtolower(trim($params['email'])),
+                'nickname' => trim($params['nickname'])
+            ]);
         }
 
         // redirect
@@ -53,7 +55,7 @@ class HereController extends Controller
     public function logout()
     {
         // forget session
-        Session::forget(self::EMAIL_SESSION_KEY);
+        Session::forget(self::USER_SESSION_KEY);
 
         // redirect
         return Redirect::to('/here');
@@ -68,7 +70,7 @@ class HereController extends Controller
     {
         // render page
         return View::make('here.map')
-            ->with('user', Session::get(self::EMAIL_SESSION_KEY));
+            ->with('user', Session::get(self::USER_SESSION_KEY));
     }
 
     /**
@@ -80,8 +82,9 @@ class HereController extends Controller
     {
         // get here list
         $list = [];
-        if ($email = Session::get(self::EMAIL_SESSION_KEY)) {
-            $list = Here::email($email)->orderBy('date')->get();
+        $user = Session::get(self::USER_SESSION_KEY);
+        if ( ! empty($user)) {
+            $list = Here::email($user['email'])->orderBy('date')->get();
         }
 
         // render page
@@ -123,8 +126,8 @@ class HereController extends Controller
     public function store(Request $request)
     {
         // get params & validate
-        $email = Session::get(self::EMAIL_SESSION_KEY);
-        if (empty($email)) {
+        $user = Session::get(self::USER_SESSION_KEY);
+        if (empty($user)) {
             return Response::json(['status' => 'Not login']);
         }
 
@@ -134,8 +137,6 @@ class HereController extends Controller
             'location' => 'required|min:27|max:39'
         ]);
         if ($validator->fails()) {
-            print_r($params);
-            exit;
             return Response::json(['status' => 'Invalid params']);
         }
 
@@ -148,7 +149,8 @@ class HereController extends Controller
         // save
         $details = $result['result'];
         $data = [
-            'email'       => $email,
+            'email'       => $user['email'],
+            'nickname'    => $user['nickname'],
             'date'        => $params['date'],
             'lat'         => $details['geometry']['location']['lat'],
             'lng'         => $details['geometry']['location']['lng'],
@@ -297,13 +299,13 @@ class HereController extends Controller
     private function getPersonalMapData()
     {
         // check login status
-        $email = Session::get(self::EMAIL_SESSION_KEY);
-        if (empty($email)) {
+        $user = Session::get(self::USER_SESSION_KEY);
+        if (empty($user)) {
             return ['status' => 'Not login'];
         }
 
         // get here list
-        $list = Here::email($email)
+        $list = Here::email($user['email'])
             ->orderBy('date')
             ->get()
             ->toArray();
