@@ -27,7 +27,10 @@ $.maps = (function() {
 
     var draw = function(option) {
         document.getElementsByTagName('body')[0].style.height = document.body.scrollHeight + 'px';
-        echarts.init(document.getElementById('canvas')).setOption(option);
+
+        var ec = echarts.init(document.getElementById('canvas'));
+        ec.clear();
+        ec.setOption(option);
     }
 
     var getPersonalOption = function(mapData) {
