@@ -37,7 +37,8 @@ class HereController extends Controller
 
         // save session
         if ( ! $validator->fails()) {
-            Session::put(self::EMAIL_SESSION_KEY, $params['email']);
+            $email = strtolower(trim($params['email']));
+            Session::put(self::EMAIL_SESSION_KEY, $email);
         }
 
         // redirect
