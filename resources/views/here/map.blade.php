@@ -18,7 +18,11 @@
     <div id="canvas"></div>
     <div id="info">
         <div class="user" id="user" data-map-mode="{{ empty($user) ? 'world' : 'personal' }}">
+            @if (empty($user))
             <img src="/static/img/felix.png" alt="头像" class="avatar">
+            @else
+            <img src="/img.php?url=https://cn.gravatar.com/avatar/{{ md5($user['email']) }}?d=http://zaoaoaoaoao.com/static/img/felix.png" alt="{{ $user['nickname'] }}" class="avatar">
+            @endif
             <div class="tips hide" id="user-tips">
                 <div class="arrow"></div>
                 <ul class="inner">
