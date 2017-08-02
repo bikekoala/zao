@@ -1,6 +1,6 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">打卡列表</h4>
+    <h4 class="modal-title">我的飞鱼旅程</h4>
 </div>
 <div class="modal-body">
     <table class="table table-condensed table-hover">
