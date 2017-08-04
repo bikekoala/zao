@@ -89,7 +89,7 @@ class Comment extends Model
             'program_date'    => program_date_from_url($comment->thread->link),
             'message'         => $comment->raw_message,
             'author_name'     => $comment->author->name,
-            'author_url'      => $comment->author->url,
+            'author_url'      => $comment->author->url ?? '',
             'cmt_id'          => $comment->id,
             'cmt_url'         => $comment->url,
             'cmt_created_at'  => $comment->createdAt,

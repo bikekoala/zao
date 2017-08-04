@@ -89,7 +89,7 @@ class Sync extends Command
         $since = str_replace(' ', 'T', Comment::max('cmt_created_at')); 
 
         $params = [
-            'forum'   => env('DISQUS_FORUM'),
+            'forum'   => env('DISQUS_SHORTNAME'),
             'offset'  => 0,
             'limit'   => 100,
             'order'   => 'asc',
