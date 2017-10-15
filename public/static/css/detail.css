@@ -1,0 +1,7 @@
+.mejs__container {
+    background: #999;
+}
+
+.mejs__controls:not([style*="display: none"]) {
+    background: rgba(120, 120, 120, 0.6);
+}

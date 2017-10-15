@@ -2,13 +2,13 @@
 $(function() {
     // init program player
     if ( ! utils.isMobileClient()) {
-        $('.post-content video').mediaelementplayer({
+        $('.post-content audio').mediaelementplayer({
             isVideo: false,
             enableKeyboard: false,
             alwaysShowControls: true,
             alwaysShowHours: true,
             videoVolume:'horizontal',
-            flashName: '/static/module/mediaelement/flashmediaelement.swf',
+            flashName: '/static/module/mediaelement-4.2.6/build/mediaelement-flash-video-hls.swf',
             features: ['playpause','progress','current','duration','tracks','volume'],
             defaultSeekBackwardInterval: function(media) {
                 return (media.duration * 0.02);

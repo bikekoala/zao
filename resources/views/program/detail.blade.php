@@ -28,13 +28,9 @@
             （<a href="{{ $audio->download_url }}" rel="nofollow" target="_blank">下载</a>）
             @endif
         </p>
-        @if (Agent::isMobile())
-        <audio controls preload src="{{ $audio->url }}" type="audio/mpeg"></audio>
-        @else
-        <video width="100%" height="30" controls="controls" preload="none">
+        <audio width="100%" controls>
             <source src="{{ $audio->url }}" />
-        </video>
-        @endif
+        </audio>
         @endforeach
     </div>
     <div class="post-music">
@@ -102,8 +98,11 @@
 <!--div class="ds-thread" data-thread-key="{{ $program->dates->id }}" data-title="{{ $program->date }} - {{ $program->topic }}" data-url="{{ Config::get('app.url') }}/program/{{ $program->dates->id }}"></div-->
 @include('layouts.disqus')
 
-<link rel="stylesheet" href="/static/css/player.css">
-<script src="/static/??module/mediaelement/mediaelement-and-player.min.js,js/detail.js"></script>
+<link rel="stylesheet" href="/static/module/mediaelement-4.2.6/build/mediaelementplayer.min.css">
+<script src="/static/module/mediaelement-4.2.6/build/mediaelement-and-player.min.js"></script>
+
+<link rel="stylesheet" href="/static/css/detail.css">
+<script src="/static/js/detail.js"></script>
 
 @endsection
 
