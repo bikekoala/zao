@@ -7,7 +7,8 @@ $(function() {
             enableKeyboard: false,
             alwaysShowControls: true,
             alwaysShowHours: true,
-            videoVolume:'horizontal',
+            videoVolume: 'horizontal',
+            startVolume: 1,
             flashName: '/static/module/mediaelement-4.2.6/build/mediaelement-flash-video-hls.swf',
             features: ['playpause','progress','current','duration','tracks','volume'],
             defaultSeekBackwardInterval: function(media) {

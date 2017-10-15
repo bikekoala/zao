@@ -5,3 +5,7 @@
 .mejs__controls:not([style*="display: none"]) {
     background: rgba(120, 120, 120, 0.6);
 }
+
+.mejs__horizontal-volume-total {
+    background: hsla(0, 0%, 100%, .3);
+}
