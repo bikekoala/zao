@@ -12,13 +12,47 @@
 <script src="/disqus/dist/iDisqus.min.js"></script>
 <script type="text/javascript">
     (function() {
+				var emojiList = [
+						{
+                code:'smile',
+                title:'笑脸',
+                unicode:'1f604'
+            },
+            {
+                code:'joy',
+                title:'破涕为笑',
+                unicode:'1f602'
+            },
+            {
+                code:'stuck_out_tongue_closed_eyes',
+                title:'吐舌',
+                unicode:'1f61d'
+            },
+            {
+                code:'smirk',
+                title:'得意',
+                unicode:'1f60f'
+            },
+            {
+                code:'dog',
+                title:'毛豆',
+                unicode:'1f436'
+            },
+            {
+                code:'rabbit',
+                title:'呆呆',
+                unicode:'1f430'
+            },
+        ];
         new iDisqus('comment', {
             forum: 'zao',
             api: 'http://zaoaoaoaoao.com/disqus/api',
             site: 'http://zaoaoaoaoao.com',
             mode: 1,
             timeout: 3000,
-            init: true
+            init: true,
+            emoji_preview: true,
+            emoji_list: emojiList
         });
     })();
 </script>

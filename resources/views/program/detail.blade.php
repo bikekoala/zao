@@ -99,7 +99,7 @@
 @include('layouts.disqus')
 
 <link rel="stylesheet" href="/static/module/mediaelement-4.2.6/build/mediaelementplayer.min.css">
-<script src="/static/module/mediaelement-4.2.6/build/mediaelement-and-player.min.js"></script>
+<script src="/static/module/mediaelement-4.2.6/build/mediaelement-and-player.js"></script>
 
 <link rel="stylesheet" href="/static/css/detail.css">
 <script src="/static/js/detail.js"></script>
