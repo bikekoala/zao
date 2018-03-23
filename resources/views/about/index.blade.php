@@ -28,6 +28,8 @@
 
 @include('layouts.donate')
 
+@include('layouts.disqus')
+
 <script src="/static/js/about/index.js"></script>
 
 @endsection
