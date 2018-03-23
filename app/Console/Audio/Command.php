@@ -2,14 +2,14 @@
 
 namespace App\Console\Audio;
 
-use App\Console\Command;
+use App\Console\Command as BaseCommand;
 
 /**
  * 音频处理基类
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-24
  */
-class Command extends Command
+class Command extends BaseCommand
 {
     /**
      * App API

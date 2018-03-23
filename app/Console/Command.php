@@ -3,14 +3,14 @@
 namespace App\Console;
 
 use Log;
-use Illuminate\Console\Command;
+use Illuminate\Console\Command as BaseCommand;
 
 /**
  * 命令抽象类
  *
  * @author popfeng <popfeng@yeah.net> 2016-01-26
  */
-abstract class Command extends Command
+abstract class Command extends BaseCommand
 {
     /**
      * 输出错误信息，并记录日志
