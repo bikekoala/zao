@@ -35,9 +35,9 @@
     <a class="btn-donate" id="btn-donate" href="javascript:;"></a>
     <div class="donate-guide">
         <div class="donate-qrcode">
-            <img src="/static/img/donate_alipay.jpg" alt="支付宝" title="支付宝">
+            <a href="https://paypal.me/popfeng" target="_blank"><img src="/static/img/donate_paypal.jpg" alt="PayPal" title="PayPal.Me/popfeng"></a>
             <img src="/static/img/feiyushow.jpg" alt="飞鱼全家福">
-            <img src="/static/img/donate_alipay.jpg" alt="支付宝" title="支付宝">
+            <a href="javascript:;"><img src="/static/img/donate_alipay_new.jpg" alt="Alipay" title="Alipay"></a>
             <!--img src="/static/img/donate_wechat.jpg" alt="微信" title="微信"-->
         </div>
         <span>这将用于支付AWS服务器和七牛云存储、带宽的账单，谢谢你</span>

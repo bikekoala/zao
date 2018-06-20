@@ -5,9 +5,9 @@
 <div class="post-about">
     <p>你好！朋友！这里是飞鱼秀的非官方回放网站，赶紧扫描下方的二维码来拜见我们的舟舟国主吧！</p>
     <div class="qrcode">
-        <img src="/static/img/qrcode_jiewomensuo.jpg" alt="微信号：戒我们所" title="微信号：戒我们所">
+        <!--img src="/static/img/qrcode_jiewomensuo.jpg" alt="微信号：戒我们所" title="微信号：戒我们所"-->
         <img src="/static/img/qrcode_zaoaoaoaoao.jpg" alt="微信号：zaoaoaoaoao, 早嗷嗷嗷嗷, 比喻的喻小船那个舟, 喻舟" title="微信号：zaoaoaoaoao, 早嗷嗷嗷嗷, 比喻的喻小船那个舟, 喻舟">
-        <!--img src="/static/img/qrcode_huxiaofei2016.jpg" alt="微信号：huxiaofei2016, 胡小飞, 小飞, 胡昆, Felix" title="微信号：huxiaofei2016, 胡小飞, 小飞, 胡昆, Felix"-->
+        <img src="/static/img/qrcode_huxiaofei2016.jpg" alt="微信号：huxiaofei2016, 胡小飞, 小飞, 胡昆, Felix" title="微信号：huxiaofei2016, 胡小飞, 小飞, 胡昆, Felix">
         <!--img src="/static/img/qrcode_ezfeiyuxiu.jpg" alt="微信号：ezfeiyuxiu, 飞鱼秀" title="微信号：ezfeiyuxiu, 飞鱼秀"-->
     </div>
 </div>
