@@ -58,6 +58,6 @@
 <script src="/static/??module/echarts/echarts.min.js,js/music/chart.js,js/music/artist.js"></script>
 @endsection
 
-@section('extra')
+@section('footer_extra')
 <a href="http://www.acrcloud.cn/music_scan_for_files_feiyuxiu" rel="nofollow" target="_blank" class="link">@音乐识别由 <span>ACRCloud</span> 提供</a>
 @endsection

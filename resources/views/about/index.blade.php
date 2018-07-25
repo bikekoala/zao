@@ -28,12 +28,6 @@
 
 @include('layouts.donate')
 
-@include('layouts.disqus')
-
 <script src="/static/js/about/index.js"></script>
 
-@endsection
-
-@section('extra')
-<a href="https://koala.bike" rel="nofollow" target="_blank" class="link">@popfeng</a>
 @endsection

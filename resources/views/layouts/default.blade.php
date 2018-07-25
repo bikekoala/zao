@@ -55,7 +55,9 @@
             @yield('content')
 
             <footer id="footer">
-                © 2016 <a href="{{ URL('/') }}">Zao~ao~ao~ao~ao.com</a> @yield('extra')
+                © 2016 <a href="{{ URL('/') }}">Zao~ao~ao~ao~ao.com</a>
+                <a href="https://koala.bike" rel="nofollow" target="_blank" class="link">@popfeng</a>
+                @yield('footer_extra')
             </footer>
         </div>
 
