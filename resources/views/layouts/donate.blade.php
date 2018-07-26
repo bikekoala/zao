@@ -35,7 +35,7 @@
     <a class="btn-donate" id="btn-donate" href="javascript:;"></a>
     <div class="donate-guide">
         <div class="donate-qrcode">
-            <a href="https://paypal.me/popfeng" target="_blank"><img src="/static/img/donate_paypal.jpg" alt="PayPal" title="PayPal.Me/popfeng"></a>
+            <a href="https://paypal.me/sunxuewu" target="_blank"><img src="/static/img/donate_paypal.jpg" alt="PayPal" title="PayPal.Me/sunxuewu"></a>
             <img src="/static/img/feiyushow.jpg" alt="飞鱼全家福">
             <a href="javascript:;"><img src="/static/img/donate_alipay_new.jpg" alt="Alipay" title="Alipay"></a>
             <!--img src="/static/img/donate_wechat.jpg" alt="微信" title="微信"-->
