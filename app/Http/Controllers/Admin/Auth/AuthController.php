@@ -35,7 +35,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectPath = '/admin/contributions';
+    protected $redirectPath = '/admin/notifications';
 
     /**
      * Create a new authentication controller instance.

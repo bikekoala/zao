@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller as BaseController;
 use Config, View;
 
-abstract class Controller extends Controller
+abstract class Controller extends BaseController
 {
 
     /**
