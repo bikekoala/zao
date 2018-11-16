@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 多说评论组件配置文件
+ * Google places API
  */
 return [
     'key'              => env('GOOGLE_PLACES_API_KEY'),

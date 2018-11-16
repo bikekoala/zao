@@ -84,12 +84,12 @@ class Sync extends Command
      */
     private function getLatestComments()
     {
-        $disqus = new Disqus(env('DISQUS_API_SECRET'));
+        $disqus = new Disqus(config('disqus.api_secret'));
 
         $since = str_replace(' ', 'T', Comment::max('cmt_created_at')); 
 
         $params = [
-            'forum'   => env('DISQUS_SHORTNAME'),
+            'forum'   => config('disqus.short_name'),
             'offset'  => 0,
             'limit'   => 100,
             'order'   => 'asc',
