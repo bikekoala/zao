@@ -98,8 +98,8 @@
 <!--div class="ds-thread" data-thread-key="{{ $program->dates->id }}" data-title="{{ $program->date }} - {{ $program->topic }}" data-url="{{ Config::get('app.url') }}/program/{{ $program->dates->id }}"></div-->
 @include('layouts.disqus')
 
-<link rel="stylesheet" href="/static/module/mediaelement-4.2.6/build/mediaelementplayer.min.css">
-<script src="/static/module/mediaelement-4.2.6/build/mediaelement-and-player.js"></script>
+<link rel="stylesheet" href="/static/module/mediaelement-4.2.14/build/mediaelementplayer.min.css">
+<script src="/static/module/mediaelement-4.2.14/build/mediaelement-and-player.js"></script>
 
 <link rel="stylesheet" href="/static/css/detail.css">
 <script src="/static/js/detail.js"></script>

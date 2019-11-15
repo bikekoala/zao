@@ -9,7 +9,7 @@ $(function() {
             alwaysShowHours: true,
             videoVolume: 'horizontal',
             startVolume: 1,
-            flashName: '/static/module/mediaelement-4.2.6/build/mediaelement-flash-video-hls.swf',
+            flashName: '/static/module/mediaelement-4.2.14/build/mediaelement-flash-video-hls.swf',
             features: ['playpause','progress','current','duration','tracks','volume'],
             defaultSeekBackwardInterval: function(media) {
                 return (media.duration * 0.02);
