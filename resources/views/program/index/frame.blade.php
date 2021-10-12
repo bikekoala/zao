@@ -16,5 +16,5 @@
 
 @section('footer_extra')
 <br>
-<a href="http://www.beian.miit.gov.cn" rel="nofollow" target="_blank" class="link">京ICP备16005034号</a>
+<a href="https://beian.miit.gov.cn" rel="nofollow" target="_blank" class="link">京ICP备16005034号</a>
 @endsection
