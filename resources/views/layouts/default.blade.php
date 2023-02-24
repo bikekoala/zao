@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>{{ $title or '早' }} - 飞鱼秀非官方回放</title>
+        <title>{{ $title or '早' }} - 飞鱼秀非官方回放 - 大熊的个人站</title>
         <meta name="keywords" content="早嗷嗷嗷嗷 飞鱼秀 回放 下载 小飞 喻舟">
         <meta name="description" content="{{ $description or '亲爱的飞鱼人，这里可以在线收听或下载自 2004 年飞鱼秀开播以来的几乎所有的节目回放喔~' }}">
         <link type="text/plain" rel="author" href="/humans.txt">

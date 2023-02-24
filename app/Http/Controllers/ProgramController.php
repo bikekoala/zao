@@ -170,12 +170,15 @@ class ProgramController extends Controller
             $group = $group->groupBy('source');
 
             if (isset($group[Audio::SOURCE_DEFAULT])) {
-                if (1 < $group->count()) {
+		/*if (1 < $group->count()) {
                     unset($group[Audio::SOURCE_DEFAULT]);
                 } else {
                     $audio = $group[Audio::SOURCE_DEFAULT][0];
                     $audio->url = qiniu_url($audio->url);
-                }
+                }*/
+
+                $audio = $group[Audio::SOURCE_DEFAULT][0];
+                $audio->url = qiniu_url($audio->url);
             }
             $audioList[] = $group->first()->first();
         }
