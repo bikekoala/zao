@@ -25,6 +25,14 @@
             <script src="http://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
             <script src="http://cdn.staticfile.org/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTP68EH1Q2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-BTP68EH1Q2');
+        </script>
     </head>
     <body>
         <header>
@@ -62,14 +70,5 @@
         </div>
 
         <script src="/static/js/cn-tw.js"></script>
-
-        <script type="text/javascript">
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-            ga('create', 'UA-72733017-1', 'auto');
-            ga('send', 'pageview');
-        </script>
     </body>
 </html>
